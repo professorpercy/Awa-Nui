@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AWA NUI</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;font-family:'Courier New',monospace;overflow:hidden;color:#00ff64}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,100,.015) 2px,rgba(0,255,100,.015) 4px)}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
+  background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%)}
+
+/* ── BOOT ── */
+#boot{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;
+  justify-content:center;padding:0 8vw;z-index:8000;overflow-y:auto}
+#boot-title{font-size:32px;font-weight:700;letter-spacing:.28em;color:#00ff64;
+  text-shadow:0 0 22px rgba(0,255,100,.65);margin-bottom:32px;
+  opacity:0;animation:blIn .5s ease-out .3s forwards}
+#boot-about{margin-bottom:36px}
+.ba{font-size:12px;line-height:1.9;letter-spacing:.04em;color:rgba(0,255,100,.45);
+  opacity:0;animation:blIn .3s ease-out forwards}
+.ba em{font-style:normal;color:rgba(0,255,100,.7)}
+@keyframes blIn{to{opacity:1}}
+#boot-btns{display:flex;flex-direction:row;gap:20px;margin-top:8px;opacity:0;animation:blIn .4s ease-out 1.4s forwards}
+.bbtn{background:transparent;border:1px solid #00ff64;color:#00ff64;
+  font-family:'Courier New',monospace;font-size:13px;letter-spacing:.22em;
+  padding:13px 36px;cursor:pointer;text-shadow:0 0 8px rgba(0,255,100,.45);
+  box-shadow:0 0 14px rgba(0,255,100,.07),inset 0 0 14px rgba(0,255,100,.04);
+  transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:5px}
+.bbtn:hover{background:rgba(0,255,100,.08);box-shadow:0 0 28px rgba(0,255,100,.25)}
+.bbtn-sub{font-size:8px;letter-spacing:.15em;color:rgba(0,255,100,.3);font-weight:normal;text-transform:lowercase}
+
+/* ── GARDEN ── */
+#garden{position:fixed;inset:0;display:none}
+#hdr{position:fixed;top:0;left:0;right:0;height:48px;display:flex;align-items:center;
+  justify-content:space-between;padding:0 20px;background:rgba(0,0,0,.93);
+  border-bottom:1px solid rgba(0,255,100,.1);z-index:500}
+.logo{font-size:14px;letter-spacing:.32em;color:#00ff64;text-shadow:0 0 12px rgba(0,255,100,.5);cursor:default}
+.hdr-r{display:flex;align-items:center;gap:8px}
+.hbtn{background:transparent;border:1px solid rgba(0,255,100,.22);color:rgba(0,255,100,.5);
+  font-family:'Courier New',monospace;font-size:10px;letter-spacing:.14em;
+  padding:5px 12px;cursor:pointer;transition:all .2s}
+.hbtn:hover,.hbtn.on{border-color:rgba(0,255,100,.55);color:#00ff64;background:rgba(0,255,100,.07)}
+#rst{display:none}
+.mode-toggle{display:flex;border:1px solid rgba(0,255,100,.22);margin-right:12px}
+.mt-btn{background:transparent;border:none;border-right:1px solid rgba(0,255,100,.15);
+  color:rgba(0,255,100,.35);font-family:'Courier New',monospace;font-size:9px;
+  letter-spacing:.14em;padding:5px 12px;cursor:pointer;transition:all .2s}
+.mt-btn:last-child{border-right:none}
+.mt-btn.on{background:rgba(0,255,100,.1);color:#00ff64}
+.mt-btn:hover{color:rgba(0,255,100,.7)}
+#gc{position:fixed;top:48px;left:0;right:0;bottom:38px;z-index:1;transition:right .32s}
+#gc.shifted{right:360px}
+#gc canvas{display:block;width:100%;height:100%}
+#legwrap{position:fixed;bottom:0;left:0;right:0;height:38px;background:rgba(0,0,0,.93);
+  border-top:1px solid rgba(0,255,100,.1);z-index:500;overflow:hidden}
+#leginner{display:flex;width:max-content;height:38px;align-items:center;animation:tick 90s linear infinite}
+#leginner:hover{animation-play-state:paused}
+#l1,#l2{display:flex;gap:7px;padding:0 10px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.li{padding:3px 10px;font-size:10px;letter-spacing:.07em;color:#000;cursor:pointer;
+  white-space:nowrap;font-weight:700;font-family:'Courier New',monospace;
+  border:1px solid transparent;transition:all .15s}
+.li:hover{filter:brightness(1.2);transform:translateY(-1px)}
+.li.on{border-color:rgba(255,255,255,.65)}
+
+/* ── PANEL ── */
+#panel{position:fixed;top:0;right:0;bottom:0;width:360px;max-width:90vw;
+  background:rgba(2,7,2,.98);border-left:1px solid rgba(0,255,100,.12);
+  z-index:600;transform:translateX(100%);transition:transform .32s cubic-bezier(.16,1,.3,1);
+  display:flex;flex-direction:column}
+#panel.on{transform:translateX(0)}
+#pbar{height:48px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 16px;border-bottom:1px solid rgba(0,255,100,.08);flex-shrink:0}
+.pbl{font-size:9px;letter-spacing:.25em;color:rgba(0,255,100,.28)}
+#pcls{background:transparent;border:1px solid rgba(0,255,100,.2);color:rgba(0,255,100,.45);
+  width:26px;height:26px;font-family:'Courier New',monospace;font-size:11px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+#pcls:hover{border-color:rgba(0,255,100,.55);color:#00ff64}
+#pmedia{height:203px;position:relative;display:flex;align-items:center;justify-content:center;
+  border-bottom:1px solid rgba(0,255,100,.07);flex-shrink:0;overflow:hidden;background:#000}
+#pmedia-frame{display:none;position:absolute;inset:0;width:100%;height:100%;border:none}
+#cover-img{width:150px;height:150px;object-fit:cover;border:1px solid rgba(0,255,100,.25);display:none;position:relative;z-index:1}
+.vinyl-wrap{display:none;position:relative;z-index:1}
+.vinyl{width:120px;height:120px;border-radius:50%;display:flex;align-items:center;justify-content:center;animation:spin 8s linear infinite}
+.vinyl-dot{width:8px;height:8px;border-radius:50%}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+#apill{position:absolute;bottom:13px;left:13px;font-size:8px;letter-spacing:.2em;padding:3px 9px;z-index:2}
+#pscroll{flex:1;overflow-y:auto;padding:18px 17px 24px;scrollbar-width:thin;scrollbar-color:rgba(0,255,100,.1) transparent}
+#ptitle{font-size:16px;line-height:1.25;color:#00ff64;letter-spacing:.03em;
+  text-shadow:0 0 10px rgba(0,255,100,.28);margin-bottom:4px}
+#partist{font-size:11px;letter-spacing:.09em;color:rgba(0,255,100,.48);margin-bottom:14px}
+.pdiv{height:1px;background:rgba(0,255,100,.07);margin-bottom:14px}
+.pmrow{display:flex;gap:18px;margin-bottom:14px}
+.pml{font-size:8px;letter-spacing:.2em;color:rgba(0,255,100,.25);margin-bottom:2px}
+.pmv{font-size:10px;letter-spacing:.04em;color:rgba(0,255,100,.65)}
+#pblurb{font-size:11px;line-height:1.75;color:rgba(0,255,100,.44);margin-bottom:16px;letter-spacing:.02em}
+.psl{font-size:8px;letter-spacing:.22em;color:rgba(0,255,100,.25);margin-bottom:8px}
+#psimilar{margin-bottom:14px}
+.psim-item{display:flex;align-items:center;gap:9px;padding:7px 10px;
+  border:1px solid rgba(0,255,100,.1);margin-bottom:5px;cursor:pointer;transition:all .15s}
+.psim-item:hover{border-color:rgba(0,255,100,.3);background:rgba(0,255,100,.04)}
+.psim-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.psim-info{flex:1;min-width:0}
+.psim-title{font-size:10px;color:rgba(0,255,100,.7);letter-spacing:.04em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.psim-artist{font-size:8px;color:rgba(0,255,100,.3);letter-spacing:.04em;margin-top:1px}
+.pchips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:18px}
+.pchip{font-size:8px;letter-spacing:.11em;padding:2px 8px;border:1px solid rgba(0,255,100,.15);color:rgba(0,255,100,.4)}
+.plinks{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+.plbtn{display:flex;align-items:center;justify-content:space-between;
+  padding:11px 14px;font-family:'Courier New',monospace;font-size:10px;letter-spacing:.16em;
+  text-decoration:none;border:1px solid rgba(0,255,100,.24);color:#00ff64;
+  background:rgba(0,255,100,.04);transition:all .2s}
+.plbtn:hover{background:rgba(0,255,100,.1);border-color:rgba(0,255,100,.44)}
+.plbtn.none{border-color:rgba(0,255,100,.07);color:rgba(0,255,100,.2);pointer-events:none}
+.padd-btn{padding:10px 14px;font-family:'Courier New',monospace;font-size:10px;
+  letter-spacing:.16em;border:1px solid rgba(0,255,100,.32);color:#00ff64;
+  background:rgba(0,255,100,.05);cursor:pointer;width:100%;text-align:center;
+  transition:all .2s;margin-bottom:8px;display:none}
+.padd-btn:hover{border-color:rgba(0,255,100,.65);background:rgba(0,255,100,.12)}
+.padd-btn:disabled{border-color:rgba(0,255,100,.1);color:rgba(0,255,100,.25);cursor:default;background:transparent}
+.pdel{padding:10px 14px;font-family:'Courier New',monospace;font-size:10px;
+  letter-spacing:.16em;border:1px solid rgba(255,50,50,.3);color:rgba(255,50,50,.5);
+  background:transparent;cursor:pointer;width:100%;text-align:center;transition:all .2s;display:none}
+.pdel:hover{border-color:rgba(255,50,50,.7);color:#ff4444;background:rgba(255,50,50,.06)}
+
+/* ── COMMENTS ── */
+#pcomments-section{margin-bottom:14px}
+.pcomment{padding:8px 0;border-bottom:1px solid rgba(0,255,100,.05)}
+.pcomment:last-child{border-bottom:none}
+.pcomment-text{font-size:10px;line-height:1.6;color:rgba(0,255,100,.55);letter-spacing:.02em}
+.pcomment-time{font-size:7px;letter-spacing:.1em;color:rgba(0,255,100,.2);margin-top:3px}
+.pcomment-none{font-size:9px;color:rgba(0,255,100,.18);letter-spacing:.04em;margin-bottom:10px;font-style:italic}
+#pcomment-form{display:flex;gap:6px;margin-top:10px}
+.pci{flex:1;background:rgba(0,255,100,.03);border:1px solid rgba(0,255,100,.15);
+  color:#00ff64;font-family:'Courier New',monospace;font-size:10px;padding:7px 9px;
+  letter-spacing:.02em;outline:none;transition:border-color .2s}
+.pci:focus{border-color:rgba(0,255,100,.4)}
+.pci::placeholder{color:rgba(0,255,100,.15)}
+.pcs{background:transparent;border:1px solid rgba(0,255,100,.22);color:rgba(0,255,100,.6);
+  font-family:'Courier New',monospace;font-size:8px;letter-spacing:.15em;padding:7px 10px;
+  cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.pcs:hover{border-color:rgba(0,255,100,.55);color:#00ff64;background:rgba(0,255,100,.07)}
+
+/* ── DISCOGS MODAL ── */
+#dcform{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:700;display:none;
+  justify-content:center;align-items:center}
+#dcform.on{display:flex}
+#dc-inner{width:380px;max-width:90vw;padding:28px 24px;
+  border:1px solid rgba(0,255,100,.2);background:rgba(2,7,2,.98)}
+#dc-title{font-size:12px;letter-spacing:.25em;color:rgba(0,255,100,.4);margin-bottom:6px}
+#dc-sub{font-size:9px;letter-spacing:.06em;color:rgba(0,255,100,.22);margin-bottom:20px;line-height:1.6}
+#dc-status{font-size:10px;letter-spacing:.05em;color:rgba(0,255,100,.5);min-height:18px;margin-bottom:10px}
+
+/* ── ADD FORM ── */
+#addform{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:700;display:none;
+  justify-content:center;align-items:center}
+#addform.on{display:flex}
+#af-inner{width:380px;max-width:90vw;max-height:85vh;overflow-y:auto;padding:28px 24px;
+  border:1px solid rgba(0,255,100,.2);background:rgba(2,7,2,.98)}
+#af-title{font-size:12px;letter-spacing:.25em;color:rgba(0,255,100,.4);margin-bottom:20px}
+.af-row{margin-bottom:14px}
+.af-label{font-size:8px;letter-spacing:.2em;color:rgba(0,255,100,.25);margin-bottom:4px}
+.af-input{width:100%;background:rgba(0,255,100,.04);border:1px solid rgba(0,255,100,.15);
+  color:#00ff64;font-family:'Courier New',monospace;font-size:12px;padding:8px 10px;
+  letter-spacing:.03em;outline:none;transition:border-color .2s}
+.af-input:focus{border-color:rgba(0,255,100,.45)}
+.af-input::placeholder{color:rgba(0,255,100,.15)}
+.af-btns{display:flex;gap:12px;margin-top:20px}
+.af-btn{flex:1;padding:11px;font-family:'Courier New',monospace;font-size:10px;
+  letter-spacing:.18em;cursor:pointer;border:1px solid rgba(0,255,100,.25);
+  background:transparent;color:#00ff64;transition:all .2s}
+.af-btn:hover{background:rgba(0,255,100,.08);border-color:rgba(0,255,100,.5)}
+.af-btn.cancel{color:rgba(0,255,100,.3);border-color:rgba(0,255,100,.1)}
+.af-btn.cancel:hover{color:rgba(0,255,100,.5);border-color:rgba(0,255,100,.25)}
+</style>
+</head>
+<body>
+
+<!-- ═══ BOOT ═══ -->
+<div id="boot">
+  <div id="boot-title">AWA NUI</div>
+  <div id="boot-about">
+    <div class="ba" style="animation-delay:.6s">AWA NUI is a music discovery platform organised by space — where it came from, what it connects to. How it works: Each node is an album. Colour = genre. Position = geographic origin or genre cluster. Lines connect albums that share DNA. Click a node to explore it. <em>Personal Garden</em> = your record collection, your favorite albums. <em>Global Garden</em> = the collective map. Switch between genre view and country view, use the ticker bar to filter.</div>
+  </div>
+  <div id="boot-btns">
+    <button class="bbtn" id="bcreate">PERSONAL GARDEN</button>
+    <button class="bbtn" id="bdiscover">GLOBAL GARDEN<span class="bbtn-sub">no login required</span></button>
+  </div>
+</div>
+
+<!-- ═══ GARDEN ═══ -->
+<div id="garden">
+  <div id="hdr">
+    <span class="logo">AWA NUI</span>
+    <div class="hdr-r">
+      <div class="mode-toggle">
+        <button class="mt-btn on" id="mt-create">PERSONAL</button>
+        <button class="mt-btn" id="mt-discover">GLOBAL</button>
+      </div>
+      <button class="hbtn on" id="bgenre">GENRE</button>
+      <button class="hbtn" id="bcountry">COUNTRY</button>
+      <button class="hbtn" id="rst">SHOW ALL</button>
+      <button class="hbtn" id="bdiscogs" style="display:none">DISCOGS</button>
+      <button class="hbtn" id="badd">+ ADD</button>
+    </div>
+  </div>
+  <div id="gc"><canvas id="cv"></canvas></div>
+  <div id="legwrap"><div id="leginner"><div id="l1"></div><div id="l2"></div></div></div>
+</div>
+
+<!-- ═══ PANEL ═══ -->
+<div id="panel">
+  <div id="pbar"><span class="pbl">RECORD INFO</span><button id="pcls">✕</button></div>
+  <div id="pmedia">
+    <iframe id="pmedia-frame" frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+    <img id="cover-img" alt="">
+    <div class="vinyl-wrap" id="vinyl-wrap">
+      <div class="vinyl" id="vinyl"><div class="vinyl-dot" id="vdot"></div></div>
+    </div>
+    <div id="apill"></div>
+  </div>
+  <div id="pscroll">
+    <div id="ptitle"></div>
+    <div id="partist"></div>
+    <div class="pdiv"></div>
+    <div class="pmrow" id="pmrow"></div>
+    <div id="pblurb"></div>
+    <div id="psimilar"></div>
+    <div class="pdiv"></div>
+    <div id="pcomments-section">
+      <div class="psl">COMMENTS</div>
+      <div id="pcomments-list"></div>
+      <div id="pcomment-form">
+        <input class="pci" id="pci" placeholder="leave a note...">
+        <button class="pcs" id="pcs">POST</button>
+      </div>
+    </div>
+    <div class="pdiv"></div>
+    <div class="pchips" id="pchips"></div>
+    <div class="plinks" id="plinks"></div>
+    <button class="padd-btn" id="padd">+ ADD TO MY GARDEN</button>
+    <button class="pdel" id="pdel">DELETE FROM GARDEN</button>
+  </div>
+</div>
+
+<!-- ═══ DISCOGS FORM ═══ -->
+<div id="dcform">
+  <div id="dc-inner">
+    <div id="dc-title">SCAN DISCOGS COLLECTION</div>
+    <div id="dc-sub">Imports your public Discogs collection into Personal Garden.<br>Your collection must be set to public in Discogs settings.</div>
+    <div class="af-row"><div class="af-label">DISCOGS USERNAME</div><input class="af-input" id="dc-user" placeholder="your username"></div>
+    <div id="dc-status"></div>
+    <div class="af-btns">
+      <button class="af-btn cancel" id="dc-cancel">CANCEL</button>
+      <button class="af-btn" id="dc-submit">SCAN</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ADD FORM ═══ -->
+<div id="addform">
+  <div id="af-inner">
+    <div id="af-title">ADD ALBUM</div>
+    <div class="af-row"><div class="af-label">TITLE</div><input class="af-input" id="af-id" placeholder="Album title"></div>
+    <div class="af-row"><div class="af-label">ARTIST</div><input class="af-input" id="af-artist" placeholder="Artist name"></div>
+    <div class="af-row"><div class="af-label">GENRES (comma separated)</div><input class="af-input" id="af-genres" placeholder="e.g. Jazz, World, Funk"></div>
+    <div class="af-row"><div class="af-label">COUNTRY</div><input class="af-input" id="af-country" placeholder="e.g. Nigeria, UK, Japan"></div>
+    <div class="af-row"><div class="af-label">LINK (Bandcamp / Discogs URL)</div><input class="af-input" id="af-url" placeholder="https://..."></div>
+    <div class="af-row"><div class="af-label">YOUTUBE URL (optional)</div><input class="af-input" id="af-youtube" placeholder="https://youtube.com/watch?v=..."></div>
+    <div class="af-row"><div class="af-label">COVER IMAGE URL (optional)</div><input class="af-input" id="af-img" placeholder="https://...jpg"></div>
+    <div class="af-row"><div class="af-label">DESCRIPTION (optional)</div><input class="af-input" id="af-blurb" placeholder="Short description..."></div>
+    <div class="af-btns">
+      <button class="af-btn cancel" id="af-cancel">CANCEL</button>
+      <button class="af-btn" id="af-submit">ADD TO GARDEN</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+var GROUPS={
+  electronic:['trip hop','electronica','synthpop','dance','ghettotech','electronic','house','deep house','acid','breaks','breakbeat','techno','trance','progressive house','dub techno','drum and bass','jungle','idm'],
+  world:['world','habibi funk','arabic','afro funk','tribal','bossa nova','brazilian','afrobeat'],
+  jazz:['funk soul','jazz'],
+  reggae:['reggae','dub'],
+  soul:['disco','funk','soul','neo soul'],
+  experimental:['post-rock','indie rock','indie','alternative','new age','ambient','experimental']
+};
+var GC={
+  electronic:{range:['#1e3a5f','#1d4ed8','#3b82f6','#60a5fa','#93c5fd']},
+  world:{range:['#7c2d12','#c2410c','#ea580c','#f97316','#fb923c']},
+  jazz:{range:['#14532d','#15803d','#16a34a','#22c55e','#4ade80']},
+  reggae:{range:['#365314','#4d7c0f','#65a30d','#84cc16','#a3e635']},
+  soul:{range:['#581c87','#7e22ce','#9333ea','#a855f7','#c084fc']},
+  experimental:{range:['#881337','#be123c','#e11d48','#f43f5e','#fb7185']}
+};
+var CP=['#ef4444','#f97316','#eab308','#22c55e','#14b8a6','#3b82f6','#8b5cf6','#ec4899','#f43f5e','#06b6d4'];
+var COORDS={
+  'USA':[-98,38],'UK':[-1,52],'Germany':[10,51],'France':[2,46],'Italy':[12,42],
+  'Japan':[138,37],'Nigeria':[8,10],'Egypt':[30,26],'Brazil':[-52,-10],'Congo':[15,-1],
+  'Cameroon':[12,6],'Jamaica':[-77,18],'Mali':[-3,17],'Guinea':[-10,10],'Venezuela':[-66,6],
+  'South Africa':[24,-30],'Hong Kong':[114,22],'Russia':[105,61],'Lebanon':[35,33],
+  'Australia':[135,-25],'Austria':[13,47],'Canada':[-106,56],'Zanzibar':[39,-6],'Kenya':[37,0],
+  'Turkey':[35,39],'Various':[0,15],'Unknown':[0,0],'Pakistan':[69,30],'Mexico':[-102,23],
+  'Netherlands':[5,52],'Niger':[8,17],'Western Sahara':[-13,24],'Guadeloupe':[-61,16]
+};
+var GROUP_LABELS={electronic:'ELECTRONIC',world:'WORLD',jazz:'JAZZ',reggae:'REGGAE',soul:'SOUL',experimental:'EXPERIMENTAL'};
+var COMMENTS={};
+
+function getGroup(g){var gl=(g||'').toLowerCase();for(var k in GROUPS){if(GROUPS[k].indexOf(gl)>-1)return k;}return 'experimental';}
+function genreColor(n){var g=(n.genres[0]||'').toLowerCase(),grp=getGroup(g),gc=GC[grp];if(!gc)return'#888';var l=GROUPS[grp],i=l.indexOf(g),r=gc.range;var idx=i>-1?Math.floor((i/Math.max(l.length-1,1))*(r.length-1)):2;return r[Math.min(idx,r.length-1)];}
+function hs(s){var h=0;for(var i=0;i<s.length;i++)h=(Math.imul(31,h)+s.charCodeAt(i))|0;return Math.abs(h);}
+function countryColor(c){return CP[hs(c||'')%CP.length];}
+function linkLabel(u){if(!u)return null;if(u.indexOf('bandcamp.com')>-1)return'OPEN ON BANDCAMP';if(u.indexOf('discogs.com')>-1)return'VIEW ON DISCOGS';if(u.indexOf('soundcloud.com')>-1)return'LISTEN ON SOUNDCLOUD';if(u.indexOf('ninjatune.net')>-1)return'OPEN ON NINJA TUNE';return'OPEN LINK';}
+function ytId(url){if(!url)return null;var m=url.match(/(?:youtube\.com\/watch\?(?:.*&)?v=|youtu\.be\/)([\w-]{11})/);return m?m[1]:null;}
+function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+/* ── WORLD MAP ── */
+var worldData=null,worldBorders=null,worldGeoPath=null;
+function ensureWorldData(){
+  if(worldData||worldData===false)return;
+  if(typeof topojson==='undefined'){worldData=false;return;}
+  worldData=false; // loading flag
+  fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+    .then(function(r){return r.json();})
+    .then(function(topo){
+      worldData=topojson.feature(topo,topo.objects.countries);
+      worldBorders=topojson.mesh(topo,topo.objects.countries,function(a,b){return a!==b;});
+    })
+    .catch(function(){worldData=null;});
+}
+
+/* ── BOOT ── */
+document.getElementById('bcreate').onclick=function(){go('create');};
+document.getElementById('bdiscover').onclick=function(){go('discover');};
+function go(mode){
+  currentSection=mode;
+  document.getElementById('boot').style.display='none';
+  document.getElementById('garden').style.display='block';
+  document.getElementById('mt-create').classList.toggle('on',mode==='create');
+  document.getElementById('mt-discover').classList.toggle('on',mode==='discover');
+  document.getElementById('bdiscogs').style.display=mode==='create'?'':'none';
+  requestAnimationFrame(function(){requestAnimationFrame(function(){init();});});
+}
+
+/* ── GLOBALS ── */
+var DATA=[],nodes=[],links=[],sim=null,ctx=null,canvas=null;
+var transform=null,hovered=null,currentView='genres',currentSection='create';
+var currentFilter=null,currentFilterKind=null,dpr=1,animId=null,panelOpen=false;
+var setupDone=false,zoomBehavior=null,selectedNode=null,genreCenters={};
+
+/* ── INIT ── */
+function init(){
+  canvas=document.getElementById('cv');
+  ctx=canvas.getContext('2d');
+  dpr=window.devicePixelRatio||1;
+  transform=d3.zoomIdentity;
+  fetch('albums.json?v='+Date.now()).then(function(r){return r.json();}).then(function(json){
+    DATA=json.nodes||json;
+    setupOnce();
+    loadSection();
+  }).catch(function(e){console.error('albums.json load failed',e);DATA=[];setupOnce();loadSection();});
+}
+
+function setupOnce(){
+  if(setupDone)return;
+  setupDone=true;
+  zoomBehavior=d3.zoom().scaleExtent([0.25,5]).on('zoom',function(e){transform=e.transform;});
+  d3.select(canvas).call(zoomBehavior);
+  canvas.addEventListener('mousemove',function(e){
+    var rect=canvas.getBoundingClientRect();
+    hovered=getNodeAt(e.clientX-rect.left,e.clientY-rect.top);
+    canvas.style.cursor=hovered?'pointer':'grab';
+  });
+  canvas.addEventListener('click',function(e){
+    var rect=canvas.getBoundingClientRect();
+    var n=getNodeAt(e.clientX-rect.left,e.clientY-rect.top);
+    if(n){openPanel(n);}else if(panelOpen){closePanel();}
+  });
+  document.getElementById('bgenre').onclick=function(){
+    document.getElementById('bgenre').classList.add('on');
+    document.getElementById('bcountry').classList.remove('on');
+    setView('genres');
+  };
+  document.getElementById('bcountry').onclick=function(){
+    document.getElementById('bcountry').classList.add('on');
+    document.getElementById('bgenre').classList.remove('on');
+    setView('country');
+  };
+  document.getElementById('rst').onclick=function(){clearFilter();};
+  document.getElementById('mt-create').onclick=function(){switchSection('create');};
+  document.getElementById('mt-discover').onclick=function(){switchSection('discover');};
+  document.getElementById('badd').onclick=function(){openAddForm();};
+  document.getElementById('bdiscogs').onclick=function(){openDiscogsForm();};
+  document.getElementById('dc-cancel').onclick=function(){closeDiscogsForm();};
+  document.getElementById('dc-submit').onclick=function(){startDiscogsScan();};
+  document.getElementById('af-cancel').onclick=function(){closeAddForm();};
+  document.getElementById('af-submit').onclick=function(){submitAdd();};
+  document.getElementById('pdel').onclick=function(){deleteNode();};
+  document.getElementById('padd').onclick=function(){addToGarden();};
+  document.getElementById('pcs').onclick=function(){submitComment();};
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){closeAddForm();closeDiscogsForm();closePanel();}
+    if(e.key==='Enter'&&document.activeElement===document.getElementById('pci')){submitComment();}
+    if(e.key==='Enter'&&document.activeElement===document.getElementById('dc-user')){startDiscogsScan();}
+  });
+  window.onresize=handleResize;
+}
+
+function loadSection(){
+  var gc=document.getElementById('gc'),W=gc.offsetWidth,H=gc.offsetHeight;
+  canvas.width=W*dpr;canvas.height=H*dpr;
+  canvas.style.width=W+'px';canvas.style.height=H+'px';
+  currentView='genres';
+  document.getElementById('bgenre').classList.add('on');
+  document.getElementById('bcountry').classList.remove('on');
+  var filtered=currentSection==='discover'?DATA:DATA.filter(function(d){return(d.section||'create')==='create';});
+  nodes=filtered.map(function(d,i){return{
+    id:d.id,artist:d.artist,genres:d.genres||[],url:d.url||'',country:d.country||'Unknown',
+    blurb:d.blurb||'',img:d.img||'',youtube:d.youtube||'',section:d.section||'create',
+    subGenres:(d.genres||[]).map(function(g){return g.toLowerCase();}),
+    _col:genreColor(d),_vis:true,_dim:false,index:i,_dataIdx:DATA.indexOf(d)
+  };});
+  rebuildLinks();
+  createSimulation(W,H,'genres');
+  buildTicker('genres');
+  transform=d3.zoomIdentity;
+  if(zoomBehavior)d3.select(canvas).call(zoomBehavior.transform,d3.zoomIdentity);
+  if(animId)cancelAnimationFrame(animId);
+  draw();
+}
+
+function switchSection(s){
+  currentSection=s;
+  document.getElementById('mt-create').classList.toggle('on',s==='create');
+  document.getElementById('mt-discover').classList.toggle('on',s==='discover');
+  document.getElementById('bdiscogs').style.display=s==='create'?'':'none';
+  closePanel();clearFilter();
+  if(sim)sim.stop();
+  if(animId)cancelAnimationFrame(animId);
+  loadSection();
+}
+
+function rebuildLinks(){
+  links=[];
+  for(var i=0;i<nodes.length;i++){
+    for(var j=i+1;j<nodes.length;j++){
+      var a=nodes[i].subGenres,b=nodes[j].subGenres,shared=false;
+      for(var ai=0;ai<a.length&&!shared;ai++)
+        for(var bi=0;bi<b.length&&!shared;bi++)
+          if(a[ai]===b[bi])shared=true;
+      if(shared)links.push({source:i,target:j});
+    }
+  }
+}
+
+function createSimulation(W,H,view){
+  if(sim)sim.stop();
+  worldGeoPath=null;
+  if(view==='genres'){
+    var keys=[],seen={};
+    nodes.forEach(function(n){var k=getGroup(n.genres[0]);if(!seen[k]){keys.push(k);seen[k]=true;}});
+    genreCenters={};
+    keys.forEach(function(k,i){var a=(i/keys.length)*Math.PI*2-Math.PI/2;
+      genreCenters[k]={x:W/2+Math.cos(a)*W*0.24,y:H/2+Math.sin(a)*H*0.2};});
+    nodes.forEach(function(n){n.fx=null;n.fy=null;n._col=genreColor(n);});
+    sim=d3.forceSimulation(nodes)
+      .force('link',d3.forceLink(links).strength(0.015))
+      .force('x',d3.forceX(function(d){var c=genreCenters[getGroup(d.genres[0])];return c?c.x:W/2;}).strength(0.08))
+      .force('y',d3.forceY(function(d){var c=genreCenters[getGroup(d.genres[0])];return c?c.y:H/2;}).strength(0.08))
+      .force('charge',d3.forceManyBody().strength(-110))
+      .force('collision',d3.forceCollide(16))
+      .alpha(1).alphaDecay(0.018);
+  }else{
+    var proj=d3.geoEquirectangular().scale(W/5.5).translate([W/2,H/2]);
+    nodes.forEach(function(n){
+      n._col=countryColor(n.country);
+      var co=COORDS[n.country||'Unknown']||[0,0];
+      var pos=proj(co);
+      n.fx=pos[0]+(Math.random()-0.5)*55;
+      n.fy=pos[1]+(Math.random()-0.5)*55;
+    });
+    // Build canvas-space geo path (projection scaled by dpr to match canvas coords)
+    var projC=d3.geoEquirectangular().scale((W/5.5)*dpr).translate([(W/2)*dpr,(H/2)*dpr]);
+    worldGeoPath=d3.geoPath().projection(projC).context(ctx);
+    ensureWorldData();
+    sim=d3.forceSimulation(nodes)
+      .force('charge',d3.forceManyBody().strength(-20))
+      .force('collision',d3.forceCollide(14))
+      .alpha(1).alphaDecay(0.025);
+  }
+}
+
+function getNodeAt(mx,my){
+  var sx=(mx*dpr-transform.x*dpr)/transform.k;
+  var sy=(my*dpr-transform.y*dpr)/transform.k;
+  for(var i=nodes.length-1;i>=0;i--){
+    var n=nodes[i];
+    var dx=n.x*dpr-sx,dy=n.y*dpr-sy;
+    if(dx*dx+dy*dy<(16*dpr)*(16*dpr))return n;
+  }
+  return null;
+}
+
+/* ── RENDER ── */
+function draw(){
+  var W=canvas.width,H=canvas.height;
+  ctx.save();ctx.clearRect(0,0,W,H);
+  ctx.translate(transform.x*dpr,transform.y*dpr);
+  ctx.scale(transform.k,transform.k);
+
+  // World map underlay (country view)
+  if(currentView==='country'&&worldGeoPath&&worldData&&worldData!==false){
+    ctx.save();
+    worldData.features.forEach(function(f){
+      ctx.beginPath();worldGeoPath(f);
+      ctx.fillStyle='rgba(0,40,15,0.55)';ctx.fill();
+      ctx.strokeStyle='rgba(0,255,100,0.22)';ctx.lineWidth=0.8;ctx.stroke();
+    });
+    if(worldBorders){
+      ctx.beginPath();worldGeoPath(worldBorders);
+      ctx.strokeStyle='rgba(0,255,100,0.08)';ctx.lineWidth=0.3;ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  // Links (genre view only)
+  if(currentView==='genres'&&links.length>0){
+    for(var li=0;li<links.length;li++){
+      var l=links[li];
+      var s=typeof l.source==='object'?l.source:nodes[l.source];
+      var t=typeof l.target==='object'?l.target:nodes[l.target];
+      if(!s||!t)continue;
+      var bothVis=s._vis&&t._vis&&!s._dim&&!t._dim;
+      ctx.strokeStyle=bothVis?'rgba(0,255,100,.07)':'rgba(0,255,100,.015)';
+      ctx.lineWidth=bothVis?0.8*dpr:0.3*dpr;
+      ctx.beginPath();ctx.moveTo(s.x*dpr,s.y*dpr);ctx.lineTo(t.x*dpr,t.y*dpr);ctx.stroke();
+    }
+  }
+
+  // Genre cluster labels
+  if(currentView==='genres'&&Object.keys(genreCenters).length>0){
+    ctx.textAlign='center';
+    ctx.font='600 '+(11*dpr)+'px Courier New';
+    for(var gk in genreCenters){
+      var gctr=genreCenters[gk];
+      ctx.fillStyle=GC[gk]?GC[gk].range[2]+'18':'rgba(0,255,100,.06)';
+      ctx.fillText((GROUP_LABELS[gk]||gk).toUpperCase(),gctr.x*dpr,gctr.y*dpr-55*dpr);
+    }
+  }
+
+  // Nodes
+  for(var ni=0;ni<nodes.length;ni++){
+    var n=nodes[ni];
+    var active=n._vis&&!n._dim;
+    var dimmed=n._dim;
+    var col=active?n._col:(dimmed?n._col:'#111');
+    var alpha=active?1:(dimmed?0.15:0.05);
+    var x=n.x*dpr,y=n.y*dpr;
+    var r=(active?7:dimmed?5:3)*dpr;
+    var isHov=(hovered===n);
+    if(active){
+      var glowR=r*Math.max(1.5,Math.min(4,transform.k*4));
+      var glowA=Math.max(0.06,Math.min(0.26,transform.k*0.24));
+      ctx.globalAlpha=glowA;
+      var grad=ctx.createRadialGradient(x,y,0,x,y,glowR);
+      grad.addColorStop(0,col+'ff');grad.addColorStop(1,col+'00');
+      ctx.beginPath();ctx.arc(x,y,glowR,0,Math.PI*2);ctx.fillStyle=grad;ctx.fill();
+      ctx.globalAlpha=1;
+    }
+    ctx.globalAlpha=alpha;
+    ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();
+    ctx.globalAlpha=1;
+    if(active){ctx.beginPath();ctx.arc(x,y,2.5*dpr,0,Math.PI*2);ctx.fillStyle='rgba(0,0,0,.45)';ctx.fill();}
+    if(isHov&&(active||dimmed)){
+      ctx.beginPath();ctx.arc(x,y,r+4*dpr,0,Math.PI*2);
+      ctx.strokeStyle=col+'aa';ctx.lineWidth=1.5*dpr;ctx.stroke();
+      var label=n.id+'  —  '+n.artist;
+      ctx.font=(10*dpr)+'px Courier New';
+      var tw=ctx.measureText(label).width;
+      var bx=x-tw/2-10*dpr,by=y-r-36*dpr,bw=tw+20*dpr,bh=26*dpr;
+      ctx.fillStyle='rgba(0,0,0,.92)';ctx.fillRect(bx,by,bw,bh);
+      ctx.strokeStyle='rgba(0,255,100,.25)';ctx.lineWidth=1*dpr;ctx.strokeRect(bx,by,bw,bh);
+      ctx.fillStyle='#00ff64';ctx.textAlign='center';ctx.fillText(label,x,by+17*dpr);
+    }
+  }
+  ctx.restore();
+  animId=requestAnimationFrame(draw);
+}
+
+/* ── VIEW ── */
+function setView(type){
+  currentView=type;clearFilter();
+  var gc=document.getElementById('gc'),W=gc.offsetWidth,H=gc.offsetHeight;
+  if(type==='country'){links=[];createSimulation(W,H,'country');}
+  else{rebuildLinks();createSimulation(W,H,'genres');}
+  buildTicker(type);
+}
+
+/* ── FILTER ── */
+function applyFilter(label,kind){
+  if(currentFilter===label){clearFilter();return;}
+  currentFilter=label;currentFilterKind=kind;
+  document.getElementById('rst').style.display='block';
+  document.querySelectorAll('.li').forEach(function(el){el.classList.toggle('on',el.textContent===label);});
+  nodes.forEach(function(n){
+    var match=false;
+    if(kind==='parent'){match=n.subGenres.some(function(sg){return getGroup(sg)===label;});}
+    else if(kind==='sub'){match=n.subGenres.indexOf(label.toLowerCase())>-1;}
+    else if(kind==='country'){match=(n.country===label);}
+    n._vis=true;n._dim=!match;
+  });
+}
+function clearFilter(){
+  currentFilter=null;currentFilterKind=null;
+  document.getElementById('rst').style.display='none';
+  document.querySelectorAll('.li').forEach(function(el){el.classList.remove('on');});
+  nodes.forEach(function(n){n._vis=true;n._dim=false;});
+}
+
+/* ── TICKER ── */
+function buildTicker(type){
+  var items=[];
+  if(type==='genres'){
+    for(var p in GROUPS){items.push({lbl:p,kind:'parent',par:p});GROUPS[p].forEach(function(s){items.push({lbl:s,kind:'sub',par:p});});}
+  }else{
+    var seen={};nodes.forEach(function(n){seen[n.country||'Unknown']=true;});
+    Object.keys(seen).sort().forEach(function(c){items.push({lbl:c,kind:'country',par:c});});
+  }
+  function fill(el){
+    el.innerHTML='';
+    items.forEach(function(item){
+      var d=document.createElement('div');d.className='li';d.textContent=item.lbl;
+      if(type==='genres'){var gc2=GC[item.par];if(gc2)d.style.background=gc2.range[item.kind==='parent'?3:2];}
+      else{d.style.background=countryColor(item.lbl);}
+      d.style.color='#000';
+      d.onclick=function(){applyFilter(item.lbl,item.kind);};
+      el.appendChild(d);
+    });
+  }
+  fill(document.getElementById('l1'));fill(document.getElementById('l2'));
+}
+
+/* ── SIMILAR ── */
+function getSimilar(node){
+  return nodes
+    .filter(function(n){return n!==node;})
+    .map(function(n){
+      var shared=node.subGenres.filter(function(g){return n.subGenres.indexOf(g)>-1;}).length;
+      return{n:n,s:shared};
+    })
+    .filter(function(x){return x.s>0;})
+    .sort(function(a,b){return b.s-a.s;})
+    .slice(0,4)
+    .map(function(x){return x.n;});
+}
+
+/* ── PANEL ── */
+document.getElementById('pcls').onclick=closePanel;
+
+function openPanel(node){
+  panelOpen=true;selectedNode=node;
+  var col=node._col||'#00ff64';
+  document.getElementById('pmedia').style.background='linear-gradient(135deg,'+col+'18,'+col+'30)';
+
+  // Media — embed if specific YouTube URL, else cover/vinyl
+  var frameEl=document.getElementById('pmedia-frame');
+  var coverEl=document.getElementById('cover-img');
+  var vinylWrap=document.getElementById('vinyl-wrap');
+  var vid=ytId(node.youtube);
+  if(vid){
+    frameEl.src='https://www.youtube.com/embed/'+vid+'?rel=0&modestbranding=1';
+    frameEl.style.display='block';
+    coverEl.style.display='none';
+    vinylWrap.style.display='none';
+  }else if(node.img){
+    frameEl.src='';frameEl.style.display='none';
+    coverEl.src=node.img;coverEl.style.display='block';
+    coverEl.style.border='1px solid '+col+'44';
+    vinylWrap.style.display='none';
+  }else{
+    frameEl.src='';frameEl.style.display='none';
+    coverEl.style.display='none';
+    vinylWrap.style.display='block';
+    var v=document.getElementById('vinyl');
+    v.style.background='conic-gradient(from 0deg,'+col+'22,'+col+'44,'+col+'22,'+col+'44,'+col+'22)';
+    v.style.border='1px solid '+col+'55';
+    document.getElementById('vdot').style.background=col;
+  }
+
+  var pill=document.getElementById('apill');
+  pill.textContent=(node.genres[0]||'').toUpperCase();
+  pill.style.background=col+'20';pill.style.border='1px solid '+col+'40';pill.style.color=col;
+
+  document.getElementById('ptitle').textContent=node.id;
+  document.getElementById('partist').textContent=node.artist||'';
+  document.getElementById('pmrow').innerHTML=
+    '<div><div class="pml">COUNTRY</div><div class="pmv">'+(node.country||'--')+'</div></div>'+
+    '<div><div class="pml">GENRE GROUP</div><div class="pmv">'+getGroup(node.genres[0]).toUpperCase()+'</div></div>';
+  document.getElementById('pblurb').textContent=node.blurb||'';
+
+  // Similar albums
+  var sims=getSimilar(node);
+  var psimEl=document.getElementById('psimilar');
+  if(sims.length>0){
+    var sh='<div class="psl">SIMILAR ALBUMS</div>';
+    sims.forEach(function(s,i){
+      sh+='<div class="psim-item" data-i="'+i+'">'
+        +'<div class="psim-dot" style="background:'+s._col+'"></div>'
+        +'<div class="psim-info">'
+        +'<div class="psim-title">'+escHtml(s.id)+'</div>'
+        +'<div class="psim-artist">'+escHtml(s.artist)+'</div>'
+        +'</div></div>';
+    });
+    psimEl.innerHTML=sh;
+    psimEl.querySelectorAll('.psim-item').forEach(function(el){
+      var i=parseInt(el.getAttribute('data-i'));
+      el.onclick=function(){openPanel(sims[i]);};
+    });
+  }else{
+    psimEl.innerHTML='';
+  }
+
+  // Genre chips
+  var chips='';node.genres.forEach(function(g){chips+='<span class="pchip">'+escHtml(g.toUpperCase())+'</span>';});
+  document.getElementById('pchips').innerHTML=chips;
+
+  // External links
+  var lbl=linkLabel(node.url);
+  var ytSearch='https://www.youtube.com/results?search_query='+encodeURIComponent(node.artist+' '+node.id);
+  var linksHtml=lbl
+    ?'<a class="plbtn" href="'+node.url+'" target="_blank" rel="noopener"><span>'+lbl+'</span><span>↗</span></a>'
+    :'<div class="plbtn none"><span>NO LINK AVAILABLE</span></div>';
+  linksHtml+='<a class="plbtn" href="'+ytSearch+'" target="_blank" rel="noopener"><span>SEARCH ON YOUTUBE</span><span>↗</span></a>';
+  document.getElementById('plinks').innerHTML=linksHtml;
+
+  // Add / Delete buttons
+  var paddEl=document.getElementById('padd');
+  var pdelEl=document.getElementById('pdel');
+  if(currentSection==='discover'){
+    var inPersonal=DATA.some(function(d){
+      return d.id===node.id&&d.artist===node.artist&&(d.section||'create')==='create';
+    });
+    paddEl.style.display='block';
+    paddEl.textContent=inPersonal?'✓ IN YOUR GARDEN':'+ ADD TO MY GARDEN';
+    paddEl.disabled=inPersonal;
+    pdelEl.style.display='none';
+  }else{
+    paddEl.style.display='none';
+    pdelEl.style.display='block';
+  }
+
+  // Comments
+  renderComments(node.id);
+
+  document.getElementById('panel').classList.add('on');
+  document.getElementById('gc').classList.add('shifted');
+}
+
+function closePanel(){
+  panelOpen=false;selectedNode=null;
+  document.getElementById('pmedia-frame').src='';
+  document.getElementById('panel').classList.remove('on');
+  document.getElementById('gc').classList.remove('shifted');
+}
+
+/* ── COMMENTS ── */
+function renderComments(albumId){
+  var list=COMMENTS[albumId]||[];
+  var el=document.getElementById('pcomments-list');
+  if(list.length===0){
+    el.innerHTML='<div class="pcomment-none">no comments yet</div>';
+  }else{
+    el.innerHTML=list.map(function(c){
+      var d=new Date(c.t);
+      var ts=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+      return'<div class="pcomment"><div class="pcomment-text">'+escHtml(c.text)+'</div>'
+        +'<div class="pcomment-time">'+ts+'</div></div>';
+    }).join('');
+  }
+  document.getElementById('pci').value='';
+}
+
+function submitComment(){
+  if(!selectedNode)return;
+  var input=document.getElementById('pci');
+  var text=input.value.trim();
+  if(!text)return;
+  var id=selectedNode.id;
+  if(!COMMENTS[id])COMMENTS[id]=[];
+  COMMENTS[id].push({text:text,t:Date.now()});
+  renderComments(id);
+}
+
+/* ── ADD TO GARDEN ── */
+function addToGarden(){
+  if(!selectedNode)return;
+  for(var i=0;i<DATA.length;i++){
+    if(DATA[i].id===selectedNode.id&&DATA[i].artist===selectedNode.artist){
+      DATA[i].section='create';
+      selectedNode.section='create';
+      break;
+    }
+  }
+  var btn=document.getElementById('padd');
+  btn.textContent='✓ IN YOUR GARDEN';
+  btn.disabled=true;
+}
+
+/* ── ADD ALBUM ── */
+function openAddForm(){
+  document.getElementById('addform').classList.add('on');
+  document.getElementById('af-id').focus();
+}
+function closeAddForm(){
+  document.getElementById('addform').classList.remove('on');
+  ['af-id','af-artist','af-genres','af-country','af-url','af-youtube','af-img','af-blurb'].forEach(function(id){
+    document.getElementById(id).value='';
+  });
+}
+function submitAdd(){
+  var title=document.getElementById('af-id').value.trim();
+  var artist=document.getElementById('af-artist').value.trim();
+  if(!title||!artist){alert('Title and artist are required');return;}
+  var genres=document.getElementById('af-genres').value.split(',').map(function(s){return s.trim();}).filter(Boolean);
+  if(genres.length===0)genres=['World'];
+  var newAlbum={
+    id:title,artist:artist,genres:genres,
+    url:document.getElementById('af-url').value.trim(),
+    youtube:document.getElementById('af-youtube').value.trim(),
+    country:document.getElementById('af-country').value.trim()||'Unknown',
+    blurb:document.getElementById('af-blurb').value.trim(),
+    img:document.getElementById('af-img').value.trim(),
+    section:currentSection==='discover'?'discover':'create'
+  };
+  DATA.push(newAlbum);
+  if(!COORDS[newAlbum.country]){COORDS[newAlbum.country]=[Math.random()*360-180,Math.random()*120-60];}
+  closeAddForm();
+  if(sim)sim.stop();
+  if(animId)cancelAnimationFrame(animId);
+  loadSection();
+}
+
+/* ── DELETE ALBUM ── */
+function deleteNode(){
+  if(!selectedNode)return;
+  if(!confirm('Remove "'+selectedNode.id+'" from the garden?'))return;
+  for(var i=0;i<DATA.length;i++){
+    if(DATA[i].id===selectedNode.id&&DATA[i].artist===selectedNode.artist){DATA.splice(i,1);break;}
+  }
+  closePanel();
+  if(sim)sim.stop();
+  if(animId)cancelAnimationFrame(animId);
+  loadSection();
+}
+
+/* ── DISCOGS SCAN ── */
+function openDiscogsForm(){
+  document.getElementById('dcform').classList.add('on');
+  document.getElementById('dc-status').textContent='';
+  document.getElementById('dc-user').focus();
+}
+function closeDiscogsForm(){
+  document.getElementById('dcform').classList.remove('on');
+  document.getElementById('dc-status').textContent='';
+  document.getElementById('dc-user').value='';
+}
+function startDiscogsScan(){
+  var username=document.getElementById('dc-user').value.trim();
+  if(!username){document.getElementById('dc-status').textContent='Enter a username.';return;}
+  document.getElementById('dc-submit').disabled=true;
+  scanDiscogsPage(username,1,0);
+}
+function scanDiscogsPage(username,page,totalAdded){
+  var statusEl=document.getElementById('dc-status');
+  statusEl.textContent='Scanning page '+page+'…';
+  var url='https://api.discogs.com/users/'+encodeURIComponent(username)
+    +'/collection/folders/0/releases?per_page=100&page='+page+'&sort=artist';
+  fetch(url,{headers:{'User-Agent':'AWA-NUI/1.0'}})
+    .then(function(r){
+      if(!r.ok)throw new Error(r.status===404?'User not found or collection is private':'API error '+r.status);
+      return r.json();
+    })
+    .then(function(data){
+      var releases=data.releases||[];
+      var added=0;
+      releases.forEach(function(r){
+        var info=r.basic_information||{};
+        var artist=(info.artists||[]).map(function(a){return a.name.replace(/\s*\(\d+\)$/,'');}).join(', ')||'Unknown';
+        var genres=info.styles&&info.styles.length?info.styles:info.genres||['World'];
+        var country=info.country||'Unknown';
+        var album={
+          id:info.title||'Unknown',artist:artist,genres:genres,
+          url:'https://www.discogs.com/release/'+info.id,
+          country:country,blurb:'',img:info.cover_image||'',youtube:'',section:'create'
+        };
+        var exists=DATA.some(function(d){return d.id===album.id&&d.artist===album.artist;});
+        if(!exists){DATA.push(album);added++;}
+        if(!COORDS[country])COORDS[country]=[Math.random()*320-160,Math.random()*140-70];
+      });
+      totalAdded+=added;
+      var pg=data.pagination||{};
+      if(pg.page<pg.pages){
+        setTimeout(function(){scanDiscogsPage(username,page+1,totalAdded);},600);
+      }else{
+        statusEl.textContent='Done — '+totalAdded+' albums imported.';
+        document.getElementById('dc-submit').disabled=false;
+        setTimeout(function(){
+          closeDiscogsForm();
+          if(sim)sim.stop();if(animId)cancelAnimationFrame(animId);
+          loadSection();
+        },1200);
+      }
+    })
+    .catch(function(e){
+      document.getElementById('dc-status').textContent='Error: '+e.message;
+      document.getElementById('dc-submit').disabled=false;
+    });
+}
+
+function handleResize(){
+  var gc=document.getElementById('gc'),W=gc.offsetWidth,H=gc.offsetHeight;
+  canvas.width=W*dpr;canvas.height=H*dpr;
+  canvas.style.width=W+'px';canvas.style.height=H+'px';
+  if(currentView==='country'){
+    var projC=d3.geoEquirectangular().scale((W/5.5)*dpr).translate([(W/2)*dpr,(H/2)*dpr]);
+    worldGeoPath=d3.geoPath().projection(projC).context(ctx);
+  }
+}
+</script>
+</body>
+</html>
