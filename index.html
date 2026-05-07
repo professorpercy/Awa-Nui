@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AWA NUI</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000;font-family:'Courier New',monospace;overflow:hidden;color:#00ff64}
@@ -206,6 +207,32 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 .af-btn.cancel{color:rgba(0,255,100,.3);border-color:rgba(0,255,100,.1)}
 .af-btn.cancel:hover{color:rgba(0,255,100,.5);border-color:rgba(0,255,100,.25)}
 #fg3d{position:absolute;top:0;left:0;width:100%;height:100%;display:none;z-index:2;}
+/* ── AUTH ── */
+#auth-modal{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:7000;display:none;align-items:center;justify-content:center}
+#auth-modal.on{display:flex}
+#auth-box{background:#030905;border:1px solid rgba(0,255,100,.2);padding:36px;width:340px;display:flex;flex-direction:column;gap:14px}
+#auth-title{font-size:12px;letter-spacing:.3em;color:#00ff64;margin-bottom:4px}
+#auth-sub{font-size:9px;letter-spacing:.1em;color:rgba(0,255,100,.35)}
+.auth-input{background:rgba(0,255,100,.03);border:1px solid rgba(0,255,100,.18);color:#00ff64;font-family:'Courier New',monospace;font-size:11px;padding:10px 12px;outline:none;letter-spacing:.06em;width:100%;transition:border-color .2s}
+.auth-input:focus{border-color:rgba(0,255,100,.5)}
+#auth-msg{font-size:9px;letter-spacing:.08em;color:rgba(0,255,100,.45);min-height:14px}
+.auth-btn{background:transparent;border:1px solid rgba(0,255,100,.3);color:#00ff64;font-family:'Courier New',monospace;font-size:10px;letter-spacing:.2em;padding:11px;cursor:pointer;transition:all .2s;width:100%}
+.auth-btn:hover{background:rgba(0,255,100,.07);border-color:rgba(0,255,100,.6)}
+.auth-btn.sec{border-color:rgba(0,255,100,.12);color:rgba(0,255,100,.38);font-size:9px}
+.auth-btn.sec:hover{border-color:rgba(0,255,100,.3);color:rgba(0,255,100,.6)}
+/* ── ADMIN ── */
+#admin-panel{position:fixed;inset:0;background:#000;z-index:7500;display:none;overflow-y:auto;padding:56px 40px 40px}
+#admin-panel.on{display:block}
+#admin-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+#admin-hdr-title{font-size:13px;letter-spacing:.3em;color:#00ff64}
+.admin-req{border:1px solid rgba(0,255,100,.14);padding:18px;margin-bottom:10px}
+.admin-req-title{font-size:12px;letter-spacing:.12em;color:#00ff64;margin-bottom:5px}
+.admin-req-meta{font-size:8px;color:rgba(0,255,100,.35);letter-spacing:.08em;margin-bottom:12px;line-height:1.8}
+.admin-btns{display:flex;gap:8px}
+.abtn-ok{background:transparent;border:1px solid rgba(0,255,100,.3);color:#00ff64;font-family:'Courier New',monospace;font-size:9px;letter-spacing:.15em;padding:7px 16px;cursor:pointer;transition:all .2s}
+.abtn-ok:hover{background:rgba(0,255,100,.08)}
+.abtn-no{background:transparent;border:1px solid rgba(255,50,50,.3);color:rgba(255,80,80,.6);font-family:'Courier New',monospace;font-size:9px;letter-spacing:.15em;padding:7px 16px;cursor:pointer;transition:all .2s}
+.abtn-no:hover{background:rgba(255,50,50,.06)}
 </style>
 </head>
 <body>
@@ -242,6 +269,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
       <button class="hbtn" id="rst">SHOW ALL</button>
       <button class="hbtn" id="bdiscogs" style="display:none">DISCOGS</button>
       <button class="hbtn" id="badd">+ ADD</button>
+      <button class="hbtn" id="badmin" style="display:none">REQUESTS</button>
+      <button class="hbtn" id="bauth">LOGIN</button>
     </div>
   </div>
   <div id="gc"><canvas id="cv"></canvas><div id="fg3d"></div></div>
@@ -488,6 +517,136 @@ var geoProjection=null,baseScale=0,baseTranslate=[0,0];
 var connectedSet=null,dragNode=null,dragMoved=false,dragStartX=0,dragStartY=0,genreSettling=false;
 var is3D=false,graph3d=null;
 
+/* ── SUPABASE ── */
+var SUPABASE_URL='https://xoipldemaurceywuxipz.supabase.co';
+var SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhvaXBsZGVtYXVyY2V5d3V4aXB6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxODY0MzAsImV4cCI6MjA5Mzc2MjQzMH0.IJjtQQ5y67-tQ6-0JemILEgURMt7ztG32i6CTq21sMU';
+var sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+var currentUser=null;
+var ADMIN_EMAIL='allegrawoods2005@gmail.com';
+var userGardenIds=new Set();
+
+function updateAuthUI(){
+  var btn=document.getElementById('bauth');
+  var adminBtn=document.getElementById('badmin');
+  if(currentUser){
+    btn.textContent='SIGN OUT';
+    adminBtn.style.display=currentUser.email===ADMIN_EMAIL?'':'none';
+  }else{
+    btn.textContent='LOGIN';
+    adminBtn.style.display='none';
+  }
+}
+function openAuthModal(){
+  document.getElementById('auth-modal').classList.add('on');
+  document.getElementById('auth-email').focus();
+  document.getElementById('auth-msg').textContent='';
+}
+function closeAuthModal(){
+  document.getElementById('auth-modal').classList.remove('on');
+  document.getElementById('auth-pass').value='';
+  document.getElementById('auth-msg').textContent='';
+}
+function initSupabase(){
+  sb.auth.getSession().then(function(res){
+    currentUser=res.data&&res.data.session?res.data.session.user:null;
+    updateAuthUI();if(currentUser)loadUserGarden();
+  });
+  sb.auth.onAuthStateChange(function(event,session){
+    currentUser=session?session.user:null;
+    updateAuthUI();if(currentUser)loadUserGarden();else userGardenIds=new Set();
+  });
+  document.getElementById('bauth').onclick=function(){
+    if(currentUser){sb.auth.signOut();}else{openAuthModal();}
+  };
+  document.getElementById('auth-cancel').onclick=closeAuthModal;
+  document.getElementById('auth-modal').onclick=function(e){if(e.target===this)closeAuthModal();};
+  document.getElementById('auth-signin').onclick=function(){
+    var email=document.getElementById('auth-email').value.trim();
+    var pass=document.getElementById('auth-pass').value;
+    if(!email||!pass){document.getElementById('auth-msg').textContent='Please fill in both fields.';return;}
+    document.getElementById('auth-msg').textContent='Signing in…';
+    sb.auth.signInWithPassword({email:email,password:pass}).then(function(res){
+      if(res.error){document.getElementById('auth-msg').textContent=res.error.message;}
+      else{closeAuthModal();}
+    });
+  };
+  document.getElementById('auth-signup').onclick=function(){
+    var email=document.getElementById('auth-email').value.trim();
+    var pass=document.getElementById('auth-pass').value;
+    if(!email||!pass){document.getElementById('auth-msg').textContent='Please fill in both fields.';return;}
+    if(pass.length<6){document.getElementById('auth-msg').textContent='Password must be at least 6 characters.';return;}
+    document.getElementById('auth-msg').textContent='Creating account…';
+    sb.auth.signUp({email:email,password:pass}).then(function(res){
+      if(res.error){document.getElementById('auth-msg').textContent=res.error.message;}
+      else{document.getElementById('auth-msg').textContent='Check your email to confirm your account!';}
+    });
+  };
+  document.getElementById('badmin').onclick=openAdminPanel;
+  document.getElementById('admin-close').onclick=function(){document.getElementById('admin-panel').classList.remove('on');};
+}
+function loadUserGarden(){
+  if(!currentUser)return;
+  sb.from('user_gardens').select('album_id').eq('user_id',currentUser.id).then(function(res){
+    userGardenIds=new Set((res.data||[]).map(function(r){return r.album_id;}));
+  });
+}
+function saveToGarden(albumId){
+  if(!currentUser){openAuthModal();return;}
+  if(userGardenIds.has(albumId)){return;}
+  sb.from('user_gardens').insert({user_id:currentUser.id,album_id:albumId}).then(function(res){
+    if(!res.error){
+      userGardenIds.add(albumId);
+      var btn=document.getElementById('padd');
+      if(btn){btn.textContent='✓ SAVED TO GARDEN';btn.disabled=true;}
+    }
+  });
+}
+function openAdminPanel(){
+  document.getElementById('admin-panel').classList.add('on');
+  var list=document.getElementById('admin-requests');
+  list.innerHTML='<div style="color:rgba(0,255,100,.3);font-size:10px;letter-spacing:.12em;padding:20px 0">LOADING…</div>';
+  sb.from('album_requests').select('*').eq('status','pending').order('created_at',{ascending:false}).then(function(res){
+    var reqs=res.data||[];
+    if(!reqs.length){list.innerHTML='<div style="color:rgba(0,255,100,.25);font-size:10px;letter-spacing:.1em;padding:20px 0">NO PENDING REQUESTS</div>';return;}
+    list.innerHTML='';
+    reqs.forEach(function(r){
+      var div=document.createElement('div');div.className='admin-req';
+      div.innerHTML='<div class="admin-req-title">'+r.title+' — '+r.artist+'</div>'+
+        '<div class="admin-req-meta">'+
+        'GENRES: '+(r.genres||[]).join(', ')+'<br>'+
+        'COUNTRY: '+(r.country||'—')+'&nbsp;&nbsp;|&nbsp;&nbsp;'+
+        'FROM: '+(r.submitter_email||'anonymous')+'&nbsp;&nbsp;|&nbsp;&nbsp;'+
+        (r.created_at||'').slice(0,10)+
+        (r.url?'<br>LINK: <a href="'+r.url+'" target="_blank" style="color:rgba(0,255,100,.5)">'+r.url+'</a>':'')+
+        (r.blurb?'<br>NOTE: '+r.blurb:'')+
+        '</div>'+
+        '<div class="admin-btns">'+
+        '<button class="abtn-ok" data-id="'+r.id+'">APPROVE</button>'+
+        '<button class="abtn-no" data-id="'+r.id+'">DECLINE</button>'+
+        '</div>';
+      list.appendChild(div);
+      div.querySelector('.abtn-ok').onclick=function(){approveRequest(r,div);};
+      div.querySelector('.abtn-no').onclick=function(){declineRequest(r.id,div);};
+    });
+  });
+}
+function approveRequest(r,el){
+  var localAlbum={id:r.title,artist:r.artist,genres:r.genres||[],url:r.url||'',
+    youtube:r.youtube||'',country:r.country||'Unknown',city:r.city||'',
+    blurb:r.blurb||'',img:r.img||'',section:'discover'};
+  DATA.push(localAlbum);
+  sb.from('album_requests').update({status:'approved'}).eq('id',r.id).then(function(){
+    el.style.opacity='0.3';el.style.pointerEvents='none';
+    el.querySelector('.admin-req-title').textContent+=' — APPROVED';
+  });
+}
+function declineRequest(id,el){
+  sb.from('album_requests').update({status:'declined'}).eq('id',id).then(function(){
+    el.style.opacity='0.3';el.style.pointerEvents='none';
+    el.querySelector('.admin-req-title').textContent+=' — DECLINED';
+  });
+}
+
 
 /* ── INIT ── */
 function init(){
@@ -590,8 +749,11 @@ function setupOnce(){
   document.getElementById('af-cancel').onclick=function(){closeAddForm();};
   document.getElementById('af-submit').onclick=function(){submitAdd();};
   document.getElementById('pdel').onclick=function(){deleteNode();};
-  document.getElementById('padd').onclick=function(){addToGarden();};
+  document.getElementById('padd').onclick=function(){
+    if(selectedNode){saveToGarden(selectedNode.id+'__'+selectedNode.artist);}
+  };
   document.getElementById('pcs').onclick=function(){submitComment();};
+  initSupabase();
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape'){closeAddForm();closeDiscogsForm();closePanel();}
     if(e.key==='Enter'&&document.activeElement===document.getElementById('pci')){submitComment();}
@@ -1471,12 +1633,11 @@ function openPanel(node){
   var paddEl=document.getElementById('padd');
   var pdelEl=document.getElementById('pdel');
   if(currentSection==='discover'){
-    var inPersonal=DATA.some(function(d){
-      return d.id===node.id&&d.artist===node.artist&&(d.section||'create')==='create';
-    });
+    var albumKey=node.id+'__'+node.artist;
+    var alreadySaved=userGardenIds.has(albumKey);
     paddEl.style.display='block';
-    paddEl.textContent=inPersonal?'✓ IN YOUR GARDEN':'+ ADD TO MY GARDEN';
-    paddEl.disabled=inPersonal;
+    paddEl.textContent=alreadySaved?'✓ SAVED TO GARDEN':'+ ADD TO MY GARDEN';
+    paddEl.disabled=alreadySaved;
     pdelEl.style.display='none';
   }else{
     paddEl.style.display='none';
@@ -1560,21 +1721,24 @@ function submitAdd(){
   if(!title||!artist){alert('Title and artist are required');return;}
   var genres=document.getElementById('af-genres').value.split(',').map(function(s){return s.trim();}).filter(Boolean);
   if(genres.length===0)genres=['World'];
-  var newAlbum={
-    id:title,artist:artist,genres:genres,
+  var req={
+    title:title,artist:artist,genres:genres,
     url:document.getElementById('af-url').value.trim(),
     youtube:document.getElementById('af-youtube').value.trim(),
     country:document.getElementById('af-country').value.trim()||'Unknown',
     blurb:document.getElementById('af-blurb').value.trim(),
     img:document.getElementById('af-img').value.trim(),
-    section:currentSection==='discover'?'discover':'create'
+    submitted_by:currentUser?currentUser.id:null,
+    submitter_email:currentUser?currentUser.email:'anonymous'
   };
-  DATA.push(newAlbum);
-  if(!COORDS[newAlbum.country]){COORDS[newAlbum.country]=[Math.random()*360-180,Math.random()*120-60];}
-  closeAddForm();
-  if(sim)sim.stop();
-  if(animId)cancelAnimationFrame(animId);
-  loadSection();
+  var submitBtn=document.getElementById('af-submit');
+  submitBtn.textContent='SENDING…';submitBtn.disabled=true;
+  sb.from('album_requests').insert(req).then(function(res){
+    submitBtn.textContent='ADD TO GARDEN';submitBtn.disabled=false;
+    if(res.error){alert('Error submitting: '+res.error.message);return;}
+    closeAddForm();
+    alert('Submitted! Your album will appear after review.');
+  });
 }
 
 /* ── DELETE ALBUM ── */
@@ -1673,5 +1837,28 @@ function handleResize(){
   }
 }
 </script>
+
+<!-- ═══ AUTH MODAL ═══ -->
+<div id="auth-modal">
+  <div id="auth-box">
+    <div id="auth-title">AWA NUI</div>
+    <div id="auth-sub">Create an account to save albums to your personal garden</div>
+    <input class="auth-input" id="auth-email" type="email" placeholder="EMAIL" autocomplete="email">
+    <input class="auth-input" id="auth-pass" type="password" placeholder="PASSWORD" autocomplete="current-password">
+    <div id="auth-msg"></div>
+    <button class="auth-btn" id="auth-signin">SIGN IN</button>
+    <button class="auth-btn" id="auth-signup">CREATE ACCOUNT</button>
+    <button class="auth-btn sec" id="auth-cancel">CANCEL — CONTINUE BROWSING</button>
+  </div>
+</div>
+
+<!-- ═══ ADMIN PANEL ═══ -->
+<div id="admin-panel">
+  <div id="admin-hdr">
+    <div id="admin-hdr-title">ALBUM REQUESTS</div>
+    <button class="hbtn" id="admin-close">CLOSE</button>
+  </div>
+  <div id="admin-requests"></div>
+</div>
 </body>
 </html>
