@@ -37,6 +37,35 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   display:flex;flex-direction:column;align-items:center;gap:6px;}
 .bbtn:hover{background:rgba(0,255,100,.07);box-shadow:0 0 22px rgba(0,255,100,.2);}
 .bbtn-sub{font-size:8px;letter-spacing:.15em;color:rgba(0,255,100,.3);}
+#boot-footer{margin-top:36px;display:flex;flex-direction:column;align-items:center;gap:10px;
+  opacity:0;animation:blIn .4s ease-out 1.8s forwards;}
+#boot-auth-btn{background:transparent;border:none;color:rgba(0,255,100,.35);
+  font-family:'Courier New',monospace;font-size:9px;letter-spacing:.22em;
+  cursor:pointer;padding:6px 0;transition:color .2s;text-decoration:none}
+#boot-auth-btn:hover{color:rgba(0,255,100,.7);}
+#boot-signed-in{display:none;flex-direction:column;align-items:center;gap:6px}
+#boot-user-email{font-size:8px;letter-spacing:.14em;color:rgba(0,255,100,.28)}
+#boot-signout-link{background:transparent;border:none;color:rgba(0,255,100,.22);
+  font-family:'Courier New',monospace;font-size:8px;letter-spacing:.18em;
+  cursor:pointer;padding:2px 0;transition:color .2s}
+#boot-signout-link:hover{color:rgba(0,255,100,.5)}
+/* ── EMPTY GARDEN ── */
+#garden-empty{position:absolute;inset:0;display:none;flex-direction:column;
+  align-items:center;justify-content:center;z-index:10;pointer-events:auto;
+  background:rgba(0,0,0,.0)}
+#ge-inner{display:flex;flex-direction:column;align-items:center;gap:18px;
+  opacity:0;animation:blIn .5s ease-out .1s forwards}
+#ge-title{font-size:13px;letter-spacing:.32em;color:#00ff64;
+  text-shadow:0 0 20px rgba(0,255,100,.3)}
+#ge-sub{font-size:10px;letter-spacing:.1em;color:rgba(0,255,100,.35);
+  text-align:center;max-width:320px;line-height:1.8}
+.ge-btn{background:transparent;border:1px solid rgba(0,255,100,.28);color:rgba(0,255,100,.6);
+  font-family:'Courier New',monospace;font-size:9px;letter-spacing:.22em;
+  padding:10px 24px;cursor:pointer;transition:all .22s}
+.ge-btn:hover{border-color:rgba(0,255,100,.6);color:#00ff64;background:rgba(0,255,100,.06)}
+.ge-btn.primary{border-color:rgba(0,255,100,.5);color:#00ff64}
+.ge-btn.primary:hover{background:rgba(0,255,100,.09);box-shadow:0 0 16px rgba(0,255,100,.12)}
+#ge-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 @keyframes blIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 /* ── GARDEN ── */
@@ -249,8 +278,15 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
     <div class="bh-row"><span class="bh-key">CLICK</span><span class="bh-sep">=</span><span class="bh-val">EXPLORE RECORD</span></div>
   </div>
   <div id="boot-btns">
-    <button class="bbtn" id="bcreate">PERSONAL GARDEN</button>
-    <button class="bbtn" id="bdiscover">GLOBAL GARDEN<span class="bbtn-sub">no login required</span></button>
+    <button class="bbtn" id="bcreate">PERSONAL GARDEN<span class="bbtn-sub">sign in to save albums</span></button>
+    <button class="bbtn" id="bdiscover">GLOBAL GARDEN<span class="bbtn-sub">explore without account</span></button>
+  </div>
+  <div id="boot-footer">
+    <button id="boot-auth-btn">SIGN IN / CREATE ACCOUNT</button>
+    <div id="boot-signed-in">
+      <div id="boot-user-email"></div>
+      <button id="boot-signout-link">SIGN OUT</button>
+    </div>
   </div>
 </div>
 
@@ -273,7 +309,18 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
       <button class="hbtn" id="bauth">LOGIN</button>
     </div>
   </div>
-  <div id="gc"><canvas id="cv"></canvas><div id="fg3d"></div></div>
+  <div id="gc"><canvas id="cv"></canvas><div id="fg3d"></div>
+    <div id="garden-empty">
+      <div id="ge-inner">
+        <div id="ge-title">YOUR GARDEN IS EMPTY</div>
+        <div id="ge-sub">Browse the global garden and save albums that resonate with you.</div>
+        <div id="ge-btns">
+          <button class="ge-btn primary" id="ge-explore">EXPLORE GLOBAL GARDEN</button>
+          <button class="ge-btn" id="ge-signin" style="display:none">SIGN IN</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <div id="map-loading">GENERATING WORLD MAP…</div>
   <div id="genre-loading">ARRANGING GENRE MAP…</div>
   <div id="legwrap"><div id="leginner"><div id="l1"></div><div id="l2"></div></div></div>
@@ -498,6 +545,8 @@ function createWorldDotField(){
 /* ── BOOT ── */
 document.getElementById('bcreate').onclick=function(){go('create');};
 document.getElementById('bdiscover').onclick=function(){go('discover');};
+document.getElementById('boot-auth-btn').onclick=function(){openAuthModal();};
+document.getElementById('boot-signout-link').onclick=function(){if(sb)sb.auth.signOut();};
 function go(mode){
   currentSection=mode;
   document.getElementById('boot').style.display='none';
@@ -506,6 +555,18 @@ function go(mode){
   document.getElementById('mt-discover').classList.toggle('on',mode==='discover');
   document.getElementById('bdiscogs').style.display=mode==='create'?'':'none';
   requestAnimationFrame(function(){requestAnimationFrame(function(){init();});});
+}
+function updateBootAuth(){
+  var btn=document.getElementById('boot-auth-btn');
+  var signedIn=document.getElementById('boot-signed-in');
+  if(currentUser){
+    btn.style.display='none';
+    signedIn.style.display='flex';
+    document.getElementById('boot-user-email').textContent=currentUser.email;
+  }else{
+    btn.style.display='';
+    signedIn.style.display='none';
+  }
 }
 
 /* ── GLOBALS ── */
@@ -525,6 +586,18 @@ var currentUser=null;
 var ADMIN_EMAIL='allegrawoods2005@gmail.com';
 var userGardenIds=new Set();
 
+function showGardenEmpty(loggedIn){
+  var el=document.getElementById('garden-empty');
+  document.getElementById('ge-title').textContent=loggedIn?'YOUR GARDEN IS EMPTY':'BUILD YOUR PERSONAL GARDEN';
+  document.getElementById('ge-sub').textContent=loggedIn?
+    'Browse the global garden and save albums that resonate with you.':
+    'Sign in to save albums and build your own map of music.';
+  document.getElementById('ge-signin').style.display=loggedIn?'none':'';
+  el.style.display='flex';
+}
+function hideGardenEmpty(){
+  document.getElementById('garden-empty').style.display='none';
+}
 function updateAuthUI(){
   var btn=document.getElementById('bauth');
   var adminBtn=document.getElementById('badmin');
@@ -535,6 +608,7 @@ function updateAuthUI(){
     btn.textContent='LOGIN';
     adminBtn.style.display='none';
   }
+  updateBootAuth();
 }
 function openAuthModal(){
   document.getElementById('auth-modal').classList.add('on');
@@ -551,11 +625,17 @@ function initSupabase(){
   sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
   sb.auth.getSession().then(function(res){
     currentUser=res.data&&res.data.session?res.data.session.user:null;
-    updateAuthUI();if(currentUser)loadUserGarden();
+    updateAuthUI();if(currentUser)loadUserGarden().then(function(){if(setupDone&&currentSection==='create')loadSection();});
   });
   sb.auth.onAuthStateChange(function(event,session){
     currentUser=session?session.user:null;
-    updateAuthUI();if(currentUser)loadUserGarden();else userGardenIds=new Set();
+    updateAuthUI();
+    if(currentUser){
+      loadUserGarden().then(function(){if(setupDone&&currentSection==='create')loadSection();});
+    }else{
+      userGardenIds=new Set();
+      if(setupDone&&currentSection==='create')loadSection();
+    }
   });
   document.getElementById('bauth').onclick=function(){
     if(currentUser){sb.auth.signOut();}else{openAuthModal();}
@@ -587,8 +667,8 @@ function initSupabase(){
   document.getElementById('admin-close').onclick=function(){document.getElementById('admin-panel').classList.remove('on');};
 }
 function loadUserGarden(){
-  if(!currentUser)return;
-  sb.from('user_gardens').select('album_id').eq('user_id',currentUser.id).then(function(res){
+  if(!currentUser||!sb)return Promise.resolve();
+  return sb.from('user_gardens').select('album_id').eq('user_id',currentUser.id).then(function(res){
     userGardenIds=new Set((res.data||[]).map(function(r){return r.album_id;}));
   });
 }
@@ -744,6 +824,8 @@ function setupOnce(){
   document.getElementById('b3d').onclick=function(){toggle3D();};
   document.getElementById('mt-create').onclick=function(){switchSection('create');};
   document.getElementById('mt-discover').onclick=function(){switchSection('discover');};
+  document.getElementById('ge-explore').onclick=function(){switchSection('discover');};
+  document.getElementById('ge-signin').onclick=function(){openAuthModal();};
   document.getElementById('badd').onclick=function(){openAddForm();};
   document.getElementById('bdiscogs').onclick=function(){openDiscogsForm();};
   document.getElementById('dc-cancel').onclick=function(){closeDiscogsForm();};
@@ -772,7 +854,20 @@ function loadSection(){
   document.getElementById('bgenre').classList.add('on');
   document.getElementById('bcountry').classList.remove('on');
   document.getElementById('b3d').style.display='none';
-  var filtered=currentSection==='discover'?DATA:DATA.filter(function(d){return(d.section||'create')==='create';});
+  var filtered;
+  if(currentSection==='discover'){
+    filtered=DATA;
+    hideGardenEmpty();
+  }else{
+    if(!currentUser){
+      showGardenEmpty(false);
+      filtered=[];
+    }else{
+      filtered=DATA.filter(function(d){return userGardenIds.has(d.id+'__'+d.artist);});
+      if(filtered.length===0){showGardenEmpty(true);filtered=[];}
+      else{hideGardenEmpty();}
+    }
+  }
   nodes=filtered.map(function(d,i){return{
     id:d.id,artist:d.artist,genres:d.genres||[],url:d.url||'',country:d.country||'Unknown',
     city:d.city||'',
