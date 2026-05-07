@@ -520,7 +520,7 @@ var is3D=false,graph3d=null;
 /* ── SUPABASE ── */
 var SUPABASE_URL='https://xoipldemaurceywuxipz.supabase.co';
 var SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhvaXBsZGVtYXVyY2V5d3V4aXB6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxODY0MzAsImV4cCI6MjA5Mzc2MjQzMH0.IJjtQQ5y67-tQ6-0JemILEgURMt7ztG32i6CTq21sMU';
-var sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+var sb=null;
 var currentUser=null;
 var ADMIN_EMAIL='allegrawoods2005@gmail.com';
 var userGardenIds=new Set();
@@ -547,6 +547,8 @@ function closeAuthModal(){
   document.getElementById('auth-msg').textContent='';
 }
 function initSupabase(){
+  if(!window.supabase){console.warn('Supabase not loaded');return;}
+  sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
   sb.auth.getSession().then(function(res){
     currentUser=res.data&&res.data.session?res.data.session.user:null;
     updateAuthUI();if(currentUser)loadUserGarden();
@@ -591,7 +593,7 @@ function loadUserGarden(){
   });
 }
 function saveToGarden(albumId){
-  if(!currentUser){openAuthModal();return;}
+  if(!sb||!currentUser){openAuthModal();return;}
   if(userGardenIds.has(albumId)){return;}
   sb.from('user_gardens').insert({user_id:currentUser.id,album_id:albumId}).then(function(res){
     if(!res.error){
@@ -1732,6 +1734,7 @@ function submitAdd(){
     submitter_email:currentUser?currentUser.email:'anonymous'
   };
   var submitBtn=document.getElementById('af-submit');
+  if(!sb){alert('Connection unavailable, try again shortly.');return;}
   submitBtn.textContent='SENDING…';submitBtn.disabled=true;
   sb.from('album_requests').insert(req).then(function(res){
     submitBtn.textContent='ADD TO GARDEN';submitBtn.disabled=false;
