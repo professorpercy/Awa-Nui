@@ -56,14 +56,24 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 #ge-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 @keyframes blIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media(max-width:600px){
-  #hdr{padding:0 10px;gap:4px}
-  .hbtn{font-size:7px;padding:4px 7px;letter-spacing:.1em}
+  #hdr{padding:0 8px;gap:3px;height:44px}
+  #gc{top:44px}
+  .logo{font-size:11px;letter-spacing:.22em}
+  .hdr-r{gap:3px}
+  .mode-toggle{margin-right:3px}
+  .mt-btn{font-size:8px;padding:4px 8px;letter-spacing:.1em}
+  .hbtn{font-size:7px;padding:4px 6px;letter-spacing:.08em}
+  #badd span,#bdiscogs span{display:none}
   #panel{width:100%;max-width:100%}
   #gc.shifted{right:0}
   #ticker{font-size:8px}
-  .li{padding:2px 8px}
-  #boot-title{font-size:32px;letter-spacing:.2em}
-  .bbtn{padding:12px 20px;font-size:9px}
+  .li{padding:2px 8px;font-size:9px}
+  #boot-title{font-size:28px;letter-spacing:.18em}
+  #boot-btns{flex-direction:column;align-items:center;gap:12px}
+  .bbtn{padding:12px 28px;font-size:9px;width:220px;justify-content:center}
+  /* Ticker: touch-scrollable on mobile */
+  #legwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  #legwrap::-webkit-scrollbar{display:none}
 }
 
 /* ── GARDEN ── */
@@ -928,6 +938,42 @@ function setupOnce(){
     if(e.key==='Enter'&&document.activeElement===document.getElementById('dc-user')){startDiscogsScan();}
   });
   window.onresize=handleResize;
+  // Ticker swipe (desktop drag + mobile touch)
+  (function(){
+    var lw=document.getElementById('legwrap');
+    var li=document.getElementById('leginner');
+    var tx0=0,ox=0,dragging=false;
+    function startDrag(cx){
+      dragging=true;tx0=cx;
+      var m=new DOMMatrix(getComputedStyle(li).transform);
+      ox=isNaN(m.m41)?0:m.m41;
+      li.style.animation='none';
+      li.style.transform='translateX('+ox+'px)';
+    }
+    function moveDrag(cx){
+      if(!dragging)return;
+      var half=li.offsetWidth/2;
+      var nx=ox+(cx-tx0);
+      while(nx<-half)nx+=half;
+      while(nx>0)nx-=half;
+      li.style.transform='translateX('+nx+'px)';
+    }
+    function endDrag(){
+      if(!dragging)return;dragging=false;
+      var cur=new DOMMatrix(getComputedStyle(li).transform).m41;
+      var half=li.offsetWidth/2;
+      var delay=-(Math.abs(cur)/half*90);
+      li.style.transform='';li.style.animation='none';
+      li.offsetWidth;
+      li.style.animation='tick 90s '+delay+'s linear infinite';
+    }
+    lw.addEventListener('touchstart',function(e){if(e.touches.length===1)startDrag(e.touches[0].clientX);},{passive:true});
+    lw.addEventListener('touchmove',function(e){if(e.touches.length===1)moveDrag(e.touches[0].clientX);},{passive:true});
+    lw.addEventListener('touchend',endDrag,{passive:true});
+    lw.addEventListener('mousedown',function(e){startDrag(e.clientX);});
+    window.addEventListener('mousemove',function(e){moveDrag(e.clientX);});
+    window.addEventListener('mouseup',endDrag);
+  })();
 }
 
 function loadSection(){
@@ -1514,6 +1560,14 @@ function drawGenre(W,H){
       ctx.strokeStyle=col;ctx.lineWidth=1.5*dpr;
       ctx.beginPath();ctx.arc(x,y,r+5*dpr,0,Math.PI*2);ctx.stroke();
     }
+    // Album name label at high zoom (touch substitute for hover tooltip)
+    if(transform.k>=2&&!isHov){
+      var lf=(7*dpr/transform.k)+'px Courier New';
+      ctx.font=lf;ctx.textAlign='center';
+      var shortTitle=n.id.length>18?n.id.slice(0,17)+'…':n.id;
+      ctx.fillStyle=col;ctx.globalAlpha=alpha*0.7;
+      ctx.fillText(shortTitle,x,y+r+(9*dpr/transform.k));
+    }
     ctx.globalAlpha=1;
   }
 
@@ -2026,7 +2080,7 @@ function scanDiscogsPage(username,page,totalAdded){
   statusEl.textContent='Scanning page '+page+'…';
   var url='https://api.discogs.com/users/'+encodeURIComponent(username)
     +'/collection/folders/0/releases?per_page=100&page='+page+'&sort=artist';
-  fetch(url,{headers:{'User-Agent':'AWA-NUI/1.0'}})
+  fetch(url)
     .then(function(r){
       if(!r.ok)throw new Error(r.status===404?'User not found or collection is private':'API error '+r.status);
       return r.json();
@@ -2045,7 +2099,7 @@ function scanDiscogsPage(username,page,totalAdded){
           country:country,blurb:'',img:info.cover_image||'',youtube:'',section:'create'
         };
         var exists=DATA.some(function(d){return d.id===album.id&&d.artist===album.artist;});
-        if(!exists){DATA.push(album);added++;}
+        if(!exists){DATA.push(album);added++;userGardenIds.add(album.id+'__'+album.artist);}
         if(!COORDS[country])COORDS[country]=[Math.random()*320-160,Math.random()*140-70];
       });
       totalAdded+=added;
@@ -2054,6 +2108,7 @@ function scanDiscogsPage(username,page,totalAdded){
         setTimeout(function(){scanDiscogsPage(username,page+1,totalAdded);},600);
       }else{
         statusEl.textContent='Done — '+totalAdded+' albums imported.';
+        try{localStorage.setItem('awanui_albums',JSON.stringify(DATA));}catch(e){}
         document.getElementById('dc-submit').disabled=false;
         setTimeout(function(){
           closeDiscogsForm();
