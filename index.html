@@ -543,8 +543,25 @@ function createWorldDotField(){
   })();
 }
 
+/* ── GLOBALS ── */
+var SUPABASE_URL='https://xoipldemaurceywuxipz.supabase.co';
+var SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhvaXBsZGVtYXVyY2V5d3V4aXB6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxODY0MzAsImV4cCI6MjA5Mzc2MjQzMH0.IJjtQQ5y67-tQ6-0JemILEgURMt7ztG32i6CTq21sMU';
+var sb=null;
+var currentUser=null;
+var ADMIN_EMAIL='allegrawoods2005@gmail.com';
+var userGardenIds=new Set();
+var DATA=[],GLOBAL_DATA=[],globalDataReady=false;
+var nodes=[],links=[],sim=null,ctx=null,canvas=null;
+var transform=null,hovered=null,currentView='genres',currentSection='discover';
+var currentFilter=null,currentFilterKind=null,dpr=1,animId=null,panelOpen=false;
+var setupDone=false,zoomBehavior=null,selectedNode=null,genreCenters={},worldCentroids={};
+var geoProjection=null,baseScale=0,baseTranslate=[0,0];
+var connectedSet=null,dragNode=null,dragMoved=false,dragStartX=0,dragStartY=0,genreSettling=false;
+var is3D=false,graph3d=null;
+var needsRedraw=true,cachedDotPixels=null,cachedDotZoom=-1;
+
 /* ── BOOT ── */
-initSupabase();
+try{initSupabase();}catch(e){console.warn('Supabase init failed',e);}
 document.addEventListener('DOMContentLoaded',function(){wireAuthHandlers();});
 document.getElementById('bcreate').onclick=function(){go('create');};
 document.getElementById('bdiscover').onclick=function(){go('discover');};
@@ -558,25 +575,6 @@ function go(mode){
   requestAnimationFrame(function(){requestAnimationFrame(function(){try{init();}catch(err){console.error('init failed',err);}});});
 }
 function updateBootAuth(){}
-
-/* ── GLOBALS ── */
-var DATA=[],GLOBAL_DATA=[],globalDataReady=false;
-var nodes=[],links=[],sim=null,ctx=null,canvas=null;
-var transform=null,hovered=null,currentView='genres',currentSection='discover';
-var currentFilter=null,currentFilterKind=null,dpr=1,animId=null,panelOpen=false;
-var setupDone=false,zoomBehavior=null,selectedNode=null,genreCenters={},worldCentroids={};
-var geoProjection=null,baseScale=0,baseTranslate=[0,0];
-var connectedSet=null,dragNode=null,dragMoved=false,dragStartX=0,dragStartY=0,genreSettling=false;
-var is3D=false,graph3d=null;
-var needsRedraw=true,cachedDotPixels=null,cachedDotZoom=-1;
-
-/* ── SUPABASE ── */
-var SUPABASE_URL='https://xoipldemaurceywuxipz.supabase.co';
-var SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhvaXBsZGVtYXVyY2V5d3V4aXB6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxODY0MzAsImV4cCI6MjA5Mzc2MjQzMH0.IJjtQQ5y67-tQ6-0JemILEgURMt7ztG32i6CTq21sMU';
-var sb=null;
-var currentUser=null;
-var ADMIN_EMAIL='allegrawoods2005@gmail.com';
-var userGardenIds=new Set();
 
 function showGardenEmpty(loggedIn){
   var el=document.getElementById('garden-empty');
