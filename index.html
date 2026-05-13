@@ -1379,16 +1379,18 @@ function drawCountry(W,H){
   var lodMax=ck<0.4?1:ck<0.7?3:ck<1.0?7:Infinity;
 
   var r=Math.max(1.5,Math.min(5,ck*2));
-  // Pass 1 \u2014 glow halos for active nodes, batched by colour to minimise fillStyle changes
-  ctx.globalAlpha=0.18;
-  for(var ni=0;ni<nodes.length;ni++){
-    var n=nodes[ni];
-    if(n._countryRank!==undefined&&n._countryRank>=lodMax)continue;
-    if(!(n._vis&&!n._dim))continue;
-    ctx.fillStyle=n._col;
-    ctx.beginPath();ctx.arc(n.x,n.y,r*3.5,0,Math.PI*2);ctx.fill();
+  // Pass 1 \u2014 glow halos (skip on mobile: expensive and clutters small screens)
+  if(window.innerWidth>600){
+    ctx.globalAlpha=0.18;
+    for(var ni=0;ni<nodes.length;ni++){
+      var n=nodes[ni];
+      if(n._countryRank!==undefined&&n._countryRank>=lodMax)continue;
+      if(!(n._vis&&!n._dim))continue;
+      ctx.fillStyle=n._col;
+      ctx.beginPath();ctx.arc(n.x,n.y,r*3.5,0,Math.PI*2);ctx.fill();
+    }
+    ctx.globalAlpha=1;
   }
-  ctx.globalAlpha=1;
   // Pass 2 \u2014 solid dots + labels + hover
   for(var ni=0;ni<nodes.length;ni++){
     var n=nodes[ni];
