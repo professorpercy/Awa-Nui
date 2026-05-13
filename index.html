@@ -534,7 +534,7 @@ function startApp(){
   _appStarted=true;
   wireAuthHandlers();
   try{if(localStorage.getItem('awanui_intro_seen'))document.getElementById('intro').style.display='none';}catch(e){}
-  init();
+  requestAnimationFrame(function(){requestAnimationFrame(function(){init();});});
 }
 document.addEventListener('DOMContentLoaded',startApp);
 window.addEventListener('load',startApp);
