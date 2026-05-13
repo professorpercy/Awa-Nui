@@ -56,14 +56,14 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 #ge-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 @keyframes blIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media(max-width:600px){
-  #hdr{padding:0 8px;gap:3px;height:44px}
+  #hdr{padding:0 8px;gap:4px;height:44px;overflow:visible}
   #gc{top:44px}
-  .logo{font-size:11px;letter-spacing:.22em}
-  .hdr-r{gap:3px}
-  .mode-toggle{margin-right:3px}
-  .mt-btn{font-size:8px;padding:4px 8px;letter-spacing:.1em}
-  .hbtn{font-size:7px;padding:4px 6px;letter-spacing:.08em}
-  #badd span,#bdiscogs span{display:none}
+  .logo{font-size:10px;letter-spacing:.16em;flex-shrink:0}
+  .hdr-r{gap:3px;flex-shrink:1;min-width:0;flex-wrap:nowrap;overflow:hidden}
+  .mode-toggle{margin-right:2px;flex-shrink:0}
+  .mt-btn{font-size:7px;padding:3px 7px;letter-spacing:.08em}
+  .hbtn{font-size:6.5px;padding:3px 5px;letter-spacing:.06em;white-space:nowrap}
+  #rst{display:none!important}  /* tap active chip again to clear filter */
   #panel{width:100%;max-width:100%}
   #gc.shifted{right:0}
   #ticker{font-size:8px}
@@ -71,7 +71,6 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   #boot-title{font-size:28px;letter-spacing:.18em}
   #boot-btns{flex-direction:column;align-items:center;gap:12px}
   .bbtn{padding:12px 28px;font-size:9px;width:220px;justify-content:center}
-  /* Ticker: touch-scrollable on mobile */
   #legwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
   #legwrap::-webkit-scrollbar{display:none}
 }
@@ -1378,9 +1377,10 @@ function drawCountry(W,H){
 
   var lodMax=ck<0.4?1:ck<0.7?3:ck<1.0?7:Infinity;
 
-  var r=Math.max(1.5,Math.min(5,ck*2));
-  // Pass 1 \u2014 glow halos (skip on mobile: expensive and clutters small screens)
-  if(window.innerWidth>600){
+  var isMob=window.innerWidth<=600;
+  var r=isMob?Math.max(1,Math.min(3,ck*1.4)):Math.max(1.5,Math.min(5,ck*2));
+  // Pass 1 \u2014 glow halos (skip on mobile)
+  if(!isMob){
     ctx.globalAlpha=0.18;
     for(var ni=0;ni<nodes.length;ni++){
       var n=nodes[ni];
@@ -1406,7 +1406,7 @@ function drawCountry(W,H){
     ctx.fillStyle=col;
     ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
     ctx.globalAlpha=1;
-    if(active&&ck>=1.8&&!isHov){
+    if(active&&ck>=(isMob?1.2:1.8)&&!isHov){
       var nfPx=6.5/ck;
       ctx.font=nfPx+'px Courier New';ctx.textAlign='center';
       var shortTitle=n.id.length>20?n.id.slice(0,19)+'\u2026':n.id;
