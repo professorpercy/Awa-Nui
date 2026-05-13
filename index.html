@@ -532,9 +532,8 @@ var _appStarted=false;
 function startApp(){
   if(_appStarted)return;
   _appStarted=true;
-  wireAuthHandlers();
   try{if(localStorage.getItem('awanui_intro_seen'))document.getElementById('intro').style.display='none';}catch(e){}
-  requestAnimationFrame(function(){requestAnimationFrame(function(){init();});});
+  requestAnimationFrame(function(){requestAnimationFrame(function(){try{init();}catch(err){console.error('init failed',err);}});});
 }
 document.addEventListener('DOMContentLoaded',startApp);
 window.addEventListener('load',startApp);
@@ -613,12 +612,11 @@ function initSupabase(){
   });
 }
 function wireAuthHandlers(){
-  document.getElementById('bauth').onclick=function(){
-    if(currentUser){sb.auth.signOut();}else{openAuthModal();}
-  };
-  document.getElementById('auth-cancel').onclick=closeAuthModal;
-  document.getElementById('auth-modal').onclick=function(e){if(e.target===this)closeAuthModal();};
-  document.getElementById('auth-signin').onclick=function(){
+  function on(id,fn){var el=document.getElementById(id);if(el)el.onclick=fn;}
+  on('bauth',function(){if(currentUser){sb.auth.signOut();}else{openAuthModal();}});
+  on('auth-cancel',closeAuthModal);
+  on('auth-modal',function(e){if(e.target===this)closeAuthModal();});
+  on('auth-signin',function(){
     var email=document.getElementById('auth-email').value.trim();
     var pass=document.getElementById('auth-pass').value;
     if(!email||!pass){document.getElementById('auth-msg').textContent='Please fill in both fields.';return;}
@@ -627,8 +625,8 @@ function wireAuthHandlers(){
       if(res.error){document.getElementById('auth-msg').textContent=res.error.message;}
       else{closeAuthModal();}
     });
-  };
-  document.getElementById('auth-signup').onclick=function(){
+  });
+  on('auth-signup',function(){
     var email=document.getElementById('auth-email').value.trim();
     var pass=document.getElementById('auth-pass').value;
     if(!email||!pass){document.getElementById('auth-msg').textContent='Please fill in both fields.';return;}
@@ -638,10 +636,10 @@ function wireAuthHandlers(){
       if(res.error){document.getElementById('auth-msg').textContent=res.error.message;}
       else{document.getElementById('auth-msg').textContent='Check your email to confirm your account!';}
     });
-  };
-  document.getElementById('badmin').onclick=openAdminPanel;
-  document.getElementById('admin-close').onclick=function(){document.getElementById('admin-panel').classList.remove('on');};
-  document.getElementById('admin-seed').onclick=seedGlobalAlbums;
+  });
+  on('badmin',openAdminPanel);
+  on('admin-close',function(){document.getElementById('admin-panel').classList.remove('on');});
+  on('admin-seed',seedGlobalAlbums);
 }
 function loadUserGarden(){
   if(!currentUser||!sb)return Promise.resolve();
@@ -759,21 +757,23 @@ function init(){
   ctx=canvas.getContext('2d');
   dpr=window.devicePixelRatio||1;
   transform=d3.zoomIdentity;
-  // Render from cache immediately, then refresh from network in background
+  // Load cache if available
   try{
     var cached=localStorage.getItem('awanui_albums');
-    if(cached){DATA=JSON.parse(cached);setupOnce();loadSection();}
+    if(cached){var _p=JSON.parse(cached);if(_p&&_p.length)DATA=_p;}
   }catch(e){}
+  // Always run setup and first render immediately (DATA may be [] on first visit)
+  setupOnce();
+  loadSection();
+  // Fetch fresh data; re-render only if content changed
   fetch('albums.json').then(function(r){return r.json();}).then(function(json){
     var fresh=json.nodes||json;
+    if(!fresh||!fresh.length)return;
     try{localStorage.setItem('awanui_albums',JSON.stringify(fresh));}catch(e){}
-    // Only re-render if data actually changed
-    if(JSON.stringify(fresh)!==JSON.stringify(DATA)){
-      DATA=fresh;setupDone=false;setupOnce();loadSection();
-    }
-  }).catch(function(e){
-    if(!DATA.length){console.error('albums.json load failed',e);setupOnce();loadSection();}
-  });
+    var changed=JSON.stringify(fresh)!==JSON.stringify(DATA);
+    DATA=fresh;
+    if(changed)loadSection();
+  }).catch(function(e){console.error('albums.json failed',e);});
 }
 
 function setupOnce(){
@@ -913,7 +913,7 @@ function setupOnce(){
 }
 
 function loadSection(){
-  var gc=document.getElementById('gc'),W=gc.offsetWidth,H=gc.offsetHeight;
+  var gc=document.getElementById('gc'),W=gc.offsetWidth||window.innerWidth,H=gc.offsetHeight||(window.innerHeight-86);
   canvas.width=W*dpr;canvas.height=H*dpr;
   canvas.style.width=W+'px';canvas.style.height=H+'px';
   currentView='genres';
