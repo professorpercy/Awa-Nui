@@ -260,7 +260,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
       <div class="intro-row"><span class="intro-key">PERSONAL</span><span class="intro-val">= YOUR SAVED ALBUMS</span></div>
       <div class="intro-row"><span class="intro-key">GLOBAL</span><span class="intro-val">= ALL ALBUMS</span></div>
     </div>
-    <button id="intro-ok">ENTER</button>
+    <button id="intro-ok" onclick="document.getElementById('intro').style.display='none';try{localStorage.setItem('awanui_intro_seen','1');}catch(e){}">ENTER</button>
   </div>
 </div>
 
@@ -528,20 +528,16 @@ function createWorldDotField(){
 
 /* ── BOOT ── */
 initSupabase();
-document.addEventListener('DOMContentLoaded',function(){
+var _appStarted=false;
+function startApp(){
+  if(_appStarted)return;
+  _appStarted=true;
   wireAuthHandlers();
-  // Intro popup — show once
-  var introEl=document.getElementById('intro');
-  if(localStorage.getItem('awanui_intro_seen')){
-    introEl.style.display='none';
-  }
-  document.getElementById('intro-ok').onclick=function(){
-    introEl.style.display='none';
-    localStorage.setItem('awanui_intro_seen','1');
-  };
-  // Start the app straight into global garden
-  requestAnimationFrame(function(){requestAnimationFrame(function(){init();});});
-});
+  try{if(localStorage.getItem('awanui_intro_seen'))document.getElementById('intro').style.display='none';}catch(e){}
+  init();
+}
+document.addEventListener('DOMContentLoaded',startApp);
+window.addEventListener('load',startApp);
 function updateBootAuth(){}
 
 /* ── GLOBALS ── */
