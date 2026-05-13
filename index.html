@@ -56,14 +56,15 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 #ge-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 @keyframes blIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media(max-width:600px){
-  #hdr{padding:0 8px;gap:4px;height:44px;overflow:visible}
-  #gc{top:44px}
-  .logo{font-size:10px;letter-spacing:.16em;flex-shrink:0}
-  .hdr-r{gap:3px;flex-shrink:1;min-width:0;flex-wrap:nowrap;overflow:hidden}
-  .mode-toggle{margin-right:2px;flex-shrink:0}
+  /* 2-row header: logo on top, all buttons below */
+  #hdr{height:auto;padding:5px 10px;flex-wrap:wrap;row-gap:4px;align-items:center}
+  #gc{top:70px}
+  .logo{width:100%;font-size:11px;letter-spacing:.2em}
+  .hdr-r{width:100%;gap:3px;flex-wrap:wrap;row-gap:3px;overflow:visible;justify-content:flex-start}
+  .mode-toggle{margin-right:3px;flex-shrink:0}
   .mt-btn{font-size:7px;padding:3px 7px;letter-spacing:.08em}
-  .hbtn{font-size:6.5px;padding:3px 5px;letter-spacing:.06em;white-space:nowrap}
-  #rst{display:none!important}  /* tap active chip again to clear filter */
+  .hbtn{font-size:7px;padding:3px 6px;letter-spacing:.06em;white-space:nowrap}
+  #rst{display:none!important}
   #panel{width:100%;max-width:100%}
   #gc.shifted{right:0}
   #ticker{font-size:8px}
@@ -1406,11 +1407,10 @@ function drawCountry(W,H){
     ctx.fillStyle=col;
     ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
     ctx.globalAlpha=1;
-    if(active&&ck>=(isMob?1.2:1.8)&&!isHov){
-      var nfPx=6.5/ck;
-      ctx.font=nfPx+'px Courier New';ctx.textAlign='center';
+    if(active&&ck>=(isMob?2.5:1.8)&&!isHov){
+      ctx.font='8px Courier New';ctx.textAlign='center';
       var shortTitle=n.id.length>20?n.id.slice(0,19)+'\u2026':n.id;
-      ctx.fillStyle=col;ctx.globalAlpha=0.75;ctx.fillText(shortTitle,x,y+r+nfPx*1.4);
+      ctx.fillStyle=col;ctx.globalAlpha=0.75;ctx.fillText(shortTitle,x,y+r+11);
       ctx.globalAlpha=1;
     }
     if(isHov&&(active||dimmed)){
@@ -1563,7 +1563,7 @@ function drawGenre(W,H){
       ctx.beginPath();ctx.arc(x,y,r+5*dpr,0,Math.PI*2);ctx.stroke();
     }
     // Album name label at high zoom (touch substitute for hover tooltip)
-    if(transform.k>=2&&!isHov){
+    if(transform.k>=(window.innerWidth<=600?2.5:2)&&!isHov){
       var lf=(7*dpr/transform.k)+'px Courier New';
       ctx.font=lf;ctx.textAlign='center';
       var shortTitle=n.id.length>18?n.id.slice(0,17)+'…':n.id;
