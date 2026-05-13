@@ -1711,6 +1711,10 @@ function buildTicker(type){
     });
   }
   fill(document.getElementById('l1'));fill(document.getElementById('l2'));
+  var li=document.getElementById('leginner');
+  li.style.animation='none';
+  li.offsetWidth; // force reflow so removal registers
+  li.style.animation='tick 90s linear infinite';
 }
 
 /* ── SIMILAR ── */
