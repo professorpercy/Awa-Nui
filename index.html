@@ -37,18 +37,6 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   display:flex;flex-direction:column;align-items:center;gap:6px;}
 .bbtn:hover{background:rgba(0,255,100,.07);box-shadow:0 0 22px rgba(0,255,100,.2);}
 .bbtn-sub{font-size:8px;letter-spacing:.15em;color:rgba(0,255,100,.3);}
-#boot-footer{margin-top:36px;display:flex;flex-direction:column;align-items:center;gap:10px;
-  opacity:0;animation:blIn .4s ease-out 1.8s forwards;}
-#boot-auth-btn{background:transparent;border:none;color:rgba(0,255,100,.35);
-  font-family:'Courier New',monospace;font-size:9px;letter-spacing:.22em;
-  cursor:pointer;padding:6px 0;transition:color .2s;text-decoration:none}
-#boot-auth-btn:hover{color:rgba(0,255,100,.7);}
-#boot-signed-in{display:none;flex-direction:column;align-items:center;gap:6px}
-#boot-user-email{font-size:8px;letter-spacing:.14em;color:rgba(0,255,100,.28)}
-#boot-signout-link{background:transparent;border:none;color:rgba(0,255,100,.22);
-  font-family:'Courier New',monospace;font-size:8px;letter-spacing:.18em;
-  cursor:pointer;padding:2px 0;transition:color .2s}
-#boot-signout-link:hover{color:rgba(0,255,100,.5)}
 /* ── EMPTY GARDEN ── */
 #garden-empty{position:absolute;inset:0;display:none;flex-direction:column;
   align-items:center;justify-content:center;z-index:10;pointer-events:auto;
@@ -67,6 +55,16 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 .ge-btn.primary:hover{background:rgba(0,255,100,.09);box-shadow:0 0 16px rgba(0,255,100,.12)}
 #ge-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 @keyframes blIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media(max-width:600px){
+  #hdr{padding:0 10px;gap:4px}
+  .hbtn{font-size:7px;padding:4px 7px;letter-spacing:.1em}
+  #panel{width:100%;max-width:100%}
+  #gc.shifted{right:0}
+  #ticker{font-size:8px}
+  .li{padding:2px 8px}
+  #boot-title{font-size:32px;letter-spacing:.2em}
+  .bbtn{padding:12px 20px;font-size:9px}
+}
 
 /* ── GARDEN ── */
 #garden{position:fixed;inset:0;display:none}
@@ -237,7 +235,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 .af-btn.cancel:hover{color:rgba(0,255,100,.5);border-color:rgba(0,255,100,.25)}
 #fg3d{position:absolute;top:0;left:0;width:100%;height:100%;display:none;z-index:2;}
 /* ── AUTH ── */
-#auth-modal{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:7000;display:none;align-items:center;justify-content:center}
+#auth-modal{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9000;display:none;align-items:center;justify-content:center}
 #auth-modal.on{display:flex}
 #auth-box{background:#030905;border:1px solid rgba(0,255,100,.2);padding:36px;width:340px;display:flex;flex-direction:column;gap:14px}
 #auth-title{font-size:12px;letter-spacing:.3em;color:#00ff64;margin-bottom:4px}
@@ -280,13 +278,6 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   <div id="boot-btns">
     <button class="bbtn" id="bcreate">PERSONAL GARDEN<span class="bbtn-sub">sign in to save albums</span></button>
     <button class="bbtn" id="bdiscover">GLOBAL GARDEN<span class="bbtn-sub">explore without account</span></button>
-  </div>
-  <div id="boot-footer">
-    <button id="boot-auth-btn">SIGN IN / CREATE ACCOUNT</button>
-    <div id="boot-signed-in">
-      <div id="boot-user-email"></div>
-      <button id="boot-signout-link">SIGN OUT</button>
-    </div>
   </div>
 </div>
 
@@ -400,7 +391,6 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="https://unpkg.com/3d-force-graph/dist/3d-force-graph.min.js"></script>
 <script>
 var GROUPS={
   electronic:['trip hop','electronica','synthpop','dance','ghettotech','electronic','house','deep house','acid','breaks','breakbeat','techno','trance','progressive house','dub techno','drum and bass','jungle','idm','glitch','bass','dubstep'],
@@ -502,9 +492,19 @@ function buildCountryFeatures(){
 }
 
 function createWorldDotField(){
-  if(!worldData||!worldData.features)return;    // data not ready
-  if(worldDotsBuilding||worldDots!==null)return; // already running or done
-  if(!baseScale)return;                          // canvas not ready yet
+  if(!worldData||!worldData.features)return;
+  if(worldDotsBuilding||worldDots!==null)return;
+  if(!baseScale)return;
+  // Use cached dots if available
+  try{
+    var cached=localStorage.getItem('awanui_worlddots');
+    if(cached){
+      worldDots=JSON.parse(cached);
+      cachedDotPixels=null;
+      requestDraw();
+      return;
+    }
+  }catch(e){}
   worldDotsBuilding=true;
   var ml=document.getElementById('map-loading');
   if(ml)ml.style.display='block';
@@ -518,11 +518,9 @@ function createWorldDotField(){
   }
   worldDots=[];
   var ri=0;
-  // Use requestIdleCallback so chunks only run when the browser is idle —
-  // this keeps the D3 force simulation and rAF loop completely unaffected.
   var schedule=window.requestIdleCallback
     ?function(fn){requestIdleCallback(fn,{timeout:4000});}
-    :function(fn){setTimeout(fn,32);}; // fallback: yield two frames
+    :function(fn){setTimeout(fn,32);};
   (function processChunk(){
     var end=Math.min(ri+24,rows.length);
     for(;ri<end;ri++){
@@ -538,15 +536,18 @@ function createWorldDotField(){
     }else{
       worldDotsBuilding=false;
       if(ml)ml.style.display='none';
+      cachedDotPixels=null;
+      requestDraw();
+      try{localStorage.setItem('awanui_worlddots',JSON.stringify(worldDots));}catch(e){}
     }
   })();
 }
 
 /* ── BOOT ── */
+initSupabase();
+document.addEventListener('DOMContentLoaded',function(){wireAuthHandlers();});
 document.getElementById('bcreate').onclick=function(){go('create');};
 document.getElementById('bdiscover').onclick=function(){go('discover');};
-document.getElementById('boot-auth-btn').onclick=function(){openAuthModal();};
-document.getElementById('boot-signout-link').onclick=function(){if(sb)sb.auth.signOut();};
 function go(mode){
   currentSection=mode;
   document.getElementById('boot').style.display='none';
@@ -556,27 +557,18 @@ function go(mode){
   document.getElementById('bdiscogs').style.display=mode==='create'?'':'none';
   requestAnimationFrame(function(){requestAnimationFrame(function(){init();});});
 }
-function updateBootAuth(){
-  var btn=document.getElementById('boot-auth-btn');
-  var signedIn=document.getElementById('boot-signed-in');
-  if(currentUser){
-    btn.style.display='none';
-    signedIn.style.display='flex';
-    document.getElementById('boot-user-email').textContent=currentUser.email;
-  }else{
-    btn.style.display='';
-    signedIn.style.display='none';
-  }
-}
+function updateBootAuth(){}
 
 /* ── GLOBALS ── */
-var DATA=[],nodes=[],links=[],sim=null,ctx=null,canvas=null;
+var DATA=[],GLOBAL_DATA=[],globalDataReady=false;
+var nodes=[],links=[],sim=null,ctx=null,canvas=null;
 var transform=null,hovered=null,currentView='genres',currentSection='create';
 var currentFilter=null,currentFilterKind=null,dpr=1,animId=null,panelOpen=false;
 var setupDone=false,zoomBehavior=null,selectedNode=null,genreCenters={},worldCentroids={};
 var geoProjection=null,baseScale=0,baseTranslate=[0,0];
 var connectedSet=null,dragNode=null,dragMoved=false,dragStartX=0,dragStartY=0,genreSettling=false;
 var is3D=false,graph3d=null;
+var needsRedraw=true,cachedDotPixels=null,cachedDotZoom=-1;
 
 /* ── SUPABASE ── */
 var SUPABASE_URL='https://xoipldemaurceywuxipz.supabase.co';
@@ -622,6 +614,7 @@ function closeAuthModal(){
 }
 function initSupabase(){
   if(!window.supabase){console.warn('Supabase not loaded');return;}
+  if(sb)return;
   sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
   sb.auth.getSession().then(function(res){
     currentUser=res.data&&res.data.session?res.data.session.user:null;
@@ -637,6 +630,8 @@ function initSupabase(){
       if(setupDone&&currentSection==='create')loadSection();
     }
   });
+}
+function wireAuthHandlers(){
   document.getElementById('bauth').onclick=function(){
     if(currentUser){sb.auth.signOut();}else{openAuthModal();}
   };
@@ -665,11 +660,29 @@ function initSupabase(){
   };
   document.getElementById('badmin').onclick=openAdminPanel;
   document.getElementById('admin-close').onclick=function(){document.getElementById('admin-panel').classList.remove('on');};
+  document.getElementById('admin-seed').onclick=seedGlobalAlbums;
 }
 function loadUserGarden(){
   if(!currentUser||!sb)return Promise.resolve();
   return sb.from('user_gardens').select('album_id').eq('user_id',currentUser.id).then(function(res){
     userGardenIds=new Set((res.data||[]).map(function(r){return r.album_id;}));
+  });
+}
+function dbRowToAlbum(r){
+  return{id:r.title,artist:r.artist,genres:r.genres||[],url:r.url||'',
+    country:r.country||'Unknown',city:r.city||'',blurb:r.blurb||'',
+    img:r.img||'',youtube:r.youtube||''};
+}
+function loadGlobalAlbums(cb){
+  if(!sb){GLOBAL_DATA=DATA.slice();globalDataReady=true;if(cb)cb();return;}
+  sb.from('global_albums').select('*').order('created_at',{ascending:false}).then(function(res){
+    if(res.error||!res.data||!res.data.length){
+      GLOBAL_DATA=DATA.slice();
+    }else{
+      GLOBAL_DATA=res.data.map(dbRowToAlbum);
+    }
+    globalDataReady=true;
+    if(cb)cb();
   });
 }
 function saveToGarden(albumId){
@@ -713,11 +726,14 @@ function openAdminPanel(){
   });
 }
 function approveRequest(r,el){
-  var localAlbum={id:r.title,artist:r.artist,genres:r.genres||[],url:r.url||'',
-    youtube:r.youtube||'',country:r.country||'Unknown',city:r.city||'',
-    blurb:r.blurb||'',img:r.img||'',section:'discover'};
-  DATA.push(localAlbum);
-  sb.from('album_requests').update({status:'approved'}).eq('id',r.id).then(function(){
+  var dbId=r.title+'__'+r.artist;
+  var row={id:dbId,title:r.title,artist:r.artist,genres:r.genres||[],
+    url:r.url||'',youtube:r.youtube||'',country:r.country||'Unknown',
+    city:r.city||'',blurb:r.blurb||'',img:r.img||''};
+  sb.from('global_albums').upsert(row).then(function(ins){
+    if(ins.error){alert('DB error: '+ins.error.message);return;}
+    sb.from('album_requests').update({status:'approved'}).eq('id',r.id);
+    GLOBAL_DATA.unshift(dbRowToAlbum(row));
     el.style.opacity='0.3';el.style.pointerEvents='none';
     el.querySelector('.admin-req-title').textContent+=' — APPROVED';
   });
@@ -728,7 +744,33 @@ function declineRequest(id,el){
     el.querySelector('.admin-req-title').textContent+=' — DECLINED';
   });
 }
-
+function seedGlobalAlbums(){
+  var status=document.getElementById('admin-seed-status');
+  if(!sb||!DATA.length){status.textContent='No data to seed.';return;}
+  status.textContent='Seeding…';
+  var rows=DATA.map(function(d){
+    return{id:d.id+'__'+d.artist,title:d.id,artist:d.artist,
+      genres:d.genres||[],country:d.country||'Unknown',city:d.city||'',
+      url:d.url||'',youtube:d.youtube||'',img:d.img||'',blurb:d.blurb||''};
+  });
+  // Upsert in batches of 50
+  var i=0;
+  function nextBatch(){
+    var batch=rows.slice(i,i+50);
+    if(!batch.length){
+      status.textContent='Done — '+rows.length+' albums seeded.';
+      globalDataReady=false; // force reload next time
+      return;
+    }
+    sb.from('global_albums').upsert(batch).then(function(res){
+      if(res.error){status.textContent='Error: '+res.error.message;return;}
+      i+=50;
+      status.textContent='Seeding… '+Math.min(i,rows.length)+'/'+rows.length;
+      nextBatch();
+    });
+  }
+  nextBatch();
+}
 
 /* ── INIT ── */
 function init(){
@@ -736,11 +778,21 @@ function init(){
   ctx=canvas.getContext('2d');
   dpr=window.devicePixelRatio||1;
   transform=d3.zoomIdentity;
-  fetch('albums.json?v='+Date.now()).then(function(r){return r.json();}).then(function(json){
-    DATA=json.nodes||json;
-    setupOnce();
-    loadSection();
-  }).catch(function(e){console.error('albums.json load failed',e);DATA=[];setupOnce();loadSection();});
+  // Render from cache immediately, then refresh from network in background
+  try{
+    var cached=localStorage.getItem('awanui_albums');
+    if(cached){DATA=JSON.parse(cached);setupOnce();loadSection();}
+  }catch(e){}
+  fetch('albums.json').then(function(r){return r.json();}).then(function(json){
+    var fresh=json.nodes||json;
+    try{localStorage.setItem('awanui_albums',JSON.stringify(fresh));}catch(e){}
+    // Only re-render if data actually changed
+    if(JSON.stringify(fresh)!==JSON.stringify(DATA)){
+      DATA=fresh;setupDone=false;setupOnce();loadSection();
+    }
+  }).catch(function(e){
+    if(!DATA.length){console.error('albums.json load failed',e);setupOnce();loadSection();}
+  });
 }
 
 function setupOnce(){
@@ -758,13 +810,17 @@ function setupOnce(){
         transform.y+transform.k*baseTranslate[1]
       ]);
       reprojectNodes();
+      cachedDotPixels=null;
     }
+    requestDraw();
   });
   d3.select(canvas).call(zoomBehavior);
   canvas.addEventListener('mousemove',function(e){
     var rect=canvas.getBoundingClientRect();
+    var prevHov=hovered;
     hovered=getNodeAt(e.clientX-rect.left,e.clientY-rect.top);
     canvas.style.cursor=dragNode?'grabbing':(hovered?'pointer':'grab');
+    if(hovered!==prevHov)requestDraw();
     if(dragNode&&currentView==='genres'){
       var dx=e.clientX-dragStartX,dy=e.clientY-dragStartY;
       if(!dragMoved&&Math.sqrt(dx*dx+dy*dy)>4)dragMoved=true;
@@ -810,6 +866,35 @@ function setupOnce(){
       else if(panelOpen){closePanel();}
     }
   });
+  // Touch support
+  var _tx0=0,_ty0=0,_tt0=0;
+  canvas.addEventListener('touchstart',function(e){
+    if(e.touches.length===1){
+      _tx0=e.touches[0].clientX;_ty0=e.touches[0].clientY;_tt0=Date.now();
+      var rect=canvas.getBoundingClientRect();
+      hovered=getNodeAt(e.touches[0].clientX-rect.left,e.touches[0].clientY-rect.top);
+      requestDraw();
+    }
+  },{passive:true});
+  canvas.addEventListener('touchmove',function(e){
+    if(e.touches.length===1){
+      var rect=canvas.getBoundingClientRect();
+      hovered=getNodeAt(e.touches[0].clientX-rect.left,e.touches[0].clientY-rect.top);
+      requestDraw();
+    }
+  },{passive:true});
+  canvas.addEventListener('touchend',function(e){
+    if(e.changedTouches.length===1){
+      var t=e.changedTouches[0];
+      var moved=Math.hypot(t.clientX-_tx0,t.clientY-_ty0);
+      if(moved<12&&Date.now()-_tt0<400){
+        var rect=canvas.getBoundingClientRect();
+        var n=getNodeAt(t.clientX-rect.left,t.clientY-rect.top);
+        if(n){openPanel(n);}else if(panelOpen){closePanel();}
+      }
+      hovered=null;requestDraw();
+    }
+  },{passive:true});
   document.getElementById('bgenre').onclick=function(){
     document.getElementById('bgenre').classList.add('on');
     document.getElementById('bcountry').classList.remove('on');
@@ -837,7 +922,7 @@ function setupOnce(){
     if(selectedNode){saveToGarden(selectedNode.id+'__'+selectedNode.artist);}
   };
   document.getElementById('pcs').onclick=function(){submitComment();};
-  initSupabase();
+  wireAuthHandlers();
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape'){closeAddForm();closeDiscogsForm();closePanel();}
     if(e.key==='Enter'&&document.activeElement===document.getElementById('pci')){submitComment();}
@@ -856,7 +941,8 @@ function loadSection(){
   document.getElementById('b3d').style.display='none';
   var filtered;
   if(currentSection==='discover'){
-    filtered=DATA;
+    if(!globalDataReady){loadGlobalAlbums(loadSection);return;}
+    filtered=GLOBAL_DATA;
     hideGardenEmpty();
   }else{
     if(!currentUser){
@@ -885,6 +971,7 @@ function loadSection(){
   transform=d3.zoomIdentity;
   if(zoomBehavior)d3.select(canvas).call(zoomBehavior.transform,d3.zoomIdentity);
   if(animId)cancelAnimationFrame(animId);
+  needsRedraw=true;
   draw();
 }
 
@@ -1039,8 +1126,18 @@ function createSimulation(W,H,view){
       .force('y',d3.forceY(function(d){var c=genreCenters[getGroup(d.genres[0])];return d._ty||(c?c.gcy:H/2);}).strength(0.18))
       .force('charge',d3.forceManyBody().strength(-60))
       .force('collision',d3.forceCollide(10).strength(1.0))
-      .alpha(1).alphaDecay(0.05).alphaTarget(0.001);
-    sim.tick(200);
+      .alpha(1).alphaDecay(0.05).alphaTarget(0.001)
+      .on('tick',requestDraw);
+    // Use cached positions to skip the expensive tick(200) on repeat visits
+    var posKey='awanui_pos_'+W+'x'+H+'_'+nodes.length;
+    var posCache=null;
+    try{posCache=JSON.parse(localStorage.getItem(posKey));}catch(e){}
+    if(posCache&&posCache.length===nodes.length){
+      nodes.forEach(function(n,i){n.x=posCache[i][0];n.y=posCache[i][1];});
+    }else{
+      sim.tick(200);
+      try{localStorage.setItem(posKey,JSON.stringify(nodes.map(function(n){return[n.x,n.y];})));}catch(e){}
+    }
   }else{
     // TRUE GEOGRAPHIC ZOOM — Mercator fills full screen, projection updated on each zoom event
     var gc3=document.getElementById('gc');
@@ -1167,11 +1264,14 @@ function getNodeAt(mx,my){
 }
 
 /* ── RENDER ── */
+function requestDraw(){needsRedraw=true;}
 function draw(){
+  animId=requestAnimationFrame(draw);
+  if(!needsRedraw)return;
+  needsRedraw=false;
   var W=canvas.width,H=canvas.height;
   ctx.clearRect(0,0,W,H);
   if(currentView==='country'){drawCountry(W,H);}else{drawGenre(W,H);}
-  animId=requestAnimationFrame(draw);
 }
 
 function drawCountry(W,H){
@@ -1182,22 +1282,25 @@ function drawCountry(W,H){
 
   ctx.fillStyle='#000';ctx.fillRect(0,0,Wcss,Hcss);
 
-  // Dot-matrix world map
+  // Dot-matrix world map — project once, cache until zoom/pan changes
   if(worldDots&&worldDots.length){
+    if(!cachedDotPixels){
+      cachedDotPixels=[];
+      for(var di=0;di<worldDots.length;di++){
+        var dp=geoProjection(worldDots[di]);
+        if(dp)cachedDotPixels.push(dp[0],dp[1]);
+      }
+    }
     var dotR=Math.max(0.8,Math.min(2.2,ck*0.7));
-    ctx.shadowColor='rgba(0,255,150,0.65)';
-    ctx.shadowBlur=dotR*2.8;
-    ctx.fillStyle='rgba(0,255,150,0.48)';
+    ctx.fillStyle='rgba(0,255,150,0.38)';
     ctx.beginPath();
-    for(var di=0;di<worldDots.length;di++){
-      var dp=geoProjection(worldDots[di]);
-      if(!dp)continue;
-      if(dp[0]<-20||dp[0]>Wcss+20||dp[1]<-20||dp[1]>Hcss+20)continue;
-      ctx.moveTo(dp[0]+dotR,dp[1]);
-      ctx.arc(dp[0],dp[1],dotR,0,Math.PI*2);
+    for(var pi=0;pi<cachedDotPixels.length;pi+=2){
+      var px=cachedDotPixels[pi],py=cachedDotPixels[pi+1];
+      if(px<-20||px>Wcss+20||py<-20||py>Hcss+20)continue;
+      ctx.moveTo(px+dotR,py);
+      ctx.arc(px,py,dotR,0,Math.PI*2);
     }
     ctx.fill();
-    ctx.shadowBlur=0;ctx.shadowColor='transparent';
   }
 
   if(worldGeoPath&&ck>0.45){
@@ -1225,6 +1328,18 @@ function drawCountry(W,H){
 
   var lodMax=ck<0.4?1:ck<0.7?3:ck<1.0?7:Infinity;
 
+  var r=Math.max(1.5,Math.min(5,ck*2));
+  // Pass 1 \u2014 glow halos for active nodes, batched by colour to minimise fillStyle changes
+  ctx.globalAlpha=0.18;
+  for(var ni=0;ni<nodes.length;ni++){
+    var n=nodes[ni];
+    if(n._countryRank!==undefined&&n._countryRank>=lodMax)continue;
+    if(!(n._vis&&!n._dim))continue;
+    ctx.fillStyle=n._col;
+    ctx.beginPath();ctx.arc(n.x,n.y,r*3.5,0,Math.PI*2);ctx.fill();
+  }
+  ctx.globalAlpha=1;
+  // Pass 2 \u2014 solid dots + labels + hover
   for(var ni=0;ni<nodes.length;ni++){
     var n=nodes[ni];
     if(n._countryRank!==undefined&&n._countryRank>=lodMax)continue;
@@ -1233,15 +1348,7 @@ function drawCountry(W,H){
     var col=n._col;
     var alpha=active?1:(dimmed?0.2:0.07);
     var x=n.x,y=n.y;
-    var r=Math.max(1.5,Math.min(5,ck*2));
     var isHov=(hovered===n);
-    if(active){
-      // Subtle country-colour glow \u2014 no green
-      var ngr=ctx.createRadialGradient(x,y,0,x,y,r*3);
-      ngr.addColorStop(0,col+'88');ngr.addColorStop(1,col+'00');
-      ctx.globalAlpha=alpha*0.45;
-      ctx.beginPath();ctx.arc(x,y,r*3,0,Math.PI*2);ctx.fillStyle=ngr;ctx.fill();
-    }
     // Solid country-colour dot
     ctx.globalAlpha=alpha;
     ctx.fillStyle=col;
@@ -1316,8 +1423,9 @@ function drawGenre(W,H){
     }
   }
 
-  // Links — thin straight lines
+  // Links — batched by opacity bucket to minimise GPU state changes
   ctx.lineWidth=0.3*dpr;
+  var lBuckets={};
   for(var li=0;li<links.length;li++){
     var l=links[li];
     var s=typeof l.source==='object'?l.source:nodes[l.source];
@@ -1333,8 +1441,15 @@ function drawGenre(W,H){
     }else{
       op=0.012;
     }
+    if(!lBuckets[op])lBuckets[op]=[];
+    lBuckets[op].push(s.x*dpr,s.y*dpr,t.x*dpr,t.y*dpr);
+  }
+  for(var op in lBuckets){
+    var pts=lBuckets[op];
     ctx.strokeStyle='rgba(0,255,100,'+op+')';
-    ctx.beginPath();ctx.moveTo(s.x*dpr,s.y*dpr);ctx.lineTo(t.x*dpr,t.y*dpr);ctx.stroke();
+    ctx.beginPath();
+    for(var pi=0;pi<pts.length;pi+=4){ctx.moveTo(pts[pi],pts[pi+1]);ctx.lineTo(pts[pi+2],pts[pi+3]);}
+    ctx.stroke();
   }
 
   // Sub-genre labels — centroid of actual node positions, 3+ albums only
@@ -1427,6 +1542,7 @@ function makeForceZ(targetFn,str){
   force.initialize=function(n){fnodes=n;};
   return force;
 }
+function toggle3D(){if(is3D){exit3D();}else{enter3D();}}
 function enter3D(){
   if(animId)cancelAnimationFrame(animId);
   if(sim)sim.stop();
@@ -1434,12 +1550,22 @@ function enter3D(){
   var container=document.getElementById('fg3d');
   container.style.display='block';
   canvas.style.display='none';
-  if(!window.ForceGraph3D){container.innerHTML='<div style="color:#00ff64;padding:20px;font-family:Courier New">3D library loading…</div>';return;}
+  if(!window.ForceGraph3D){
+    container.innerHTML='<div style="color:#00ff64;padding:20px;font-family:Courier New;font-size:10px;letter-spacing:.15em">LOADING 3D…</div>';
+    var s=document.createElement('script');
+    s.src='https://unpkg.com/3d-force-graph/dist/3d-force-graph.min.js';
+    s.onload=function(){container.innerHTML='';_buildGraph3D();};
+    document.head.appendChild(s);
+    return;
+  }
 
+  _buildGraph3D();
+}
+function _buildGraph3D(){
+  var container=document.getElementById('fg3d');
   // Always restore genre colours (may have been overwritten by country view)
   nodes.forEach(function(n){n._col=genreColor(n);});
 
-  // Ring order chosen so contrasting groups are opposite: electronic(blue) ↔ experimental(red), etc.
   var ringOrder=['electronic','hiphop','folk','reggae','experimental','soul','world','jazz'];
   var R=440;
   var grp3Centers={};
@@ -1447,12 +1573,10 @@ function enter3D(){
     var angle=(i/ringOrder.length)*Math.PI*2-Math.PI/2;
     grp3Centers[g]={x:R*Math.cos(angle),y:R*Math.sin(angle)};
   });
-  // Fallback for any group not in ringOrder
   Object.keys(GROUPS).forEach(function(g){
     if(!grp3Centers[g])grp3Centers[g]={x:0,y:0};
   });
 
-  // Sub-genre centers within each group
   var sg3Centers={};
   ringOrder.forEach(function(g){
     var subs=GROUPS[g]||[];
@@ -1522,10 +1646,12 @@ function setView(type){
   var gc=document.getElementById('gc'),W=gc.offsetWidth,H=gc.offsetHeight;
   if(type==='country'){
     exit3D(true);
+    cachedDotPixels=null;
     transform=d3.zoomIdentity;
     if(zoomBehavior)d3.select(canvas).call(zoomBehavior.transform,d3.zoomIdentity);
     createSimulation(W,H,'country');
     if(animId)cancelAnimationFrame(animId);
+    needsRedraw=true;
     draw();
     buildTicker('country');
   }else{
@@ -1550,12 +1676,14 @@ function applyFilter(label,kind){
     else if(kind==='country'){match=(n.country===label);}
     n._vis=true;n._dim=!match;
   });
+  requestDraw();
 }
 function clearFilter(){
   currentFilter=null;currentFilterKind=null;
   document.getElementById('rst').style.display='none';
   document.querySelectorAll('.li').forEach(function(el){el.classList.remove('on');});
   nodes.forEach(function(n){n._vis=true;n._dim=false;});
+  requestDraw();
 }
 
 /* ── TICKER ── */
@@ -1608,7 +1736,7 @@ function updateConnectedSet(){
 document.getElementById('pcls').onclick=closePanel;
 
 function openPanel(node){
-  panelOpen=true;selectedNode=node;updateConnectedSet();
+  panelOpen=true;selectedNode=node;updateConnectedSet();requestDraw();
   var col=node._col||'#00ff64';
   document.getElementById('pmedia').style.background='linear-gradient(135deg,'+col+'18,'+col+'30)';
 
@@ -1750,12 +1878,13 @@ function openPanel(node){
 
 function closePanel(){
   panelOpen=false;selectedNode=null;connectedSet=null;
-  document.getElementById('pmedia-frame').src=''; // destroys iframe, stops audio
+  document.getElementById('pmedia-frame').src='';
   var coverEl=document.getElementById('cover-img');
   coverEl.className='';coverEl.style.opacity='';coverEl.style.display='none';
   document.getElementById('yt-play').style.display='none';
   document.getElementById('panel').classList.remove('on');
   document.getElementById('gc').classList.remove('shifted');
+  requestDraw();
 }
 
 /* ── COMMENTS ── */
@@ -1954,8 +2083,10 @@ function handleResize(){
 <div id="admin-panel">
   <div id="admin-hdr">
     <div id="admin-hdr-title">ALBUM REQUESTS</div>
+    <button class="hbtn" id="admin-seed" style="font-size:8px;letter-spacing:.12em;opacity:.5">SEED DB FROM ALBUMS.JSON</button>
     <button class="hbtn" id="admin-close">CLOSE</button>
   </div>
+  <div id="admin-seed-status" style="font-size:9px;letter-spacing:.1em;color:rgba(0,255,100,.4);padding:8px 0 0"></div>
   <div id="admin-requests"></div>
 </div>
 </body>
