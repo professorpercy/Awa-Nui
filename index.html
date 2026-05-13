@@ -1878,7 +1878,7 @@ function openPanel(node){
   }
 
   // Comments
-  renderComments(node.id);
+  loadComments(node.id+'__'+node.artist);
 
   document.getElementById('panel').classList.add('on');
   document.getElementById('gc').classList.add('shifted');
@@ -1896,20 +1896,28 @@ function closePanel(){
 }
 
 /* ── COMMENTS ── */
-function renderComments(albumId){
-  var list=COMMENTS[albumId]||[];
+function loadComments(albumId){
   var el=document.getElementById('pcomments-list');
-  if(list.length===0){
+  el.innerHTML='<div class="pcomment-none">loading…</div>';
+  if(!sb){renderComments([]);return;}
+  sb.from('comments').select('*').eq('album_id',albumId)
+    .order('created_at',{ascending:true})
+    .then(function(res){renderComments(res.data||[]);});
+}
+
+function renderComments(list){
+  var el=document.getElementById('pcomments-list');
+  if(!list.length){
     el.innerHTML='<div class="pcomment-none">no comments yet</div>';
   }else{
     el.innerHTML=list.map(function(c){
-      var d=new Date(c.t);
+      var d=new Date(c.created_at);
       var ts=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+      var who=c.user_email?c.user_email.split('@')[0]:'anon';
       return'<div class="pcomment"><div class="pcomment-text">'+escHtml(c.text)+'</div>'
-        +'<div class="pcomment-time">'+ts+'</div></div>';
+        +'<div class="pcomment-time">'+escHtml(who)+' · '+ts+'</div></div>';
     }).join('');
   }
-  document.getElementById('pci').value='';
 }
 
 function submitComment(){
@@ -1917,10 +1925,17 @@ function submitComment(){
   var input=document.getElementById('pci');
   var text=input.value.trim();
   if(!text)return;
-  var id=selectedNode.id;
-  if(!COMMENTS[id])COMMENTS[id]=[];
-  COMMENTS[id].push({text:text,t:Date.now()});
-  renderComments(id);
+  input.value='';
+  var albumId=selectedNode.id+'__'+selectedNode.artist;
+  if(!sb){
+    renderComments([{text:text,created_at:new Date().toISOString(),user_email:null}]);
+    return;
+  }
+  var row={album_id:albumId,text:text};
+  if(currentUser){row.user_id=currentUser.id;row.user_email=currentUser.email;}
+  sb.from('comments').insert(row).then(function(res){
+    if(!res.error)loadComments(albumId);
+  });
 }
 
 /* ── ADD TO GARDEN ── */
