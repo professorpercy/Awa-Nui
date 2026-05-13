@@ -14,15 +14,29 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%)}
 
 /* ── INTRO POPUP ── */
-#intro{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:9000;display:flex;align-items:center;justify-content:center;}
-#intro-box{background:#030905;border:1px solid rgba(0,255,100,.2);padding:40px;display:flex;flex-direction:column;align-items:center;gap:20px;max-width:340px;width:90%;}
-#intro-title{font-size:28px;font-weight:700;letter-spacing:.36em;color:#00ff64;text-shadow:0 0 30px rgba(0,255,100,.4);}
-#intro-rows{display:flex;flex-direction:column;gap:8px;width:100%;}
-.intro-row{display:flex;gap:12px;font-size:10px;letter-spacing:.1em;}
-.intro-key{color:#00ff64;font-weight:700;min-width:90px;text-align:right;}
-.intro-val{color:rgba(0,255,100,.45);}
-#intro-ok{background:transparent;border:1px solid #00ff64;color:#00ff64;font-family:'Courier New',monospace;font-size:10px;letter-spacing:.25em;padding:11px 36px;cursor:pointer;transition:all .2s;width:100%;}
-#intro-ok:hover{background:rgba(0,255,100,.08);box-shadow:0 0 18px rgba(0,255,100,.18);}
+#boot{position:fixed;inset:0;background:#000;font-family:'Courier New',monospace;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:8000;overflow:hidden;}
+#boot .crt-s{position:fixed;inset:0;pointer-events:none;z-index:8900;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.13) 2px,rgba(0,0,0,.13) 4px);}
+#boot .crt-v{position:fixed;inset:0;pointer-events:none;z-index:8899;
+  background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.9) 100%);}
+#boot-title{font-size:52px;font-weight:700;letter-spacing:.36em;color:#00ff64;
+  text-shadow:0 0 40px rgba(0,255,100,.5),0 0 10px rgba(0,255,100,.9);
+  margin-bottom:44px;opacity:0;animation:blIn .4s ease-out .2s forwards;}
+#boot-how{display:flex;flex-direction:column;gap:10px;margin-bottom:48px;
+  opacity:0;animation:blIn .4s ease-out .7s forwards;}
+.bh-row{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.1em;}
+.bh-key{color:#00ff64;font-weight:700;min-width:88px;text-align:right;}
+.bh-sep{color:rgba(0,255,100,.25);}
+.bh-val{color:rgba(0,255,100,.45);}
+#boot-btns{display:flex;gap:20px;opacity:0;animation:blIn .4s ease-out 1.3s forwards;}
+.bbtn{background:transparent;border:1px solid #00ff64;color:#00ff64;
+  font-family:'Courier New',monospace;font-size:11px;letter-spacing:.2em;
+  padding:14px 32px;cursor:pointer;transition:all .22s;
+  display:flex;flex-direction:column;align-items:center;gap:6px;}
+.bbtn:hover{background:rgba(0,255,100,.07);box-shadow:0 0 22px rgba(0,255,100,.2);}
+.bbtn-sub{font-size:8px;letter-spacing:.15em;color:rgba(0,255,100,.3);}
 /* ── EMPTY GARDEN ── */
 #garden-empty{position:absolute;inset:0;display:none;flex-direction:column;
   align-items:center;justify-content:center;z-index:10;pointer-events:auto;
@@ -48,10 +62,12 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   #gc.shifted{right:0}
   #ticker{font-size:8px}
   .li{padding:2px 8px}
+  #boot-title{font-size:32px;letter-spacing:.2em}
+  .bbtn{padding:12px 20px;font-size:9px}
 }
 
 /* ── GARDEN ── */
-#garden{position:fixed;inset:0;display:block}
+#garden{position:fixed;inset:0;display:none}
 #map-loading,#genre-loading{display:none;position:fixed;bottom:14px;
   font-family:'Courier New',monospace;font-size:8.5px;letter-spacing:.18em;
   color:rgba(0,255,100,.32);pointer-events:none;z-index:300;}
@@ -248,19 +264,20 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 </head>
 <body>
 
-<!-- ═══ BOOT — VINTAGE OS INTERFACE ═══ -->
-<div id="intro">
-  <div id="intro-box">
-    <div id="intro-title">AWA NUI</div>
-    <div id="intro-rows">
-      <div class="intro-row"><span class="intro-key">COLOUR</span><span class="intro-val">= GENRE GROUP</span></div>
-      <div class="intro-row"><span class="intro-key">POSITION</span><span class="intro-val">= GEOGRAPHIC ORIGIN</span></div>
-      <div class="intro-row"><span class="intro-key">LINES</span><span class="intro-val">= SHARED DNA</span></div>
-      <div class="intro-row"><span class="intro-key">CLICK NODE</span><span class="intro-val">= EXPLORE RECORD</span></div>
-      <div class="intro-row"><span class="intro-key">PERSONAL</span><span class="intro-val">= YOUR SAVED ALBUMS</span></div>
-      <div class="intro-row"><span class="intro-key">GLOBAL</span><span class="intro-val">= ALL ALBUMS</span></div>
-    </div>
-    <button id="intro-ok" onclick="document.getElementById('intro').style.display='none';try{localStorage.setItem('awanui_intro_seen','1');}catch(e){}">ENTER</button>
+<!-- ═══ BOOT ═══ -->
+<div id="boot">
+  <div class="crt-s"></div>
+  <div class="crt-v"></div>
+  <div id="boot-title">AWA NUI</div>
+  <div id="boot-how">
+    <div class="bh-row"><span class="bh-key">COLOUR</span><span class="bh-sep">=</span><span class="bh-val">GENRE GROUP</span></div>
+    <div class="bh-row"><span class="bh-key">POSITION</span><span class="bh-sep">=</span><span class="bh-val">GEOGRAPHIC ORIGIN</span></div>
+    <div class="bh-row"><span class="bh-key">LINES</span><span class="bh-sep">=</span><span class="bh-val">SHARED DNA</span></div>
+    <div class="bh-row"><span class="bh-key">CLICK</span><span class="bh-sep">=</span><span class="bh-val">EXPLORE RECORD</span></div>
+  </div>
+  <div id="boot-btns">
+    <button class="bbtn" id="bcreate">PERSONAL GARDEN<span class="bbtn-sub">sign in to save albums</span></button>
+    <button class="bbtn" id="bdiscover">GLOBAL GARDEN<span class="bbtn-sub">explore without account</span></button>
   </div>
 </div>
 
@@ -528,15 +545,18 @@ function createWorldDotField(){
 
 /* ── BOOT ── */
 initSupabase();
-var _appStarted=false;
-function startApp(){
-  if(_appStarted)return;
-  _appStarted=true;
-  try{if(localStorage.getItem('awanui_intro_seen'))document.getElementById('intro').style.display='none';}catch(e){}
+document.addEventListener('DOMContentLoaded',function(){wireAuthHandlers();});
+document.getElementById('bcreate').onclick=function(){go('create');};
+document.getElementById('bdiscover').onclick=function(){go('discover');};
+function go(mode){
+  currentSection=mode;
+  document.getElementById('boot').style.display='none';
+  document.getElementById('garden').style.display='block';
+  document.getElementById('mt-create').classList.toggle('on',mode==='create');
+  document.getElementById('mt-discover').classList.toggle('on',mode==='discover');
+  document.getElementById('bdiscogs').style.display=mode==='create'?'':'none';
   requestAnimationFrame(function(){requestAnimationFrame(function(){try{init();}catch(err){console.error('init failed',err);}});});
 }
-document.addEventListener('DOMContentLoaded',startApp);
-window.addEventListener('load',startApp);
 function updateBootAuth(){}
 
 /* ── GLOBALS ── */
