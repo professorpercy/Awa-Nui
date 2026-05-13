@@ -941,8 +941,13 @@ function loadSection(){
   document.getElementById('b3d').style.display='none';
   var filtered;
   if(currentSection==='discover'){
-    if(!globalDataReady){loadGlobalAlbums(loadSection);return;}
-    filtered=GLOBAL_DATA;
+    // Render local data immediately, then silently refresh from DB in background
+    if(!globalDataReady){
+      filtered=DATA;
+      loadGlobalAlbums(function(){if(currentSection==='discover')loadSection();});
+    }else{
+      filtered=GLOBAL_DATA;
+    }
     hideGardenEmpty();
   }else{
     if(!currentUser){
