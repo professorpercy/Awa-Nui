@@ -1407,7 +1407,7 @@ function drawCountry(W,H){
     ctx.fillStyle=col;
     ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
     ctx.globalAlpha=1;
-    if(active&&ck>=(isMob?2.5:1.8)&&!isHov){
+    if(active&&ck>=(isMob?3.5:1.8)&&!isHov){
       ctx.font='8px Courier New';ctx.textAlign='center';
       var shortTitle=n.id.length>20?n.id.slice(0,19)+'\u2026':n.id;
       ctx.fillStyle=col;ctx.globalAlpha=0.75;ctx.fillText(shortTitle,x,y+r+11);
@@ -1505,7 +1505,7 @@ function drawGenre(W,H){
   }
 
   // Sub-genre labels — centroid of actual node positions, 3+ albums only
-  {
+  if(transform.k<2.0){
     var subBounds={};
     nodes.forEach(function(n){
       var g=getGroup(n.genres[0]);
@@ -1529,14 +1529,16 @@ function drawGenre(W,H){
     }
   }
 
-  // Group labels — floating above each cluster
-  ctx.font='700 '+(11*dpr)+'px Courier New';
-  ctx.textAlign='center';
-  for(var gk in genreCenters){
-    var gctr=genreCenters[gk];
-    var rgb=hexToRgb(GC[gk]?GC[gk].range[3]:'#00ff64');
-    ctx.fillStyle='rgba('+rgb.r+','+rgb.g+','+rgb.b+',0.22)';
-    ctx.fillText((GROUP_LABELS[gk]||gk).toUpperCase(),gctr.gcx*dpr,(gctr.gcy-gctr.haloR)*dpr);
+  // Group labels — hide when zoomed in past 2x (they scale up and overlap nodes)
+  if(transform.k<2.0){
+    ctx.font='700 '+(11*dpr)+'px Courier New';
+    ctx.textAlign='center';
+    for(var gk in genreCenters){
+      var gctr=genreCenters[gk];
+      var rgb=hexToRgb(GC[gk]?GC[gk].range[3]:'#00ff64');
+      ctx.fillStyle='rgba('+rgb.r+','+rgb.g+','+rgb.b+',0.22)';
+      ctx.fillText((GROUP_LABELS[gk]||gk).toUpperCase(),gctr.gcx*dpr,(gctr.gcy-gctr.haloR)*dpr);
+    }
   }
 
   // Nodes — solid circles, no gradients
@@ -1550,12 +1552,16 @@ function drawGenre(W,H){
     var r=(isHov&&!isSelected?8:6)*dpr;
     var x=n.x*dpr,y=n.y*dpr;
 
-    ctx.globalAlpha=alpha;
+    // Outer soft glow
+    ctx.globalAlpha=alpha*0.08;
     ctx.fillStyle=col;
+    ctx.beginPath();ctx.arc(x,y,r*2.2,0,Math.PI*2);ctx.fill();
+    // Mid glow
+    ctx.globalAlpha=alpha*0.15;
+    ctx.beginPath();ctx.arc(x,y,r*1.5,0,Math.PI*2);ctx.fill();
+    // Core
+    ctx.globalAlpha=alpha;
     ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
-
-    ctx.fillStyle='rgba(0,0,0,0.55)';
-    ctx.beginPath();ctx.arc(x,y,2*dpr,0,Math.PI*2);ctx.fill();
 
     if(isSelected){
       ctx.globalAlpha=alpha*0.5;
@@ -1563,7 +1569,7 @@ function drawGenre(W,H){
       ctx.beginPath();ctx.arc(x,y,r+5*dpr,0,Math.PI*2);ctx.stroke();
     }
     // Album name label at high zoom (touch substitute for hover tooltip)
-    if(transform.k>=(window.innerWidth<=600?2.5:2)&&!isHov){
+    if(transform.k>=(window.innerWidth<=600?4.0:2.0)&&!isHov){
       var lf=(7*dpr/transform.k)+'px Courier New';
       ctx.font=lf;ctx.textAlign='center';
       var shortTitle=n.id.length>18?n.id.slice(0,17)+'…':n.id;
