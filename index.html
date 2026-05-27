@@ -400,7 +400,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
-<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
 <script>
 var GROUPS={
   electronic:['trip hop','electronica','synthpop','dance','ghettotech','electronic','house','deep house','acid','breaks','breakbeat','techno','trance','progressive house','dub techno','drum and bass','jungle','idm','glitch','bass','dubstep'],
@@ -469,7 +469,7 @@ function ensureWorldData(){
   if(worldData||worldData===false)return;
   if(typeof topojson==='undefined'){worldData=false;return;}
   worldData=false; // loading flag
-  fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+  fetch('countries-110m.json')
     .then(function(r){return r.json();})
     .then(function(topo){
       worldData=topojson.feature(topo,topo.objects.countries);
