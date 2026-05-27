@@ -1407,7 +1407,7 @@ function drawCountry(W,H){
     ctx.fillStyle=col;
     ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
     ctx.globalAlpha=1;
-    if(active&&ck>=(isMob?3.5:1.8)&&!isHov){
+    if(active&&isMob&&ck>=3.5&&!isHov){
       ctx.font='8px Courier New';ctx.textAlign='center';
       var shortTitle=n.id.length>20?n.id.slice(0,19)+'\u2026':n.id;
       ctx.fillStyle=col;ctx.globalAlpha=0.75;ctx.fillText(shortTitle,x,y+r+11);
@@ -1568,8 +1568,8 @@ function drawGenre(W,H){
       ctx.strokeStyle=col;ctx.lineWidth=1.5*dpr;
       ctx.beginPath();ctx.arc(x,y,r+5*dpr,0,Math.PI*2);ctx.stroke();
     }
-    // Album name label at high zoom (touch substitute for hover tooltip)
-    if(transform.k>=(window.innerWidth<=600?4.0:2.0)&&!isHov){
+    // Album name label at high zoom — mobile only (desktop uses hover tooltip)
+    if(window.innerWidth<=600&&transform.k>=4.0&&!isHov){
       var lf=(7*dpr/transform.k)+'px Courier New';
       ctx.font=lf;ctx.textAlign='center';
       var shortTitle=n.id.length>18?n.id.slice(0,17)+'…':n.id;
