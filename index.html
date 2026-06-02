@@ -788,17 +788,17 @@ function init(){
   transform=d3.zoomIdentity;
   // Load cache if available
   try{
-    var cached=localStorage.getItem('awanui_albums');
+    var cached=localStorage.getItem('awanui_albums_v3');
     if(cached){var _p=JSON.parse(cached);if(_p&&_p.length)DATA=_p;}
   }catch(e){}
   // Always run setup and first render immediately (DATA may be [] on first visit)
   setupOnce();
   loadSection();
   // Fetch fresh data; re-render only if content changed
-  fetch('albums.json').then(function(r){return r.json();}).then(function(json){
+  fetch('albums.json?v=3').then(function(r){return r.json();}).then(function(json){
     var fresh=json.nodes||json;
     if(!fresh||!fresh.length)return;
-    try{localStorage.setItem('awanui_albums',JSON.stringify(fresh));}catch(e){}
+    try{localStorage.setItem('awanui_albums_v3',JSON.stringify(fresh));}catch(e){}
     var changed=JSON.stringify(fresh)!==JSON.stringify(DATA);
     DATA=fresh;
     if(changed)loadSection();
@@ -2118,7 +2118,7 @@ function scanDiscogsPage(username,page,totalAdded){
         setTimeout(function(){scanDiscogsPage(username,page+1,totalAdded);},600);
       }else{
         statusEl.textContent='Done — '+totalAdded+' albums imported.';
-        try{localStorage.setItem('awanui_albums',JSON.stringify(DATA));}catch(e){}
+        try{localStorage.setItem('awanui_albums_v3',JSON.stringify(DATA));}catch(e){}
         document.getElementById('dc-submit').disabled=false;
         setTimeout(function(){
           closeDiscogsForm();
