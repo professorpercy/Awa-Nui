@@ -56,15 +56,17 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 #ge-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 @keyframes blIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media(max-width:600px){
-  /* 2-row header: logo on top, all buttons below */
-  #hdr{height:auto;padding:5px 10px;flex-wrap:wrap;row-gap:4px;align-items:center}
-  #gc{top:70px}
-  .logo{width:100%;font-size:11px;letter-spacing:.2em}
-  .hdr-r{width:100%;gap:3px;flex-wrap:wrap;row-gap:3px;overflow:visible;justify-content:flex-start}
-  .mode-toggle{margin-right:3px;flex-shrink:0}
+  /* Row 1: logo (left) + login (right). Row 2: view controls */
+  #hdr{height:auto;padding:5px 10px;flex-wrap:wrap;row-gap:3px;align-items:center}
+  #gc{top:68px}
+  .logo{font-size:11px;letter-spacing:.2em;flex:1}
+  #bauth{margin-left:0;flex-shrink:0}
+  .hdr-r{width:100%;margin-left:0;gap:4px;flex-wrap:nowrap;overflow:visible;align-items:center;justify-content:flex-start}
+  .mode-toggle{margin-right:2px;flex-shrink:0}
   .mt-btn{font-size:7px;padding:3px 7px;letter-spacing:.08em}
   .hbtn{font-size:7px;padding:3px 6px;letter-spacing:.06em;white-space:nowrap}
   #rst{display:none!important}
+  #bdiscogs{display:none!important}
   #panel{width:100%;max-width:100%}
   #gc.shifted{right:0}
   #ticker{font-size:8px}
@@ -84,10 +86,11 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 #map-loading{right:18px;}
 #genre-loading{right:18px;bottom:28px;}
 #hdr{position:fixed;top:0;left:0;right:0;height:48px;display:flex;align-items:center;
-  justify-content:space-between;padding:0 20px;background:rgba(0,0,0,.93);
+  padding:0 20px;background:rgba(0,0,0,.93);
   border-bottom:1px solid rgba(0,255,100,.1);z-index:500}
 .logo{font-size:14px;letter-spacing:.32em;color:#00ff64;text-shadow:0 0 12px rgba(0,255,100,.5);cursor:default}
-.hdr-r{display:flex;align-items:center;gap:8px}
+.hdr-r{display:flex;align-items:center;gap:8px;margin-left:auto}
+#bauth{margin-left:8px}
 .hbtn{background:transparent;border:1px solid rgba(0,255,100,.22);color:rgba(0,255,100,.5);
   font-family:'Courier New',monospace;font-size:10px;letter-spacing:.14em;
   padding:5px 12px;cursor:pointer;transition:all .2s}
@@ -307,8 +310,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
       <button class="hbtn" id="bdiscogs" style="display:none">DISCOGS</button>
       <button class="hbtn" id="badd">+ ADD</button>
       <button class="hbtn" id="badmin" style="display:none">REQUESTS</button>
-      <button class="hbtn" id="bauth">LOGIN</button>
     </div>
+    <button class="hbtn" id="bauth">LOGIN</button>
   </div>
   <div id="gc"><canvas id="cv"></canvas><div id="fg3d"></div>
     <div id="garden-empty">
@@ -1143,44 +1146,52 @@ function createSimulation(W,H,view){
       byGroup[g].push(n);
     });
     genreCenters={};
-    var gRingR=Math.min(W,H)*0.36;
-    groupOrder.forEach(function(g,i){
-      var angle=(i/groupOrder.length)*Math.PI*2-Math.PI/2;
-      var gcx=W/2+Math.cos(angle)*gRingR;
-      var gcy=H/2+Math.sin(angle)*gRingR;
-      var group=byGroup[g];
-      var bySG={};
-      group.forEach(function(n){
-        var sg=(n.genres[0]||'').toLowerCase();
-        if(!bySG[sg])bySG[sg]=[];
-        bySG[sg].push(n);
+    var isMobPortrait=(W<H);
+    // Portrait mobile: 2-column grid for clear cluster separation
+    // Desktop/landscape: classic ring layout
+    if(isMobPortrait){
+      var numCols=2,numRows=Math.ceil(groupOrder.length/numCols);
+      var colXs=[W*0.26,W*0.74];
+      var rowStep=H/(numRows+1);
+      groupOrder.forEach(function(g,i){
+        var gcx=colXs[i%numCols],gcy=rowStep*(Math.floor(i/numCols)+1);
+        var group=byGroup[g];
+        var bySG={};
+        group.forEach(function(n){var sg=(n.genres[0]||'').toLowerCase();if(!bySG[sg])bySG[sg]=[];bySG[sg].push(n);});
+        var sgKeys=Object.keys(bySG);
+        var subR=sgKeys.length>1?Math.min(28,10*Math.sqrt(group.length/Math.max(sgKeys.length,1))):0;
+        var subCenters={};
+        sgKeys.forEach(function(sg){var grpList=GROUPS[g]||[];var sgIdx=grpList.indexOf(sg);if(sgIdx<0)sgIdx=hs(g+sg)%Math.max(grpList.length,8);var sgAngle=(sgIdx/Math.max(grpList.length,1))*Math.PI*2-Math.PI/2;var scx=gcx+Math.cos(sgAngle)*subR;var scy=gcy+Math.sin(sgAngle)*subR;subCenters[sg]={scx:scx,scy:scy};bySG[sg].forEach(function(n){n._tx=scx;n._ty=scy;n.x=scx+(Math.random()-0.5)*6;n.y=scy+(Math.random()-0.5)*6;});});
+        var labelR=Math.ceil(Math.sqrt(group.length/Math.PI))*8+20;
+        genreCenters[g]={gcx:gcx,gcy:gcy,haloR:labelR,subCenters:subCenters};
       });
-      var sgKeys=Object.keys(bySG);
-      var subR=sgKeys.length>1?Math.min(60,14*Math.sqrt(group.length/Math.max(sgKeys.length,1))):0;
-      var subCenters={};
-      sgKeys.forEach(function(sg){
-        var grpList=GROUPS[g]||[];
-        var sgIdx=grpList.indexOf(sg);
-        if(sgIdx<0)sgIdx=hs(g+sg)%Math.max(grpList.length,8);
-        var sgAngle=(sgIdx/Math.max(grpList.length,1))*Math.PI*2-Math.PI/2;
-        var scx=gcx+Math.cos(sgAngle)*subR;
-        var scy=gcy+Math.sin(sgAngle)*subR;
-        subCenters[sg]={scx:scx,scy:scy};
-        bySG[sg].forEach(function(n){n._tx=scx;n._ty=scy;n.x=scx+(Math.random()-0.5)*8;n.y=scy+(Math.random()-0.5)*8;});
+    }else{
+      var gRingR=Math.min(W,H)*0.36;
+      groupOrder.forEach(function(g,i){
+        var angle=(i/groupOrder.length)*Math.PI*2-Math.PI/2;
+        var gcx=W/2+Math.cos(angle)*gRingR;
+        var gcy=H/2+Math.sin(angle)*gRingR;
+        var group=byGroup[g];
+        var bySG={};
+        group.forEach(function(n){var sg=(n.genres[0]||'').toLowerCase();if(!bySG[sg])bySG[sg]=[];bySG[sg].push(n);});
+        var sgKeys=Object.keys(bySG);
+        var subR=sgKeys.length>1?Math.min(60,14*Math.sqrt(group.length/Math.max(sgKeys.length,1))):0;
+        var subCenters={};
+        sgKeys.forEach(function(sg){var grpList=GROUPS[g]||[];var sgIdx=grpList.indexOf(sg);if(sgIdx<0)sgIdx=hs(g+sg)%Math.max(grpList.length,8);var sgAngle=(sgIdx/Math.max(grpList.length,1))*Math.PI*2-Math.PI/2;var scx=gcx+Math.cos(sgAngle)*subR;var scy=gcy+Math.sin(sgAngle)*subR;subCenters[sg]={scx:scx,scy:scy};bySG[sg].forEach(function(n){n._tx=scx;n._ty=scy;n.x=scx+(Math.random()-0.5)*8;n.y=scy+(Math.random()-0.5)*8;});});
+        var labelR=Math.ceil(Math.sqrt(group.length/Math.PI))*10+28;
+        genreCenters[g]={gcx:gcx,gcy:gcy,haloR:labelR,subCenters:subCenters};
       });
-      var labelR=Math.ceil(Math.sqrt(group.length/Math.PI))*10+28;
-      genreCenters[g]={gcx:gcx,gcy:gcy,haloR:labelR,subCenters:subCenters};
-    });
+    }
     sim=d3.forceSimulation(nodes)
       .force('link',d3.forceLink(links).strength(0.004).distance(24))
-      .force('x',d3.forceX(function(d){var c=genreCenters[getGroup(d.genres[0])];return d._tx||(c?c.gcx:W/2);}).strength(0.18))
-      .force('y',d3.forceY(function(d){var c=genreCenters[getGroup(d.genres[0])];return d._ty||(c?c.gcy:H/2);}).strength(0.18))
+      .force('x',d3.forceX(function(d){var c=genreCenters[getGroup(d.genres[0])];return d._tx||(c?c.gcx:W/2);}).strength(isMobPortrait?0.22:0.18))
+      .force('y',d3.forceY(function(d){var c=genreCenters[getGroup(d.genres[0])];return d._ty||(c?c.gcy:H/2);}).strength(isMobPortrait?0.22:0.18))
       .force('charge',d3.forceManyBody().strength(-60))
-      .force('collision',d3.forceCollide(10).strength(1.0))
+      .force('collision',d3.forceCollide(isMobPortrait?7:10).strength(1.0))
       .alpha(1).alphaDecay(0.1).alphaTarget(0.001)
       .on('tick',requestDraw);
-    // Use cached positions to skip the expensive tick(100) on repeat visits
-    var posKey='awanui_pos_'+W+'x'+H+'_'+nodes.length;
+    // Bump cache key when layout algorithm changes to avoid stale positions
+    var posKey='awanui_pos_v2_'+W+'x'+H+'_'+nodes.length;
     var posCache=null;
     try{posCache=JSON.parse(localStorage.getItem(posKey));}catch(e){}
     if(posCache&&posCache.length===nodes.length){
@@ -1380,7 +1391,7 @@ function drawCountry(W,H){
   var lodMax=ck<0.4?1:ck<0.7?3:ck<1.0?7:Infinity;
 
   var isMob=window.innerWidth<=600;
-  var r=isMob?Math.max(1,Math.min(3,ck*1.4)):Math.max(1.5,Math.min(5,ck*2));
+  var r=Math.max(1.5,Math.min(5,ck*2));
   // Pass 1 \u2014 glow halos (skip on mobile)
   if(!isMob){
     ctx.globalAlpha=0.18;
@@ -1408,7 +1419,7 @@ function drawCountry(W,H){
     ctx.fillStyle=col;
     ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
     ctx.globalAlpha=1;
-    if(active&&isMob&&ck>=3.5&&!isHov){
+    if(active&&isMob&&ck>=6.0&&!isHov){
       ctx.font='8px Courier New';ctx.textAlign='center';
       var shortTitle=n.id.length>20?n.id.slice(0,19)+'\u2026':n.id;
       ctx.fillStyle=col;ctx.globalAlpha=0.75;ctx.fillText(shortTitle,x,y+r+11);
