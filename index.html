@@ -1421,12 +1421,6 @@ function drawCountry(W,H){
     ctx.fillStyle=col;
     ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
     ctx.globalAlpha=1;
-    if(active&&isMob&&ck>=6.0&&!isHov){
-      ctx.font='8px Courier New';ctx.textAlign='center';
-      var shortTitle=n.id.length>20?n.id.slice(0,19)+'\u2026':n.id;
-      ctx.fillStyle=col;ctx.globalAlpha=0.75;ctx.fillText(shortTitle,x,y+r+11);
-      ctx.globalAlpha=1;
-    }
     if(isHov&&(active||dimmed)){
       ctx.beginPath();ctx.arc(x,y,r+3,0,Math.PI*2);
       ctx.strokeStyle=col;ctx.lineWidth=1.5;ctx.globalAlpha=0.8;ctx.stroke();ctx.globalAlpha=1;
@@ -1437,6 +1431,29 @@ function drawCountry(W,H){
       ctx.fillStyle='rgba(0,0,0,.94)';ctx.fillRect(bx,by,bw,bh);
       ctx.strokeStyle=col;ctx.lineWidth=1;ctx.globalAlpha=0.5;ctx.strokeRect(bx,by,bw,bh);ctx.globalAlpha=1;
       ctx.fillStyle='#fff';ctx.textAlign='center';ctx.fillText(label,x,by+17);
+    }
+  }
+
+  // Pass 3 — album name labels on mobile, drawn over all dots with overlap guard
+  if(isMob&&ck>=4.5){
+    var placed=[];
+    ctx.font='9px Courier New';ctx.textAlign='center';
+    for(var ni=0;ni<nodes.length;ni++){
+      var n=nodes[ni];
+      if(n._countryRank!==undefined&&n._countryRank>=lodMax)continue;
+      if(!(n._vis&&!n._dim))continue;
+      if(hovered===n)continue;
+      var x=n.x,y=n.y;
+      var st=n.id.length>15?n.id.slice(0,14)+'…':n.id;
+      var tw=ctx.measureText(st).width;
+      var lx=x-tw/2-3,ly=y+r+4,lw=tw+6,lh=12;
+      var ok=true;
+      for(var pi=0;pi<placed.length;pi++){var p=placed[pi];if(lx<p[0]+p[2]&&lx+lw>p[0]&&ly<p[1]+p[3]&&ly+lh>p[1]){ok=false;break;}}
+      if(!ok)continue;
+      placed.push([lx,ly,lw,lh]);
+      ctx.globalAlpha=0.72;ctx.fillStyle='#000';ctx.fillRect(lx,ly,lw,lh);
+      ctx.globalAlpha=0.95;ctx.fillStyle=n._col;ctx.fillText(st,x,ly+lh-3);
+      ctx.globalAlpha=1;
     }
   }
 
@@ -1584,11 +1601,16 @@ function drawGenre(W,H){
     }
     // Album name label at high zoom — mobile only (desktop uses hover tooltip)
     if(window.innerWidth<=600&&transform.k>=4.0&&!isHov){
-      var lf=(7*dpr/transform.k)+'px Courier New';
-      ctx.font=lf;ctx.textAlign='center';
+      var fs=11*dpr/transform.k;
+      ctx.font=fs+'px Courier New';ctx.textAlign='center';
       var shortTitle=n.id.length>18?n.id.slice(0,17)+'…':n.id;
-      ctx.fillStyle=col;ctx.globalAlpha=alpha*0.7;
-      ctx.fillText(shortTitle,x,y+r+(9*dpr/transform.k));
+      var tw=ctx.measureText(shortTitle).width;
+      var ty=y+r+fs*1.5;
+      ctx.globalAlpha=alpha*0.65;ctx.fillStyle='#000';
+      ctx.fillRect(x-tw/2-2,ty-fs,tw+4,fs+3);
+      ctx.globalAlpha=alpha;ctx.fillStyle=col;
+      ctx.fillText(shortTitle,x,ty);
+      ctx.globalAlpha=1;
     }
     ctx.globalAlpha=1;
   }
