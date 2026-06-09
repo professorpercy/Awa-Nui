@@ -1602,7 +1602,7 @@ function drawGenre(W,H){
       ctx.beginPath();ctx.arc(x,y,r+5*dpr,0,Math.PI*2);ctx.stroke();
     }
     // Album name label at high zoom — mobile only (desktop uses hover tooltip)
-    if(window.innerWidth<=600&&transform.k>=4.0&&!isHov){
+    if(window.innerWidth<=600&&transform.k>=2.0&&!isHov){
       var fs=11*dpr/transform.k;
       ctx.font=fs+'px Courier New';ctx.textAlign='center';
       var shortTitle=n.id.length>18?n.id.slice(0,17)+'…':n.id;
