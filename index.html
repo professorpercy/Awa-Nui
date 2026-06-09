@@ -1393,20 +1393,20 @@ function drawCountry(W,H){
   var lodMax=ck<0.4?1:ck<0.7?3:ck<1.0?7:Infinity;
 
   var isMob=window.innerWidth<=600;
-  var r=Math.max(1.5,Math.min(5,ck*2));
-  // Pass 1 \u2014 glow halos (skip on mobile)
+  var r=Math.max(2.5,Math.min(6,ck*2.2));
+  // Pass 1 \u2014 outer halos batched for perf (desktop only)
   if(!isMob){
-    ctx.globalAlpha=0.18;
+    ctx.globalAlpha=0.11;
     for(var ni=0;ni<nodes.length;ni++){
       var n=nodes[ni];
       if(n._countryRank!==undefined&&n._countryRank>=lodMax)continue;
       if(!(n._vis&&!n._dim))continue;
       ctx.fillStyle=n._col;
-      ctx.beginPath();ctx.arc(n.x,n.y,r*3.5,0,Math.PI*2);ctx.fill();
+      ctx.beginPath();ctx.arc(n.x,n.y,r*2.8,0,Math.PI*2);ctx.fill();
     }
     ctx.globalAlpha=1;
   }
-  // Pass 2 \u2014 solid dots + labels + hover
+  // Pass 2 \u2014 3-layer glow + core per node (matches genre view style)
   for(var ni=0;ni<nodes.length;ni++){
     var n=nodes[ni];
     if(n._countryRank!==undefined&&n._countryRank>=lodMax)continue;
@@ -1416,10 +1416,12 @@ function drawCountry(W,H){
     var alpha=active?1:(dimmed?0.2:0.07);
     var x=n.x,y=n.y;
     var isHov=(hovered===n);
-    // Solid country-colour dot
-    ctx.globalAlpha=alpha;
+    var nr=isHov?r*1.4:r;
+    // 3-layer glow + core
     ctx.fillStyle=col;
-    ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+    ctx.globalAlpha=alpha*0.08;ctx.beginPath();ctx.arc(x,y,nr*2.2,0,Math.PI*2);ctx.fill();
+    ctx.globalAlpha=alpha*0.15;ctx.beginPath();ctx.arc(x,y,nr*1.5,0,Math.PI*2);ctx.fill();
+    ctx.globalAlpha=alpha;ctx.beginPath();ctx.arc(x,y,nr,0,Math.PI*2);ctx.fill();
     ctx.globalAlpha=1;
     if(isHov&&(active||dimmed)){
       ctx.beginPath();ctx.arc(x,y,r+3,0,Math.PI*2);
