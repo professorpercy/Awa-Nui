@@ -67,7 +67,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   .hbtn{font-size:7px;padding:3px 6px;letter-spacing:.06em;white-space:nowrap}
   #rst{display:none!important}
   #bdiscogs{display:none!important}
-  #panel{width:100%;max-width:100%}
+  #panel{top:auto!important;bottom:0;left:0;right:0;width:100%!important;max-width:100%!important;height:62vh;transform:translateY(100%)!important;border-left:none;border-top:1px solid rgba(0,255,100,.18);border-radius:10px 10px 0 0}
+  #panel.on{transform:translateY(0)!important}
   #gc.shifted{right:0}
   #pbar{height:52px;padding:0 14px}
   #pcls{width:44px;height:44px;font-size:18px}
@@ -1509,7 +1510,7 @@ function drawGenre(W,H){
   }
 
   // Links — batched by opacity bucket to minimise GPU state changes
-  ctx.lineWidth=0.3*dpr;
+  ctx.lineWidth=0.5*dpr;
   var lBuckets={};
   for(var li=0;li<links.length;li++){
     var l=links[li];
@@ -1524,7 +1525,7 @@ function drawGenre(W,H){
       else if(isConn)op=0.10;
       else op=0.004;
     }else{
-      op=0.012;
+      op=0.04;
     }
     if(!lBuckets[op])lBuckets[op]=[];
     lBuckets[op].push(s.x*dpr,s.y*dpr,t.x*dpr,t.y*dpr);
@@ -1586,12 +1587,12 @@ function drawGenre(W,H){
     var x=n.x*dpr,y=n.y*dpr;
 
     // Outer soft glow
-    ctx.globalAlpha=alpha*0.08;
+    ctx.globalAlpha=alpha*0.11;
     ctx.fillStyle=col;
-    ctx.beginPath();ctx.arc(x,y,r*2.2,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(x,y,r*2.4,0,Math.PI*2);ctx.fill();
     // Mid glow
-    ctx.globalAlpha=alpha*0.15;
-    ctx.beginPath();ctx.arc(x,y,r*1.5,0,Math.PI*2);ctx.fill();
+    ctx.globalAlpha=alpha*0.20;
+    ctx.beginPath();ctx.arc(x,y,r*1.55,0,Math.PI*2);ctx.fill();
     // Core
     ctx.globalAlpha=alpha;
     ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
