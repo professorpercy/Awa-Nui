@@ -60,7 +60,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   #hdr{height:auto;padding:8px 14px;flex-wrap:wrap;row-gap:6px;align-items:center}
   #gc{top:126px}
   .logo{font-size:12px;letter-spacing:.22em;flex:1}
-  #btheme{font-size:7px;padding:4px 8px;letter-spacing:.1em;margin-left:6px;flex-shrink:0}
+  #btheme{display:none!important}
   #bauth{margin-left:6px;flex-shrink:0;font-size:8px;padding:5px 10px}
   .hdr-r{width:100%;margin-left:0;flex-direction:column;gap:6px;align-items:stretch}
   .mode-toggle{width:100%;margin-right:0;border-radius:3px}
@@ -118,46 +118,50 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   padding:5px 9px;cursor:pointer;transition:all .2s;white-space:nowrap}
 #btheme:hover{border-color:rgba(0,255,100,.5);color:rgba(0,255,100,.75)}
 
-/* ── LIGHT MODE ── */
-body.light{background:#eff4ef}
-body.light::before{background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,80,30,.006) 2px,rgba(0,80,30,.006) 4px)}
-body.light::after{background:radial-gradient(ellipse at center,transparent 60%,rgba(210,235,210,.3) 100%)}
-body.light #hdr{background:rgba(226,242,226,.97);border-bottom-color:rgba(0,90,35,.12)}
-body.light .logo{color:#0b4422;text-shadow:none}
-body.light .hbtn{border-color:rgba(11,68,34,.22);color:rgba(11,68,34,.55)}
-body.light .hbtn:hover,body.light .hbtn.on{border-color:rgba(11,68,34,.65);color:#0b4422;background:rgba(11,68,34,.07)}
-body.light #btheme{border-color:rgba(11,68,34,.22);color:rgba(11,68,34,.45)}
-body.light #btheme:hover{border-color:rgba(11,68,34,.55);color:#0b4422}
-body.light .mode-toggle{border-color:rgba(11,68,34,.22)}
-body.light .mt-btn{color:rgba(11,68,34,.4)}
-body.light .mt-btn.on{background:rgba(11,68,34,.1);color:#0b4422}
-body.light .view-toggle{border-color:rgba(11,68,34,.22)}
-body.light .view-toggle .hbtn{border-right-color:rgba(11,68,34,.15)!important}
-body.light #panel{background:rgba(232,246,232,.98);border-left-color:rgba(11,68,34,.12);border-top-color:rgba(11,68,34,.18)!important}
-body.light #panel-handle-bar{background:rgba(11,68,34,.22)}
-body.light #pbar{border-bottom-color:rgba(11,68,34,.07)}
-body.light .pbl{color:rgba(11,68,34,.3)}
-body.light #pcls{border-color:rgba(11,68,34,.2);color:rgba(11,68,34,.5)}
-body.light #ptitle{color:#0b4422;text-shadow:none}
-body.light #partist{color:rgba(11,68,34,.55)}
-body.light .pdiv{background:rgba(11,68,34,.07)}
-body.light .pml{color:rgba(11,68,34,.28)}
-body.light .pmv{color:rgba(11,68,34,.7)}
-body.light #pblurb{color:rgba(11,68,34,.52)}
-body.light .psl{color:rgba(11,68,34,.28)}
-body.light .psim-item{border-color:rgba(11,68,34,.1)}
-body.light .psim-item:hover{border-color:rgba(11,68,34,.3);background:rgba(11,68,34,.04)}
-body.light .psim-title{color:rgba(11,68,34,.72)}
-body.light .psim-artist{color:rgba(11,68,34,.35)}
-body.light .pchip{border-color:rgba(11,68,34,.15);color:rgba(11,68,34,.45)}
-body.light .plbtn{border-color:rgba(11,68,34,.22);color:#0b4422;background:rgba(11,68,34,.04)}
-body.light .plbtn:hover{background:rgba(11,68,34,.09);border-color:rgba(11,68,34,.45)}
-body.light #pcomments-section .pcomment-text{color:rgba(11,68,34,.6)}
-body.light .pcomment-time{color:rgba(11,68,34,.25)}
-body.light .pci{background:rgba(11,68,34,.04);border-color:rgba(11,68,34,.15);color:#0b4422}
-body.light .pci::placeholder{color:rgba(11,68,34,.2)}
-body.light #legwrap{background:rgba(224,240,224,.97);border-top-color:rgba(0,90,35,.12)}
-body.light #map-loading,body.light #genre-loading{color:rgba(11,68,34,.3)}
+/* ── LIGHT MODE (desktop only) ── */
+body.light{background:#fff}
+body.light::before{opacity:0}
+body.light::after{opacity:0}
+body.light #hdr{background:rgba(255,255,255,.97);border-bottom-color:rgba(0,0,0,.1)}
+body.light .logo{color:#007030;text-shadow:none}
+body.light .hbtn{border-color:rgba(0,0,0,.15);color:rgba(0,0,0,.5)}
+body.light .hbtn:hover,body.light .hbtn.on{border-color:#007030;color:#007030;background:rgba(0,112,48,.06)}
+body.light #btheme{border-color:rgba(0,0,0,.15);color:rgba(0,0,0,.4)}
+body.light #btheme:hover{border-color:#007030;color:#007030}
+body.light #bauth{border-color:rgba(0,0,0,.15);color:rgba(0,0,0,.5)}
+body.light #bauth:hover,body.light #bauth.on{border-color:#007030;color:#007030;background:rgba(0,112,48,.06)}
+body.light .mode-toggle{border-color:rgba(0,0,0,.15)}
+body.light .mt-btn{color:rgba(0,0,0,.38)}
+body.light .mt-btn.on{background:rgba(0,112,48,.08);color:#007030}
+body.light .view-toggle{border-color:rgba(0,0,0,.15)}
+body.light .view-toggle .hbtn{border-right-color:rgba(0,0,0,.1)!important}
+body.light #panel{background:#fff;border-left-color:rgba(0,0,0,.1)}
+body.light #pbar{border-bottom-color:rgba(0,0,0,.07)}
+body.light .pbl{color:rgba(0,0,0,.28)}
+body.light #pcls{border-color:rgba(0,0,0,.15);color:rgba(0,0,0,.4)}
+body.light #pcls:hover{border-color:#007030;color:#007030}
+body.light #ptitle{color:#111;text-shadow:none}
+body.light #partist{color:rgba(0,0,0,.45)}
+body.light .pdiv{background:rgba(0,0,0,.07)}
+body.light .pml{color:rgba(0,0,0,.28)}
+body.light .pmv{color:rgba(0,0,0,.65)}
+body.light #pblurb{color:rgba(0,0,0,.5)}
+body.light .psl{color:rgba(0,0,0,.28)}
+body.light .psim-item{border-color:rgba(0,0,0,.09)}
+body.light .psim-item:hover{border-color:rgba(0,112,48,.35);background:rgba(0,112,48,.04)}
+body.light .psim-title{color:rgba(0,0,0,.65)}
+body.light .psim-artist{color:rgba(0,0,0,.35)}
+body.light .pchip{border-color:rgba(0,0,0,.12);color:rgba(0,0,0,.4)}
+body.light .plbtn{border-color:rgba(0,0,0,.15);color:#111;background:rgba(0,0,0,.02)}
+body.light .plbtn:hover{background:rgba(0,112,48,.07);border-color:#007030;color:#007030}
+body.light #pcomments-section .pcomment-text{color:rgba(0,0,0,.55)}
+body.light .pcomment-time{color:rgba(0,0,0,.25)}
+body.light .pci{background:#fafafa;border-color:rgba(0,0,0,.12);color:#111}
+body.light .pci::placeholder{color:rgba(0,0,0,.2)}
+body.light .pcs{border-color:rgba(0,0,0,.15);color:rgba(0,0,0,.5)}
+body.light .pcs:hover{border-color:#007030;color:#007030}
+body.light #legwrap{background:rgba(255,255,255,.97);border-top-color:rgba(0,0,0,.1)}
+body.light #map-loading,body.light #genre-loading{color:rgba(0,0,0,.3)}
 
 #gc{position:fixed;top:48px;left:0;right:0;bottom:38px;z-index:1;transition:right .32s}
 #gc.shifted{right:360px}
