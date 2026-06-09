@@ -56,15 +56,19 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 #ge-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 @keyframes blIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media(max-width:600px){
-  /* Row 1: logo (left) + login (right). Row 2: view controls */
-  #hdr{height:auto;padding:5px 10px;flex-wrap:wrap;row-gap:3px;align-items:center}
-  #gc{top:68px}
-  .logo{font-size:11px;letter-spacing:.2em;flex:1}
-  #bauth{margin-left:0;flex-shrink:0}
-  .hdr-r{width:100%;margin-left:0;gap:4px;flex-wrap:nowrap;overflow:visible;align-items:center;justify-content:flex-start}
-  .mode-toggle{margin-right:2px;flex-shrink:0}
-  .mt-btn{font-size:7px;padding:3px 7px;letter-spacing:.08em}
-  .hbtn{font-size:7px;padding:3px 6px;letter-spacing:.06em;white-space:nowrap}
+  /* Row 1: logo + theme + login. Rows 2-3: full-width stacked toggles */
+  #hdr{height:auto;padding:8px 14px;flex-wrap:wrap;row-gap:6px;align-items:center}
+  #gc{top:126px}
+  .logo{font-size:12px;letter-spacing:.22em;flex:1}
+  #btheme{font-size:7px;padding:4px 8px;letter-spacing:.1em;margin-left:6px;flex-shrink:0}
+  #bauth{margin-left:6px;flex-shrink:0;font-size:8px;padding:5px 10px}
+  .hdr-r{width:100%;margin-left:0;flex-direction:column;gap:6px;align-items:stretch}
+  .mode-toggle{width:100%;margin-right:0;border-radius:3px}
+  .mt-btn{flex:1;font-size:11px;padding:9px 0;letter-spacing:.15em;text-align:center}
+  .view-toggle{display:flex;border:1px solid rgba(0,255,100,.22);border-radius:3px}
+  .view-toggle .hbtn{flex:1;text-align:center;border:none!important;border-right:1px solid rgba(0,255,100,.15)!important;font-size:10px;padding:8px 0;letter-spacing:.12em;border-radius:0}
+  .view-toggle .hbtn:last-child{border-right:none!important}
+  #badd{display:none!important}
   #rst{display:none!important}
   #bdiscogs{display:none!important}
   #panel{top:auto!important;bottom:0;left:0;right:0;width:100%!important;max-width:100%!important;height:55vh;transform:translateY(100%)!important;border-left:none;border-top:1px solid rgba(0,255,100,.18);border-radius:12px 12px 0 0;transition:transform .32s cubic-bezier(.16,1,.3,1),height .22s ease}
@@ -108,6 +112,53 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 .mt-btn:last-child{border-right:none}
 .mt-btn.on{background:rgba(0,255,100,.1);color:#00ff64}
 .mt-btn:hover{color:rgba(0,255,100,.7)}
+.view-toggle{display:flex;gap:8px;align-items:center}
+#btheme{background:transparent;border:1px solid rgba(0,255,100,.2);color:rgba(0,255,100,.38);
+  font-family:'Courier New',monospace;font-size:8px;letter-spacing:.12em;
+  padding:5px 9px;cursor:pointer;transition:all .2s;white-space:nowrap}
+#btheme:hover{border-color:rgba(0,255,100,.5);color:rgba(0,255,100,.75)}
+
+/* ── LIGHT MODE ── */
+body.light{background:#eff4ef}
+body.light::before{background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,80,30,.006) 2px,rgba(0,80,30,.006) 4px)}
+body.light::after{background:radial-gradient(ellipse at center,transparent 60%,rgba(210,235,210,.3) 100%)}
+body.light #hdr{background:rgba(226,242,226,.97);border-bottom-color:rgba(0,90,35,.12)}
+body.light .logo{color:#0b4422;text-shadow:none}
+body.light .hbtn{border-color:rgba(11,68,34,.22);color:rgba(11,68,34,.55)}
+body.light .hbtn:hover,body.light .hbtn.on{border-color:rgba(11,68,34,.65);color:#0b4422;background:rgba(11,68,34,.07)}
+body.light #btheme{border-color:rgba(11,68,34,.22);color:rgba(11,68,34,.45)}
+body.light #btheme:hover{border-color:rgba(11,68,34,.55);color:#0b4422}
+body.light .mode-toggle{border-color:rgba(11,68,34,.22)}
+body.light .mt-btn{color:rgba(11,68,34,.4)}
+body.light .mt-btn.on{background:rgba(11,68,34,.1);color:#0b4422}
+body.light .view-toggle{border-color:rgba(11,68,34,.22)}
+body.light .view-toggle .hbtn{border-right-color:rgba(11,68,34,.15)!important}
+body.light #panel{background:rgba(232,246,232,.98);border-left-color:rgba(11,68,34,.12);border-top-color:rgba(11,68,34,.18)!important}
+body.light #panel-handle-bar{background:rgba(11,68,34,.22)}
+body.light #pbar{border-bottom-color:rgba(11,68,34,.07)}
+body.light .pbl{color:rgba(11,68,34,.3)}
+body.light #pcls{border-color:rgba(11,68,34,.2);color:rgba(11,68,34,.5)}
+body.light #ptitle{color:#0b4422;text-shadow:none}
+body.light #partist{color:rgba(11,68,34,.55)}
+body.light .pdiv{background:rgba(11,68,34,.07)}
+body.light .pml{color:rgba(11,68,34,.28)}
+body.light .pmv{color:rgba(11,68,34,.7)}
+body.light #pblurb{color:rgba(11,68,34,.52)}
+body.light .psl{color:rgba(11,68,34,.28)}
+body.light .psim-item{border-color:rgba(11,68,34,.1)}
+body.light .psim-item:hover{border-color:rgba(11,68,34,.3);background:rgba(11,68,34,.04)}
+body.light .psim-title{color:rgba(11,68,34,.72)}
+body.light .psim-artist{color:rgba(11,68,34,.35)}
+body.light .pchip{border-color:rgba(11,68,34,.15);color:rgba(11,68,34,.45)}
+body.light .plbtn{border-color:rgba(11,68,34,.22);color:#0b4422;background:rgba(11,68,34,.04)}
+body.light .plbtn:hover{background:rgba(11,68,34,.09);border-color:rgba(11,68,34,.45)}
+body.light #pcomments-section .pcomment-text{color:rgba(11,68,34,.6)}
+body.light .pcomment-time{color:rgba(11,68,34,.25)}
+body.light .pci{background:rgba(11,68,34,.04);border-color:rgba(11,68,34,.15);color:#0b4422}
+body.light .pci::placeholder{color:rgba(11,68,34,.2)}
+body.light #legwrap{background:rgba(224,240,224,.97);border-top-color:rgba(0,90,35,.12)}
+body.light #map-loading,body.light #genre-loading{color:rgba(11,68,34,.3)}
+
 #gc{position:fixed;top:48px;left:0;right:0;bottom:38px;z-index:1;transition:right .32s}
 #gc.shifted{right:360px}
 #gc canvas{display:block;width:100%;height:100%}
@@ -310,14 +361,17 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
         <button class="mt-btn" id="mt-create">PERSONAL</button>
         <button class="mt-btn on" id="mt-discover">GLOBAL</button>
       </div>
-      <button class="hbtn on" id="bgenre">GENRE</button>
-      <button class="hbtn" id="bcountry">COUNTRY</button>
+      <div class="view-toggle">
+        <button class="hbtn on" id="bgenre">GENRE</button>
+        <button class="hbtn" id="bcountry">COUNTRY</button>
+      </div>
       <button class="hbtn" id="b3d" style="display:none;visibility:hidden">3D</button>
       <button class="hbtn" id="rst">SHOW ALL</button>
       <button class="hbtn" id="bdiscogs" style="display:none">DISCOGS</button>
       <button class="hbtn" id="badd">+ ADD</button>
       <button class="hbtn" id="badmin" style="display:none">REQUESTS</button>
     </div>
+    <button id="btheme">LIGHT</button>
     <button class="hbtn" id="bauth">LOGIN</button>
   </div>
   <div id="gc"><canvas id="cv"></canvas><div id="fg3d"></div>
@@ -916,6 +970,23 @@ function setupOnce(){
       hovered=null;requestDraw();
     }
   },{passive:true});
+  // Theme toggle
+  (function(){
+    var btn=document.getElementById('btheme');
+    function applyTheme(){
+      var light=document.body.classList.contains('light');
+      btn.textContent=light?'DARK':'LIGHT';
+      requestDraw();
+    }
+    if(localStorage.getItem('awanui_light')==='1'){document.body.classList.add('light');}
+    applyTheme();
+    btn.onclick=function(){
+      document.body.classList.toggle('light');
+      localStorage.setItem('awanui_light',document.body.classList.contains('light')?'1':'0');
+      applyTheme();
+    };
+  })();
+
   document.getElementById('bgenre').onclick=function(){
     document.getElementById('bgenre').classList.add('on');
     document.getElementById('bcountry').classList.remove('on');
@@ -1350,7 +1421,7 @@ function drawCountry(W,H){
   ctx.scale(dpr,dpr);
   var Wcss=W/dpr,Hcss=H/dpr;
 
-  ctx.fillStyle='#000';ctx.fillRect(0,0,Wcss,Hcss);
+  ctx.fillStyle=document.body.classList.contains('light')?'#0c1a0c':'#000';ctx.fillRect(0,0,Wcss,Hcss);
 
   // Dot-matrix world map — project once, cache until zoom/pan changes
   if(worldDots&&worldDots.length){
@@ -1496,7 +1567,7 @@ function drawCountry(W,H){
 
 function drawGenre(W,H){
   ctx.save();
-  ctx.fillStyle='#000';
+  ctx.fillStyle=document.body.classList.contains('light')?'#0c1a0c':'#000';
   ctx.fillRect(0,0,W,H);
   ctx.translate(transform.x*dpr,transform.y*dpr);
   ctx.scale(transform.k,transform.k);
