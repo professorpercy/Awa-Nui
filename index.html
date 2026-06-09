@@ -60,7 +60,6 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   #hdr{height:auto;padding:8px 14px;flex-wrap:wrap;row-gap:6px;align-items:center}
   #gc{top:126px}
   .logo{font-size:12px;letter-spacing:.22em;flex:1}
-  #btheme{display:none!important}
   #bauth{margin-left:6px;flex-shrink:0;font-size:8px;padding:5px 10px}
   .hdr-r{width:100%;margin-left:0;flex-direction:column;gap:6px;align-items:stretch}
   .mode-toggle{width:100%;margin-right:0;border-radius:3px}
@@ -112,56 +111,9 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 .mt-btn:last-child{border-right:none}
 .mt-btn.on{background:rgba(0,255,100,.1);color:#00ff64}
 .mt-btn:hover{color:rgba(0,255,100,.7)}
-.view-toggle{display:flex;gap:8px;align-items:center}
-#btheme{background:transparent;border:1px solid rgba(0,255,100,.2);color:rgba(0,255,100,.38);
-  font-family:'Courier New',monospace;font-size:8px;letter-spacing:.12em;
-  padding:5px 9px;cursor:pointer;transition:all .2s;white-space:nowrap}
-#btheme:hover{border-color:rgba(0,255,100,.5);color:rgba(0,255,100,.75)}
-
-/* ── LIGHT MODE (desktop only) ── */
-body.light{background:#fff}
-body.light::before{opacity:0}
-body.light::after{opacity:0}
-body.light #hdr{background:rgba(255,255,255,.97);border-bottom-color:rgba(0,0,0,.1)}
-body.light .logo{color:#007030;text-shadow:none}
-body.light .hbtn{border-color:rgba(0,0,0,.15);color:rgba(0,0,0,.5)}
-body.light .hbtn:hover,body.light .hbtn.on{border-color:#007030;color:#007030;background:rgba(0,112,48,.06)}
-body.light #btheme{border-color:rgba(0,0,0,.15);color:rgba(0,0,0,.4)}
-body.light #btheme:hover{border-color:#007030;color:#007030}
-body.light #bauth{border-color:rgba(0,0,0,.15);color:rgba(0,0,0,.5)}
-body.light #bauth:hover,body.light #bauth.on{border-color:#007030;color:#007030;background:rgba(0,112,48,.06)}
-body.light .mode-toggle{border-color:rgba(0,0,0,.15)}
-body.light .mt-btn{color:rgba(0,0,0,.38)}
-body.light .mt-btn.on{background:rgba(0,112,48,.08);color:#007030}
-body.light .view-toggle{border-color:rgba(0,0,0,.15)}
-body.light .view-toggle .hbtn{border-right-color:rgba(0,0,0,.1)!important}
-body.light #panel{background:#fff;border-left-color:rgba(0,0,0,.1)}
-body.light #pbar{border-bottom-color:rgba(0,0,0,.07)}
-body.light .pbl{color:rgba(0,0,0,.28)}
-body.light #pcls{border-color:rgba(0,0,0,.15);color:rgba(0,0,0,.4)}
-body.light #pcls:hover{border-color:#007030;color:#007030}
-body.light #ptitle{color:#111;text-shadow:none}
-body.light #partist{color:rgba(0,0,0,.45)}
-body.light .pdiv{background:rgba(0,0,0,.07)}
-body.light .pml{color:rgba(0,0,0,.28)}
-body.light .pmv{color:rgba(0,0,0,.65)}
-body.light #pblurb{color:rgba(0,0,0,.5)}
-body.light .psl{color:rgba(0,0,0,.28)}
-body.light .psim-item{border-color:rgba(0,0,0,.09)}
-body.light .psim-item:hover{border-color:rgba(0,112,48,.35);background:rgba(0,112,48,.04)}
-body.light .psim-title{color:rgba(0,0,0,.65)}
-body.light .psim-artist{color:rgba(0,0,0,.35)}
-body.light .pchip{border-color:rgba(0,0,0,.12);color:rgba(0,0,0,.4)}
-body.light .plbtn{border-color:rgba(0,0,0,.15);color:#111;background:rgba(0,0,0,.02)}
-body.light .plbtn:hover{background:rgba(0,112,48,.07);border-color:#007030;color:#007030}
-body.light #pcomments-section .pcomment-text{color:rgba(0,0,0,.55)}
-body.light .pcomment-time{color:rgba(0,0,0,.25)}
-body.light .pci{background:#fafafa;border-color:rgba(0,0,0,.12);color:#111}
-body.light .pci::placeholder{color:rgba(0,0,0,.2)}
-body.light .pcs{border-color:rgba(0,0,0,.15);color:rgba(0,0,0,.5)}
-body.light .pcs:hover{border-color:#007030;color:#007030}
-body.light #legwrap{background:rgba(255,255,255,.97);border-top-color:rgba(0,0,0,.1)}
-body.light #map-loading,body.light #genre-loading{color:rgba(0,0,0,.3)}
+.view-toggle{display:flex;border:1px solid rgba(0,255,100,.22)}
+.view-toggle .hbtn{border:none;border-right:1px solid rgba(0,255,100,.15);padding:5px 12px}
+.view-toggle .hbtn:last-child{border-right:none}
 
 #gc{position:fixed;top:48px;left:0;right:0;bottom:38px;z-index:1;transition:right .32s}
 #gc.shifted{right:360px}
@@ -375,7 +327,6 @@ body.light #map-loading,body.light #genre-loading{color:rgba(0,0,0,.3)}
       <button class="hbtn" id="badd">+ ADD</button>
       <button class="hbtn" id="badmin" style="display:none">REQUESTS</button>
     </div>
-    <button id="btheme">LIGHT</button>
     <button class="hbtn" id="bauth">LOGIN</button>
   </div>
   <div id="gc"><canvas id="cv"></canvas><div id="fg3d"></div>
@@ -974,23 +925,6 @@ function setupOnce(){
       hovered=null;requestDraw();
     }
   },{passive:true});
-  // Theme toggle
-  (function(){
-    var btn=document.getElementById('btheme');
-    function applyTheme(){
-      var light=document.body.classList.contains('light');
-      btn.textContent=light?'DARK':'LIGHT';
-      requestDraw();
-    }
-    if(localStorage.getItem('awanui_light')==='1'){document.body.classList.add('light');}
-    applyTheme();
-    btn.onclick=function(){
-      document.body.classList.toggle('light');
-      localStorage.setItem('awanui_light',document.body.classList.contains('light')?'1':'0');
-      applyTheme();
-    };
-  })();
-
   document.getElementById('bgenre').onclick=function(){
     document.getElementById('bgenre').classList.add('on');
     document.getElementById('bcountry').classList.remove('on');
@@ -1425,7 +1359,7 @@ function drawCountry(W,H){
   ctx.scale(dpr,dpr);
   var Wcss=W/dpr,Hcss=H/dpr;
 
-  ctx.fillStyle=document.body.classList.contains('light')?'#0c1a0c':'#000';ctx.fillRect(0,0,Wcss,Hcss);
+  ctx.fillStyle='#000';ctx.fillRect(0,0,Wcss,Hcss);
 
   // Dot-matrix world map — project once, cache until zoom/pan changes
   if(worldDots&&worldDots.length){
@@ -1571,7 +1505,7 @@ function drawCountry(W,H){
 
 function drawGenre(W,H){
   ctx.save();
-  ctx.fillStyle=document.body.classList.contains('light')?'#0c1a0c':'#000';
+  ctx.fillStyle='#000';
   ctx.fillRect(0,0,W,H);
   ctx.translate(transform.x*dpr,transform.y*dpr);
   ctx.scale(transform.k,transform.k);
