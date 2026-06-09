@@ -67,10 +67,12 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   .hbtn{font-size:7px;padding:3px 6px;letter-spacing:.06em;white-space:nowrap}
   #rst{display:none!important}
   #bdiscogs{display:none!important}
-  #panel{top:auto!important;bottom:0;left:0;right:0;width:100%!important;max-width:100%!important;height:62vh;transform:translateY(100%)!important;border-left:none;border-top:1px solid rgba(0,255,100,.18);border-radius:10px 10px 0 0}
+  #panel{top:auto!important;bottom:0;left:0;right:0;width:100%!important;max-width:100%!important;height:55vh;transform:translateY(100%)!important;border-left:none;border-top:1px solid rgba(0,255,100,.18);border-radius:12px 12px 0 0;transition:transform .32s cubic-bezier(.16,1,.3,1),height .22s ease}
   #panel.on{transform:translateY(0)!important}
+  #panel-handle{display:flex}
+  #pmedia{aspect-ratio:unset!important;height:155px}
   #gc.shifted{right:0}
-  #pbar{height:52px;padding:0 14px}
+  #pbar{height:44px;padding:0 14px}
   #pcls{width:44px;height:44px;font-size:18px}
   #ticker{font-size:8px}
   .li{padding:2px 8px;font-size:9px}
@@ -127,6 +129,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   z-index:600;transform:translateX(100%);transition:transform .32s cubic-bezier(.16,1,.3,1);
   display:flex;flex-direction:column}
 #panel.on{transform:translateX(0)}
+#panel-handle{display:none;padding:8px 0 2px;align-items:center;justify-content:center;cursor:grab;flex-shrink:0;touch-action:none}
+#panel-handle-bar{width:40px;height:4px;border-radius:2px;background:rgba(0,255,100,.3)}
 #pbar{height:48px;display:flex;align-items:center;justify-content:space-between;
   padding:0 16px;border-bottom:1px solid rgba(0,255,100,.08);flex-shrink:0}
 .pbl{font-size:9px;letter-spacing:.25em;color:rgba(0,255,100,.28)}
@@ -335,6 +339,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 
 <!-- ═══ PANEL ═══ -->
 <div id="panel">
+  <div id="panel-handle"><div id="panel-handle-bar"></div></div>
   <div id="pbar"><span class="pbl">RECORD INFO</span><button id="pcls">✕</button></div>
   <div id="pmedia">
     <iframe id="pmedia-frame" frameborder="0"
@@ -1843,6 +1848,35 @@ function updateConnectedSet(){
 
 /* ── PANEL ── */
 document.getElementById('pcls').onclick=closePanel;
+
+// Mobile bottom sheet — drag handle to snap between compact (55vh) and full (88vh)
+(function(){
+  var panel=document.getElementById('panel');
+  var handle=document.getElementById('panel-handle');
+  var _sy,_sh,_dragging=false;
+  function isMobSheet(){return window.innerWidth<=600;}
+  function snapPanel(h){
+    panel.style.transition='';
+    var vh=window.innerHeight;
+    if(h<vh*0.22){closePanel();}
+    else if(h<vh*0.70){panel.style.height='55vh';}
+    else{panel.style.height='88vh';}
+  }
+  handle.addEventListener('touchstart',function(e){
+    if(!isMobSheet())return;
+    _sy=e.touches[0].clientY;_sh=panel.offsetHeight;_dragging=true;
+    panel.style.transition='none';
+  },{passive:true});
+  window.addEventListener('touchmove',function(e){
+    if(!_dragging)return;
+    var dy=_sy-e.touches[0].clientY;
+    panel.style.height=Math.min(window.innerHeight*0.93,Math.max(80,_sh+dy))+'px';
+  },{passive:true});
+  window.addEventListener('touchend',function(){
+    if(!_dragging)return;
+    _dragging=false;snapPanel(panel.offsetHeight);
+  },{passive:true});
+})();
 
 function openPanel(node){
   panelOpen=true;selectedNode=node;updateConnectedSet();requestDraw();
