@@ -57,20 +57,25 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 #ge-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 @keyframes blIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media(max-width:600px){
-  /* Row 1: logo + theme + login. Rows 2-3: full-width stacked toggles */
-  #hdr{height:auto;padding:8px 14px;flex-wrap:wrap;row-gap:6px;align-items:center}
-  #gc{top:126px}
-  .logo{font-size:12px;letter-spacing:.22em;flex:1}
-  #bauth{margin-left:6px;flex-shrink:0;font-size:8px;padding:5px 10px}
-  .hdr-r{width:100%;margin-left:0;flex-direction:column;gap:6px;align-items:stretch}
-  .mode-toggle{width:100%;margin-right:0;border-radius:3px}
-  .mt-btn{flex:1;font-size:11px;padding:9px 0;letter-spacing:.15em;text-align:center}
-  .view-toggle{display:flex;border:1px solid rgba(0,255,100,.22);border-radius:3px}
-  .view-toggle .hbtn{flex:1;text-align:center;border:none!important;border-right:1px solid rgba(0,255,100,.15)!important;font-size:10px;padding:8px 0;letter-spacing:.12em;border-radius:0}
-  .view-toggle .hbtn:last-child{border-right:none!important}
+  #hdr{height:48px;padding:0 14px;}
+  .logo{font-size:12px;letter-spacing:.22em;}
+  .logo-sub{font-size:7px;letter-spacing:.14em;}
+  #bauth{margin-left:6px;font-size:8px;padding:5px 10px}
+  .hdr-r{gap:4px;}
   #badd{display:none!important}
   #rst{display:none!important}
   #bdiscogs{display:none!important}
+  #nav{position:fixed;top:48px;left:0;right:0;bottom:auto;width:auto;
+    flex-direction:row;padding:0;border-right:none;
+    border-bottom:1px solid rgba(0,255,100,.12);}
+  .nav-section{flex:1;display:flex;flex-direction:row;margin-bottom:0;}
+  .nav-section:first-child{border-right:1px solid rgba(0,255,100,.2);}
+  .nav-label{display:none}
+  .nav-btn{flex:1;font-size:10px;letter-spacing:.1em;padding:13px 4px;
+    text-align:center;margin-bottom:0;border:none;border-radius:0;
+    border-right:1px solid rgba(0,255,100,.1);}
+  .nav-btn:last-child{border-right:none}
+  #gc{top:95px;left:0!important;}
   #panel{top:auto!important;bottom:0;left:0;right:0;width:100%!important;max-width:100%!important;height:55vh;transform:translateY(100%)!important;border-left:none;border-top:1px solid rgba(0,255,100,.18);border-radius:12px 12px 0 0;transition:transform .32s cubic-bezier(.16,1,.3,1),height .22s ease}
   #panel.on{transform:translateY(0)!important}
   #panel-handle{display:flex}
@@ -80,9 +85,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   #pcls{width:44px;height:44px;font-size:18px}
   #ticker{font-size:8px}
   .li{padding:2px 8px;font-size:9px}
-  .logo-sub{font-size:6px;letter-spacing:.14em;}
-  #tip{bottom:80px;left:12px;padding:10px 13px;}
-  .tip-row{font-size:9px;margin-bottom:5px;}
+  #tip{bottom:80px;left:12px;transform:none;min-width:0;padding:16px 18px;}
+  .tip-row{font-size:11px;margin-bottom:8px;}
   #boot-title{font-size:28px;letter-spacing:.18em}
   #boot-btns{flex-direction:column;align-items:center;gap:12px}
   .bbtn{padding:12px 28px;font-size:9px;width:220px;justify-content:center}
@@ -100,19 +104,39 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 #hdr{position:fixed;top:0;left:0;right:0;height:48px;display:flex;align-items:center;
   padding:0 20px;background:rgba(0,0,0,.93);
   border-bottom:1px solid rgba(0,255,100,.1);z-index:500}
-.logo-wrap{display:flex;flex-direction:column;gap:2px;flex:1}
+.logo-wrap{display:flex;flex-direction:column;gap:3px;flex:1}
 .logo{font-size:14px;letter-spacing:.32em;color:#00ff64;text-shadow:0 0 12px rgba(0,255,100,.5);cursor:default}
-.logo-sub{font-size:7px;letter-spacing:.22em;color:rgba(0,255,100,.38);font-family:'Courier New',monospace}
-#tip{position:fixed;bottom:72px;left:20px;font-family:'Courier New',monospace;
-  background:rgba(0,10,5,.85);border:1px solid rgba(0,255,100,.16);
-  padding:13px 17px;z-index:500;pointer-events:none;display:none;
-  opacity:1;transition:opacity 1.2s ease;}
+.logo-sub{font-size:9px;letter-spacing:.2em;color:rgba(0,255,100,.62);font-family:'Courier New',monospace}
+#nav{position:fixed;top:48px;left:0;bottom:0;width:160px;
+  background:rgba(0,0,0,.96);border-right:1px solid rgba(0,255,100,.1);
+  z-index:400;display:flex;flex-direction:column;padding:24px 14px;}
+.nav-section{margin-bottom:28px;}
+.nav-label{font-family:'Courier New',monospace;font-size:8px;letter-spacing:.3em;
+  color:rgba(0,255,100,.28);margin-bottom:8px;}
+.nav-btn{display:block;width:100%;background:transparent;
+  border:1px solid rgba(0,255,100,.18);color:rgba(0,255,100,.45);
+  font-family:'Courier New',monospace;font-size:12px;letter-spacing:.16em;
+  padding:11px 12px;cursor:pointer;transition:all .2s;margin-bottom:6px;text-align:left;}
+.nav-btn:last-child{margin-bottom:0}
+.nav-btn:hover{border-color:rgba(0,255,100,.5);color:#00ff64;background:rgba(0,255,100,.06)}
+.nav-btn.on{border-color:rgba(0,255,100,.6);color:#00ff64;background:rgba(0,255,100,.1)}
+#tip{position:fixed;bottom:64px;left:50%;transform:translateX(-50%);
+  font-family:'Courier New',monospace;background:rgba(0,8,4,.95);
+  border:1px solid rgba(0,255,100,.28);padding:20px 26px;
+  z-index:600;pointer-events:auto;display:none;min-width:280px;
+  opacity:1;transition:opacity .4s ease;}
 #tip.tip-hide{opacity:0;}
-.tip-row{display:flex;gap:10px;margin-bottom:6px;font-size:10px;letter-spacing:.1em;}
+#tip-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+#tip-title{font-size:9px;letter-spacing:.3em;color:rgba(0,255,100,.38);}
+#tip-close{background:transparent;border:1px solid rgba(0,255,100,.22);color:rgba(0,255,100,.5);
+  font-family:'Courier New',monospace;font-size:13px;line-height:1;
+  padding:3px 9px;cursor:pointer;transition:all .2s;}
+#tip-close:hover{color:#00ff64;border-color:rgba(0,255,100,.6);}
+.tip-row{display:flex;gap:14px;margin-bottom:10px;font-size:12px;letter-spacing:.1em;}
 .tip-row:last-child{margin-bottom:0;}
-.tip-k{color:#00ff64;font-weight:700;min-width:70px;}
+.tip-k{color:#00ff64;font-weight:700;min-width:80px;}
 .tip-s{color:rgba(0,255,100,.28);}
-.tip-v{color:rgba(0,255,100,.52);}
+.tip-v{color:rgba(0,255,100,.65);}
 .hdr-r{display:flex;align-items:center;gap:8px;margin-left:auto}
 #bauth{margin-left:8px}
 .hbtn{background:transparent;border:1px solid rgba(0,255,100,.22);color:rgba(0,255,100,.5);
@@ -120,18 +144,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   padding:5px 12px;cursor:pointer;transition:all .2s}
 .hbtn:hover,.hbtn.on{border-color:rgba(0,255,100,.55);color:#00ff64;background:rgba(0,255,100,.07)}
 #rst{display:none}
-.mode-toggle{display:flex;border:1px solid rgba(0,255,100,.22);margin-right:12px}
-.mt-btn{background:transparent;border:none;border-right:1px solid rgba(0,255,100,.15);
-  color:rgba(0,255,100,.35);font-family:'Courier New',monospace;font-size:9px;
-  letter-spacing:.14em;padding:5px 12px;cursor:pointer;transition:all .2s}
-.mt-btn:last-child{border-right:none}
-.mt-btn.on{background:rgba(0,255,100,.1);color:#00ff64}
-.mt-btn:hover{color:rgba(0,255,100,.7)}
-.view-toggle{display:flex;border:1px solid rgba(0,255,100,.22)}
-.view-toggle .hbtn{border:none;border-right:1px solid rgba(0,255,100,.15);padding:5px 12px}
-.view-toggle .hbtn:last-child{border-right:none}
 
-#gc{position:fixed;top:48px;left:0;right:0;bottom:38px;z-index:1;transition:right .32s}
+#gc{position:fixed;top:48px;left:160px;right:0;bottom:38px;z-index:1;transition:right .32s}
 #gc.shifted{right:360px}
 #gc canvas{display:block;width:100%;height:100%}
 #legwrap{position:fixed;bottom:0;left:0;right:0;height:38px;background:rgba(0,0,0,.93);
@@ -329,14 +343,6 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   <div id="hdr">
     <div class="logo-wrap"><span class="logo">AWA NUI</span><span class="logo-sub">music organised by space</span></div>
     <div class="hdr-r">
-      <div class="mode-toggle">
-        <button class="mt-btn" id="mt-create">PERSONAL</button>
-        <button class="mt-btn on" id="mt-discover">GLOBAL</button>
-      </div>
-      <div class="view-toggle">
-        <button class="hbtn on" id="bgenre">GENRE</button>
-        <button class="hbtn" id="bcountry">COUNTRY</button>
-      </div>
       <button class="hbtn" id="b3d" style="display:none;visibility:hidden">3D</button>
       <button class="hbtn" id="rst">SHOW ALL</button>
       <button class="hbtn" id="bdiscogs" style="display:none">DISCOGS</button>
@@ -345,7 +351,23 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
     </div>
     <button class="hbtn" id="bauth">LOGIN</button>
   </div>
+  <div id="nav">
+    <div class="nav-section">
+      <div class="nav-label">GARDEN</div>
+      <button class="nav-btn" id="mt-create">PERSONAL</button>
+      <button class="nav-btn on" id="mt-discover">GLOBAL</button>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">VIEW</div>
+      <button class="nav-btn on" id="bgenre">GENRE</button>
+      <button class="nav-btn" id="bcountry">COUNTRY</button>
+    </div>
+  </div>
   <div id="tip">
+    <div id="tip-hdr">
+      <span id="tip-title">HOW TO READ THE MAP</span>
+      <button id="tip-close">✕</button>
+    </div>
     <div class="tip-row"><span class="tip-k">COLOUR</span><span class="tip-s">=</span><span class="tip-v">GENRE GROUP</span></div>
     <div class="tip-row"><span class="tip-k">POSITION</span><span class="tip-s">=</span><span class="tip-v">GEOGRAPHIC ORIGIN</span></div>
     <div class="tip-row"><span class="tip-k">LINES</span><span class="tip-s">=</span><span class="tip-v">SHARED DNA</span></div>
@@ -630,12 +652,8 @@ function go(mode){
     var tip=document.getElementById('tip');
     if(tip){
       tip.style.display='block';
-      var hideTip=function(){tip.classList.add('tip-hide');setTimeout(function(){tip.style.display='none';},1200);};
-      var tipTimer=setTimeout(hideTip,5000);
-      document.addEventListener('click',function onFirstClick(){
-        clearTimeout(tipTimer);hideTip();
-        document.removeEventListener('click',onFirstClick);
-      },{once:true,passive:true});
+      var hideTip=function(){tip.classList.add('tip-hide');setTimeout(function(){tip.style.display='none';},400);};
+      document.getElementById('tip-close').onclick=hideTip;
     }
   }
   requestAnimationFrame(function(){requestAnimationFrame(function(){try{init();}catch(err){console.error('init failed',err);}});});
