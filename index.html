@@ -14,8 +14,9 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%)}
 
 /* ── INTRO POPUP ── */
-#boot{position:fixed;inset:0;background:#000;font-family:'Courier New',monospace;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
+#boot{display:none!important;}
+#boot-hidden{position:fixed;inset:0;background:#000;font-family:'Courier New',monospace;
+  flex-direction:column;align-items:center;justify-content:center;
   z-index:8000;overflow:hidden;}
 #boot .crt-s{position:fixed;inset:0;pointer-events:none;z-index:8900;
   background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.13) 2px,rgba(0,0,0,.13) 4px);}
@@ -79,6 +80,9 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   #pcls{width:44px;height:44px;font-size:18px}
   #ticker{font-size:8px}
   .li{padding:2px 8px;font-size:9px}
+  .logo-sub{font-size:6px;letter-spacing:.14em;}
+  #tip{bottom:80px;left:12px;padding:10px 13px;}
+  .tip-row{font-size:9px;margin-bottom:5px;}
   #boot-title{font-size:28px;letter-spacing:.18em}
   #boot-btns{flex-direction:column;align-items:center;gap:12px}
   .bbtn{padding:12px 28px;font-size:9px;width:220px;justify-content:center}
@@ -96,7 +100,19 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 #hdr{position:fixed;top:0;left:0;right:0;height:48px;display:flex;align-items:center;
   padding:0 20px;background:rgba(0,0,0,.93);
   border-bottom:1px solid rgba(0,255,100,.1);z-index:500}
+.logo-wrap{display:flex;flex-direction:column;gap:2px;flex:1}
 .logo{font-size:14px;letter-spacing:.32em;color:#00ff64;text-shadow:0 0 12px rgba(0,255,100,.5);cursor:default}
+.logo-sub{font-size:7px;letter-spacing:.22em;color:rgba(0,255,100,.38);font-family:'Courier New',monospace}
+#tip{position:fixed;bottom:72px;left:20px;font-family:'Courier New',monospace;
+  background:rgba(0,10,5,.85);border:1px solid rgba(0,255,100,.16);
+  padding:13px 17px;z-index:500;pointer-events:none;display:none;
+  opacity:1;transition:opacity 1.2s ease;}
+#tip.tip-hide{opacity:0;}
+.tip-row{display:flex;gap:10px;margin-bottom:6px;font-size:10px;letter-spacing:.1em;}
+.tip-row:last-child{margin-bottom:0;}
+.tip-k{color:#00ff64;font-weight:700;min-width:70px;}
+.tip-s{color:rgba(0,255,100,.28);}
+.tip-v{color:rgba(0,255,100,.52);}
 .hdr-r{display:flex;align-items:center;gap:8px;margin-left:auto}
 #bauth{margin-left:8px}
 .hbtn{background:transparent;border:1px solid rgba(0,255,100,.22);color:rgba(0,255,100,.5);
@@ -311,7 +327,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 <!-- ═══ GARDEN ═══ -->
 <div id="garden">
   <div id="hdr">
-    <span class="logo">AWA NUI</span>
+    <div class="logo-wrap"><span class="logo">AWA NUI</span><span class="logo-sub">music organised by space</span></div>
     <div class="hdr-r">
       <div class="mode-toggle">
         <button class="mt-btn" id="mt-create">PERSONAL</button>
@@ -328,6 +344,12 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
       <button class="hbtn" id="badmin" style="display:none">REQUESTS</button>
     </div>
     <button class="hbtn" id="bauth">LOGIN</button>
+  </div>
+  <div id="tip">
+    <div class="tip-row"><span class="tip-k">COLOUR</span><span class="tip-s">=</span><span class="tip-v">GENRE GROUP</span></div>
+    <div class="tip-row"><span class="tip-k">POSITION</span><span class="tip-s">=</span><span class="tip-v">GEOGRAPHIC ORIGIN</span></div>
+    <div class="tip-row"><span class="tip-k">LINES</span><span class="tip-s">=</span><span class="tip-v">SHARED DNA</span></div>
+    <div class="tip-row"><span class="tip-k">CLICK</span><span class="tip-s">=</span><span class="tip-v">EXPLORE RECORD</span></div>
   </div>
   <div id="gc"><canvas id="cv"></canvas><div id="fg3d"></div>
     <div id="garden-empty">
@@ -603,8 +625,22 @@ function go(mode){
   document.getElementById('mt-create').classList.toggle('on',mode==='create');
   document.getElementById('mt-discover').classList.toggle('on',mode==='discover');
   document.getElementById('bdiscogs').style.display=mode==='create'?'':'none';
+  if(!localStorage.getItem('awanui_v')){
+    localStorage.setItem('awanui_v','1');
+    var tip=document.getElementById('tip');
+    if(tip){
+      tip.style.display='block';
+      var hideTip=function(){tip.classList.add('tip-hide');setTimeout(function(){tip.style.display='none';},1200);};
+      var tipTimer=setTimeout(hideTip,5000);
+      document.addEventListener('click',function onFirstClick(){
+        clearTimeout(tipTimer);hideTip();
+        document.removeEventListener('click',onFirstClick);
+      },{once:true,passive:true});
+    }
+  }
   requestAnimationFrame(function(){requestAnimationFrame(function(){try{init();}catch(err){console.error('init failed',err);}});});
 }
+go('discover');
 function updateBootAuth(){}
 
 function showGardenEmpty(loggedIn){
