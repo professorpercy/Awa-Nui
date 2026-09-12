@@ -709,6 +709,7 @@ function initSupabase(){
     updateAuthUI();
     if(currentUser){
       loadUserGarden().then(function(){if(setupDone&&currentSection==='create')loadSection();});
+      if(event==='SIGNED_IN'&&currentUser.email===ADMIN_EMAIL){openAdminPanel();}
     }else{
       userGardenIds=new Set();
       if(setupDone&&currentSection==='create')loadSection();
@@ -783,7 +784,7 @@ function openAdminPanel(){
   document.getElementById('admin-panel').classList.add('on');
   var list=document.getElementById('admin-requests');
   list.innerHTML='<div style="color:rgba(0,255,100,.3);font-size:10px;letter-spacing:.12em;padding:20px 0">LOADING…</div>';
-  sb.from('album_requests').select('*').eq('status','pending').order('created_at',{ascending:false}).then(function(res){
+  sb.from('album_requests').select('*').or('status.eq.pending,status.is.null').order('created_at',{ascending:false}).then(function(res){
     var reqs=res.data||[];
     if(!reqs.length){list.innerHTML='<div style="color:rgba(0,255,100,.25);font-size:10px;letter-spacing:.1em;padding:20px 0">NO PENDING REQUESTS</div>';return;}
     list.innerHTML='';
@@ -2178,7 +2179,8 @@ function submitAdd(){
     blurb:document.getElementById('af-blurb').value.trim(),
     img:document.getElementById('af-img').value.trim(),
     submitted_by:currentUser?currentUser.id:null,
-    submitter_email:currentUser?currentUser.email:'anonymous'
+    submitter_email:currentUser?currentUser.email:'anonymous',
+    status:'pending'
   };
   var submitBtn=document.getElementById('af-submit');
   if(!sb){alert('Connection unavailable, try again shortly.');return;}
