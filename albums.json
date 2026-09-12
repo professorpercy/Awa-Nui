@@ -3718,5 +3718,40 @@
     "img": "https://f4.bcbits.com/img/a0550267812_10.jpg",
     "youtube": "https://www.youtube.com/watch?v=m4yBr19sz3U",
     "description": "Across the Room is a six-track EP from Los Angeles producers Lake Hills and Frythm, released February 2024 on Alpha Pup Records. The duo dance deftly between experimental house, techno, IDM and more — from high-BPM atmospheric euphoria to glitchy introspection to 90s Eurodance club-readiness, with the title track a dark ambient journey featuring vocalist Seyaa."
+  },
+  {
+    "id": "ECDYSIS",
+    "artist": "Frythm",
+    "genres": [
+      "Electronic",
+      "Ambient",
+      "Broken Beat",
+      "IDM",
+      "Trip-Hop"
+    ],
+    "url": "https://frythm.bandcamp.com/album/ecdysis",
+    "country": "USA",
+    "section": "discover",
+    "blurb": "Created over several years and held privately before release, ECDYSIS marks a significant turn inward for Frythm — 18 tracks of live instrumentation, synthesis, vocals and spoken word exploring release, transformation, and self-confrontation.",
+    "img": "https://f4.bcbits.com/img/a0495985938_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=xq0Yto3wHhI",
+    "description": "ECDYSIS is the introspective 2026 album from Los Angeles-based Mexican-American producer Frythm, created over several years and held privately for nearly six before release. Named for the act of shedding skin, it departs from his club-oriented work toward 18 tracks of live instrumentation, synthesis, vocals and spoken word — ambient, broken beat, trip-hop and dark electronica woven into something honest and genre-resistant."
+  },
+  {
+    "id": "CODENAME",
+    "artist": "Frythm & Seyaa",
+    "genres": [
+      "Electronic",
+      "Broken Beat",
+      "Ambient",
+      "R&B"
+    ],
+    "url": "https://frythm.bandcamp.com/album/codename",
+    "country": "USA",
+    "section": "discover",
+    "blurb": "Collaborative album from Frythm and Chinese-American LA vocalist Seyaa, released on Alpha Pup Records in 2026. Broken beat and ambient electronics woven with her ethereal voice.",
+    "img": "https://f4.bcbits.com/img/a0306797386_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=321GwzoOpgU",
+    "description": "CODENAME is a 2026 collaborative album from Los Angeles producer Frythm and Chinese-American singer-songwriter Seyaa, released on Alpha Pup Records. Seven tracks blending broken beat, ambient electronics, and dance music with Seyaa's ethereal vocals — a meeting point between Frythm's forward-thinking sound design and her range across drum and bass, R&B, and experimental club."
   }
 ]
