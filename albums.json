@@ -3718,5 +3718,65 @@
     "img": "https://f4.bcbits.com/img/a0550267812_10.jpg",
     "youtube": "https://www.youtube.com/watch?v=m4yBr19sz3U",
     "description": "Across the Room is a six-track EP from Los Angeles producers Lake Hills and Frythm, released February 2024 on Alpha Pup Records. The duo dance deftly between experimental house, techno, IDM and more — from high-BPM atmospheric euphoria to glitchy introspection to 90s Eurodance club-readiness, with the title track a dark ambient journey featuring vocalist Seyaa."
+  },
+  {
+    "id": "Spirit House",
+    "artist": "Celestial 天上",
+    "genres": ["Ambient", "Dub"],
+    "url": "https://celestialhk.bandcamp.com/album/spirit-house",
+    "country": "Hong Kong",
+    "section": "discover",
+    "blurb": "Celestial 天上 are a Hong Kong based collective who have produced ten albums of Asian Dubscapes.",
+    "img": "https://f4.bcbits.com/img/a2411625407_1x1_700.avif",
+    "youtube": "https://www.youtube.com/watch?v=_cbut-ec38A&list=PLrMaJb2RpUzjuR-nkh-rTfZ3T6OTnuGU9",
+    "description": "Celestial 天上 are a Hong Kong based collective who have produced ten albums of Asian Dubscapes."
+  },
+  {
+    "id": "The Ballad of St Nick's Park",
+    "artist": "300SkullsAndCounting & Jenny Sparks",
+    "genres": ["Alternative", "Dance", "Screamo", "Breakcore", "Bassline"],
+    "url": "https://300skullsandcounting.bandcamp.com/album/the-ballad-of-st-nicks-park",
+    "country": "UK",
+    "section": "discover",
+    "blurb": "Debut single on XL Recordings blending 300SkullsAndCounting's screamo and chiptune with Jenny Sparks' bassline production. A tribute to a demolished skatepark in Leamington Spa.",
+    "img": "https://f4.bcbits.com/img/a4012335968_10.jpg",
+    "youtube": "",
+    "description": "The Ballad of St Nick's Park is the debut XL Recordings single from 300SkullsAndCounting and London bassline producer Jenny Sparks, released September 2026. The track blends 300SkullsAndCounting's screamo vocals and chiptune with Jenny Sparks' bassline production, paying tribute to a demolished skatepark in Leamington Spa."
+  },
+  {
+    "id": "Your Day Will Come",
+    "artist": "Chanel Beads",
+    "genres": ["Experimental", "Ambient", "Electronic"],
+    "url": "https://chanelbeads.bandcamp.com/album/your-day-will-come",
+    "country": "USA",
+    "section": "discover",
+    "blurb": "Debut album from New York-based musician Shane Lavers, released on Jagjaguwar in 2024. A hazy relic and digital snapshot blending synthetic and real instruments into something between memory and unreality.",
+    "img": "https://f4.bcbits.com/img/a1433114700_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=2cPXA6NZZ8E",
+    "description": "Your Day Will Come is the debut album by Chanel Beads, the project of New York-based musician Shane Lavers, released April 2024 on Jagjaguwar. Nine tracks blending synthetic and real instruments into what Lavers describes as 'a memory in which you can't distinguish between what actually happened or what was a false reproduction' — hazy, experimental and deeply felt."
+  },
+  {
+    "id": "Renascent",
+    "artist": "The Durutti Column",
+    "genres": ["Post-Punk", "Dream Pop", "Ambient", "Experimental"],
+    "url": "https://thedurutticolumn.bandcamp.com/album/renascent",
+    "country": "UK",
+    "section": "discover",
+    "blurb": "First album of new material in over fifteen years from Manchester's The Durutti Column, released July 2026. Vini Reilly's guitar drifting through warm ambient washes, piano and beats.",
+    "img": "https://f4.bcbits.com/img/a1936769431_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=FmKW0_UYSqk",
+    "description": "Renascent is the 28th album by Manchester post-punk outfit The Durutti Column, released July 2026 on London Records — their first new material in over fifteen years. Produced by Keir Stewart, it features Vini Reilly's guitar playing between sonic atmospherics and structure with warm ambient washes, piano, beats and guest vocal turns from Caoilfhionn Rose and Lucas Elliot. The title means rebirth."
+  },
+  {
+    "id": "Zero",
+    "artist": "Alewya",
+    "genres": ["Electronic", "Dance", "Soul", "R&B"],
+    "url": "https://alewya.bandcamp.com/album/zero-1",
+    "country": "UK",
+    "section": "discover",
+    "blurb": "Sophomore album from London-based Ethiopian-British artist Alewya, released June 2026 on LDN Records. 15 tracks of globe-spanning electronic soul with Shy FX as executive producer.",
+    "img": "https://f4.bcbits.com/img/a3436543816_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=BvZsaHy-jCA",
+    "description": "Zero is the sophomore album from Alewya, Ethiopian-British singer-songwriter and producer based in London, released June 2026 on LDN Records. Fifteen tracks co-produced with Craigie Dodds and Dean James Barratt, with drum'n'bass icon Shy FX as executive producer — globe-spanning electronic soul moving between dance, R&B and introspective club music."
   }
 ]
