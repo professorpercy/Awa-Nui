@@ -785,6 +785,7 @@ function openAdminPanel(){
   var list=document.getElementById('admin-requests');
   list.innerHTML='<div style="color:rgba(0,255,100,.3);font-size:10px;letter-spacing:.12em;padding:20px 0">LOADING…</div>';
   sb.from('album_requests').select('*').or('status.eq.pending,status.is.null').order('created_at',{ascending:false}).then(function(res){
+    if(res.error){list.innerHTML='<div style="color:red;font-size:10px;padding:20px 0">ERROR: '+res.error.message+'<br>CODE: '+res.error.code+'</div>';console.error('album_requests error',res.error);return;}
     var reqs=res.data||[];
     if(!reqs.length){list.innerHTML='<div style="color:rgba(0,255,100,.25);font-size:10px;letter-spacing:.1em;padding:20px 0">NO PENDING REQUESTS</div>';return;}
     list.innerHTML='';
