@@ -3778,5 +3778,53 @@
     "img": "https://f4.bcbits.com/img/a3436543816_10.jpg",
     "youtube": "https://www.youtube.com/watch?v=BvZsaHy-jCA",
     "description": "Zero is the sophomore album from Alewya, Ethiopian-British singer-songwriter and producer based in London, released June 2026 on LDN Records. Fifteen tracks co-produced with Craigie Dodds and Dean James Barratt, with drum'n'bass icon Shy FX as executive producer — globe-spanning electronic soul moving between dance, R&B and introspective club music."
+  },
+  {
+    "id": "Cyberia",
+    "artist": "Marco Shuttle",
+    "genres": ["Electronic", "Techno", "Experimental"],
+    "url": "https://marcoshuttle.bandcamp.com/album/the-moon-chant-ep-the-bunker-new-york-035",
+    "country": "Germany",
+    "section": "discover",
+    "blurb": "Three-track EP on The Bunker New York (BKNY035), released November 2018. Dark hypnotic techno with chanting by Gabriella Vergilov, mastered at EnissLab and pressed at Brooklyn Vinyl Works.",
+    "img": "https://f4.bcbits.com/img/a1530066776_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=i8Dt2UOEuoc",
+    "description": "Cyberia is the opening track of The Moon Chant EP by Berlin-based producer Marco Shuttle, released November 2018 on The Bunker New York (BKNY035). Three tracks of dark, hypnotic techno featuring chanting by Gabriella Vergilov, mastered at EnissLab and pressed at Brooklyn Vinyl Works."
+  },
+  {
+    "id": "Natives",
+    "artist": "Alan Backdrop",
+    "genres": ["Electronic", "Techno", "Deep Techno"],
+    "url": "https://harmonyrec.bandcamp.com/album/natives",
+    "country": "Italy",
+    "section": "discover",
+    "blurb": "Drone-flavoured deep techno EP from Italian producer Alessio Meneghello on Berlin/Prague label Harmony Rec. (HARMONY004), November 2019. Hand painted sleeve by Adam Soukup.",
+    "img": "https://f4.bcbits.com/img/a4105668142_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=VtE7MF9wut0",
+    "description": "Natives is the 2019 EP from Alan Backdrop (Alessio Meneghello), an Italian producer drawing on drone, deep atmosphere and techno. Released on Harmony Rec. (HARMONY004), a label split between Berlin and Prague, with a hand painted sleeve by Adam Soukup and graphic design by Simon Matejka. Four tracks of immersive, deep-rolling techno."
+  },
+  {
+    "id": "Noctilucent",
+    "artist": "Reggy Van Oers & Joachim Spieth",
+    "genres": ["Ambient", "Deep Techno", "Hypnotic Techno"],
+    "url": "https://joachimspieth.bandcamp.com/album/noctilucent",
+    "country": "Germany",
+    "section": "discover",
+    "blurb": "Four tracks of cloud-named hypnotic techno on Affin LTD (AFFIN046LTD), May 2019. 'Thoughts like clouds — appearing, expanding, condensing and gushing. Four special moments captured on vinyl.'",
+    "img": "https://f4.bcbits.com/img/a3457940924_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=OfcbNZcM7kI",
+    "description": "Noctilucent is a four-track collaborative EP by Dutch producer Reggy Van Oers and German producer Joachim Spieth, released May 2019 on Affin LTD (AFFIN046LTD). Each track is named after a cloud formation — Noctilucent, Cirrus, Undulatus Asperatus, Mammatus — and the record moves through drone ambient and hypnotic deep techno. Artwork by Oliver Keil, mastered at Artefacts Mastering."
+  },
+  {
+    "id": "Vimana",
+    "artist": "Goa Syndrome",
+    "genres": ["Goa Trance", "Psytrance", "Electronic"],
+    "url": "",
+    "country": "Switzerland",
+    "section": "discover",
+    "blurb": "Goa trance release on Cygnetic Records, a Swiss online netlabel presenting free electronic music across goa, psytrance and ambient.",
+    "img": "https://img.youtube.com/vi/cO7SYC0zxCE/maxresdefault.jpg",
+    "youtube": "https://www.youtube.com/watch?v=cO7SYC0zxCE",
+    "description": "Vimana is a goa trance release by Goa Syndrome on Cygnetic Records, a Swiss netlabel that distributed free electronic music across goa, psytrance, ambient and drum'n'bass in the early 2000s."
   }
 ]
