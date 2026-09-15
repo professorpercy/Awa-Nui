@@ -360,8 +360,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
     </div>
     <div class="nav-section">
       <div class="nav-label">VIEW</div>
-      <button class="nav-btn on" id="bgenre">GENRE</button>
-      <button class="nav-btn" id="bcountry">COUNTRY</button>
+      <button class="nav-btn" id="bgenre">GENRE</button>
+      <button class="nav-btn on" id="bcountry">COUNTRY</button>
     </div>
   </div>
   <div id="tip">
@@ -899,6 +899,13 @@ function setupOnce(){
       reprojectNodes();
       cachedDotPixels=null;
     }
+    if(currentView==='genres'&&sim&&Object.keys(genreCenters).length){
+      var k=e.transform.k;
+      var isMob=window.innerWidth<=600;
+      var spread=Math.min(3.5,Math.sqrt(k)*0.95);
+      sim.force('collision',d3.forceCollide((isMob?7:10)*spread).strength(1.0));
+      if(k>1.8)sim.alpha(0.07).restart();
+    }
     requestDraw();
   });
   d3.select(canvas).call(zoomBehavior);
@@ -947,10 +954,11 @@ function setupOnce(){
     var n=getNodeAt(e.clientX-rect.left,e.clientY-rect.top);
     if(currentView==='genres'){
       if(dragMoved)return;
-      if(!n&&panelOpen)closePanel();
+      if(!n&&panelOpen){closePanel();}else if(!n){clearFilter();}
     }else{
       if(n){openPanel(n);}
       else if(panelOpen){closePanel();}
+      else{clearFilter();}
     }
   });
   // Touch support
@@ -977,7 +985,7 @@ function setupOnce(){
       if(moved<12&&Date.now()-_tt0<400){
         var rect=canvas.getBoundingClientRect();
         var n=getNodeAt(t.clientX-rect.left,t.clientY-rect.top);
-        if(n){openPanel(n);}else if(panelOpen){closePanel();}
+        if(n){openPanel(n);}else if(panelOpen){closePanel();}else{clearFilter();}
       }
       hovered=null;requestDraw();
     }
@@ -1058,10 +1066,11 @@ function loadSection(){
   var gc=document.getElementById('gc'),W=gc.offsetWidth||window.innerWidth,H=gc.offsetHeight||(window.innerHeight-86);
   canvas.width=W*dpr;canvas.height=H*dpr;
   canvas.style.width=W+'px';canvas.style.height=H+'px';
-  currentView='genres';
-  document.getElementById('bgenre').classList.add('on');
-  document.getElementById('bcountry').classList.remove('on');
+  currentView='country';
+  document.getElementById('bcountry').classList.add('on');
+  document.getElementById('bgenre').classList.remove('on');
   document.getElementById('b3d').style.display='none';
+  cachedDotPixels=null;
   var filtered;
   if(currentSection==='discover'){
     // Render local data immediately, then silently refresh from DB in background
@@ -1094,8 +1103,8 @@ function loadSection(){
   if(!baseScale){baseScale=W/(2*Math.PI)*1.5;baseTranslate=[W/2,H/2];}
   ensureWorldData(); // starts TopoJSON fetch + dot building in the background
   rebuildLinks();
-  createSimulation(W,H,'genres');
-  buildTicker('genres');
+  createSimulation(W,H,'country');
+  buildTicker('country');
   transform=d3.zoomIdentity;
   if(zoomBehavior)d3.select(canvas).call(zoomBehavior.transform,d3.zoomIdentity);
   if(animId)cancelAnimationFrame(animId);
@@ -1318,7 +1327,7 @@ function createSimulation(W,H,view){
       if(!positions){
         // City albums or no polygon: disk scatter around the point
         // radius scales so 1 album = tight, many albums = wider spread
-        var rad=Math.max(0.18,Math.min(0.9,0.7/Math.sqrt(locGrp.length)));
+        var rad=Math.max(0.25,Math.min(1.2,0.95/Math.sqrt(locGrp.length)));
         positions=scatterNearPoint(baseCoords,locGrp.length,hs(loc),rad);
       }
       // Apply positions, set initial pixel coords
@@ -1379,7 +1388,7 @@ function getNodeAt(mx,my){
   if(currentView==='country'){
     // Country view: nodes in CSS pixel space, no transform inversion needed
     var ck=transform.k;
-    var lod=ck<0.4?1:ck<0.7?3:ck<1.0?7:Infinity;
+    var lod=ck<0.5?1:ck<0.8?2:ck<1.2?4:Infinity;
     var hitR=Math.max(10,14/Math.min(ck,1)); // larger hit target at low zoom
     for(var i=nodes.length-1;i>=0;i--){
       var n=nodes[i];
@@ -1462,7 +1471,7 @@ function drawCountry(W,H){
       }
   }
 
-  var lodMax=ck<0.4?1:ck<0.7?3:ck<1.0?7:Infinity;
+  var lodMax=ck<0.5?1:ck<0.8?2:ck<1.2?4:Infinity;
 
   var isMob=window.innerWidth<=600;
   var r=Math.max(2.5,Math.min(6,ck*2.2));
@@ -1942,6 +1951,17 @@ document.getElementById('pcls').onclick=closePanel;
     if(!_dragging)return;
     _dragging=false;snapPanel(panel.offsetHeight);
   },{passive:true});
+  // Swipe-down anywhere on panel body closes it
+  var _psy=0,_pst=0;
+  panel.addEventListener('touchstart',function(e){
+    if(!isMobSheet())return;
+    _psy=e.touches[0].clientY;_pst=Date.now();
+  },{passive:true});
+  panel.addEventListener('touchend',function(e){
+    if(!isMobSheet()||_dragging)return;
+    var dy=e.changedTouches[0].clientY-_psy;
+    if(dy>55&&Date.now()-_pst<400){closePanel();}
+  },{passive:true});
 })();
 
 function openPanel(node){
@@ -2087,7 +2107,7 @@ function openPanel(node){
 }
 
 function closePanel(){
-  panelOpen=false;selectedNode=null;connectedSet=null;
+  panelOpen=false;selectedNode=null;connectedSet=null;hovered=null;
   document.getElementById('pmedia-frame').src='';
   var coverEl=document.getElementById('cover-img');
   coverEl.className='';coverEl.style.opacity='';coverEl.style.display='none';
