@@ -897,9 +897,10 @@ function confirmEnrichApprove(){
   };
   var btn=document.getElementById('enrich-confirm');
   btn.textContent='SAVING…';btn.disabled=true;
-  sb.from('global_albums').upsert(row).then(function(ins){
+  sb.from('global_albums').upsert(row,{onConflict:'id'}).select().then(function(ins){
     btn.textContent='APPROVE + ADD TO MAP';btn.disabled=false;
     if(ins.error){alert('DB error: '+ins.error.message);return;}
+    if(!ins.data||ins.data.length===0){alert('RLS blocked the insert — go to Supabase → global_albums → Policies and add INSERT + UPDATE policies for your admin email.');return;}
     sb.from('album_requests').update({status:'approved'}).eq('id',r.id);
     GLOBAL_DATA.unshift(dbRowToAlbum(row));
     if(el){el.style.opacity='0.3';el.style.pointerEvents='none';
