@@ -1405,25 +1405,11 @@ function createSimulation(W,H,view){
       locGrp.sort(function(a,b){var ga=getGroup(a.genres[0]),gb=getGroup(b.genres[0]);return ga<gb?-1:ga>gb?1:0;});
       var positions=null;
       if(feat){
-        // Scatter within the country polygon
+        // Scatter within the country polygon — fills the actual country shape
         positions=scatterInCountry(feat,locGrp.length,hs(loc));
-        // Reject if any two nodes project closer than 20px — fall back to radial
-        if(positions&&geoProjection&&locGrp.length>1){
-          var tooClose=false;
-          outer:for(var pi=0;pi<positions.length;pi++){
-            var pa=geoProjection(positions[pi]);
-            for(var pj=pi+1;pj<positions.length;pj++){
-              var pb=geoProjection(positions[pj]);
-              if(!pa||!pb)continue;
-              var dx=pa[0]-pb[0],dy=pa[1]-pb[1];
-              if(Math.sqrt(dx*dx+dy*dy)<20){tooClose=true;break outer;}
-            }
-          }
-          if(tooClose)positions=null;
-        }
       }
       if(!positions){
-        // No polygon or nodes too close — radial spread around country centre
+        // No polygon data — radial spread around country centre
         var rad=Math.max(2.5,Math.min(8.0,5.0/Math.sqrt(locGrp.length)));
         positions=scatterNearPoint(baseCoords,locGrp.length,hs(loc),rad);
       }
