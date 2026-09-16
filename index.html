@@ -725,6 +725,7 @@ function initSupabase(){
   if(!window.supabase){console.warn('Supabase not loaded');return;}
   if(sb)return;
   sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+  sb.from('page_views').insert({});
   sb.auth.getSession().then(function(res){
     currentUser=res.data&&res.data.session?res.data.session.user:null;
     updateAuthUI();if(currentUser)loadUserGarden().then(function(){if(setupDone&&currentSection==='create')loadSection();});
