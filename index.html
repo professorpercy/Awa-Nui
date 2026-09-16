@@ -1409,11 +1409,30 @@ function createSimulation(W,H,view){
       if(feat&&!isCity){
         // Country-level albums: scatter within the actual polygon
         positions=scatterInCountry(feat,locGrp.length,hs(locCountry));
+        // Reject if any two nodes project closer than 20px — fall back to radial
+        if(positions&&geoProjection&&locGrp.length>1){
+          var tooClose=false;
+          outer:for(var pi=0;pi<positions.length;pi++){
+            var pa=geoProjection(positions[pi]);
+            for(var pj=pi+1;pj<positions.length;pj++){
+              var pb=geoProjection(positions[pj]);
+              if(!pa||!pb)continue;
+              var dx=pa[0]-pb[0],dy=pa[1]-pb[1];
+              if(Math.sqrt(dx*dx+dy*dy)<20){tooClose=true;break outer;}
+            }
+          }
+          if(tooClose)positions=null;
+        }
       }
       if(!positions){
-        // City albums or no polygon: disk scatter around the point
-        // radius scales so 1 album = tight, many albums = wider spread
-        var rad=Math.max(0.25,Math.min(1.2,0.95/Math.sqrt(locGrp.length)));
+        var rad;
+        if(isCity){
+          // City albums cluster tightly by design
+          rad=Math.max(0.12,Math.min(0.5,0.4/Math.sqrt(locGrp.length)));
+        }else{
+          // Country fallback — spread nodes so they're visually distinct
+          rad=Math.max(2.5,Math.min(8.0,5.0/Math.sqrt(locGrp.length)));
+        }
         positions=scatterNearPoint(baseCoords,locGrp.length,hs(loc),rad);
       }
       // Apply positions, set initial pixel coords
