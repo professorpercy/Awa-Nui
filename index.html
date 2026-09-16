@@ -1389,26 +1389,24 @@ function createSimulation(W,H,view){
     nodes.forEach(function(n){var c=n.country||'Unknown';worldAlbumCount[c]=(worldAlbumCount[c]||0)+1;});
     nodes.forEach(function(n){n._col=countryColor(n.country||'Unknown');});
 
-    // Assign geographic positions — nodes stored as lon/lat so zoom spreads them naturally
+    // Assign geographic positions — group by country only, scatter within country polygon
     var byLoc={};
     nodes.forEach(function(n){
-      var loc=n.city||n.country||'Unknown';
+      var loc=n.country||'Unknown';
       n._locKey=loc;
       if(!byLoc[loc])byLoc[loc]=[];
       byLoc[loc].push(n);
     });
     for(var loc in byLoc){
       var locGrp=byLoc[loc];
-      var locCountry=locGrp[0].country||'Unknown';
-      var baseCoords=CITY_COORDS[loc]||COORDS[loc]||COORDS[locCountry]||[0,0];
-      var isCity=!!(CITY_COORDS[loc]);
-      var feat=worldCountryFeatures[locCountry];
+      var baseCoords=COORDS[loc]||[0,0];
+      var feat=worldCountryFeatures[loc];
       // Sort by genre so same-genre nodes cluster together spatially
       locGrp.sort(function(a,b){var ga=getGroup(a.genres[0]),gb=getGroup(b.genres[0]);return ga<gb?-1:ga>gb?1:0;});
       var positions=null;
-      if(feat&&!isCity){
-        // Country-level albums: scatter within the actual polygon
-        positions=scatterInCountry(feat,locGrp.length,hs(locCountry));
+      if(feat){
+        // Scatter within the country polygon
+        positions=scatterInCountry(feat,locGrp.length,hs(loc));
         // Reject if any two nodes project closer than 20px — fall back to radial
         if(positions&&geoProjection&&locGrp.length>1){
           var tooClose=false;
@@ -1425,14 +1423,8 @@ function createSimulation(W,H,view){
         }
       }
       if(!positions){
-        var rad;
-        if(isCity){
-          // City albums cluster tightly by design
-          rad=Math.max(0.12,Math.min(0.5,0.4/Math.sqrt(locGrp.length)));
-        }else{
-          // Country fallback — spread nodes so they're visually distinct
-          rad=Math.max(2.5,Math.min(8.0,5.0/Math.sqrt(locGrp.length)));
-        }
+        // No polygon or nodes too close — radial spread around country centre
+        var rad=Math.max(2.5,Math.min(8.0,5.0/Math.sqrt(locGrp.length)));
         positions=scatterNearPoint(baseCoords,locGrp.length,hs(loc),rad);
       }
       // Apply positions, set initial pixel coords
