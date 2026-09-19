@@ -3881,5 +3881,37 @@
     "img": "https://f4.bcbits.com/img/a3501890682_2.jpg",
     "youtube": "https://www.youtube.com/watch?v=AWGay-FqmWI",
     "section": "discover"
+  },
+  {
+    "id": "Dubs from the Neighbourhood",
+    "artist": "Christoph El' Truento",
+    "genres": [
+      "Dub",
+      "Reggae",
+      "Exotica"
+    ],
+    "url": "https://christoph-el-truento.bandcamp.com/album/dubs-from-the-neighbourhood",
+    "country": "New Zealand",
+    "city": "",
+    "blurb": "2024 album from Auckland-based producer Christoph El' Truento, drawing on Black Ark-era dub production. Features a large ensemble including drummers, horn players, vocalists and synth programmers, with instrumentation across vibraphone, piano, guitar and lap steel.",
+    "img": "https://f4.bcbits.com/img/a0259637278_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=wzKJUIHL4Ps",
+    "section": "discover"
+  },
+  {
+    "id": "LWMP18",
+    "artist": "Christoph El' Truento",
+    "genres": [
+      "Dub",
+      "Reggae",
+      "Exotica"
+    ],
+    "url": "https://christoph-el-truento.bandcamp.com/album/lwmp18",
+    "country": "New Zealand",
+    "city": "",
+    "blurb": "LWMP18 is a 2018 21-track album from Auckland producer Christoph El' Truento, released on Banished Music. Blends electronic production with roots reggae and dub across approximately 51 minutes of instrumental and vocal compositions.",
+    "img": "https://f4.bcbits.com/img/a0683236669_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=XOb3TQ3llH8",
+    "section": "discover"
   }
 ]
