@@ -3945,5 +3945,117 @@
     "img": "https://f4.bcbits.com/img/a2226948978_2.jpg",
     "youtube": "",
     "section": "discover"
+  },
+  {
+    "id": "Terrace Brothers + Asa",
+    "artist": "Terrace Brothers + Asa",
+    "genres": [
+      "Electronic",
+      "Techno",
+      "Breakbeat"
+    ],
+    "url": "",
+    "country": "Japan",
+    "city": "",
+    "blurb": "1997 self-titled album from Japanese techno and breakbeat outfit Terrace Brothers + Asa.",
+    "img": "https://img.youtube.com/vi/-ON_sl7ZGdk/maxresdefault.jpg",
+    "youtube": "https://www.youtube.com/watch?v=-ON_sl7ZGdk",
+    "section": "discover"
+  },
+  {
+    "id": "あと何日",
+    "artist": "Hi-Posi",
+    "genres": [
+      "Pop",
+      "Shibuya-kei",
+      "Electronic"
+    ],
+    "url": "",
+    "country": "Japan",
+    "city": "",
+    "blurb": "あと何日 (How Many More Days) is a 1995 track by Tokyo pop duo Hi-Posi, from their album Body Meets Sing on Kitty Records. Shibuya-kei influenced pop with ambient undertones.",
+    "img": "https://img.youtube.com/vi/WK0Lt2pTteo/maxresdefault.jpg",
+    "youtube": "https://www.youtube.com/watch?v=WK0Lt2pTteo",
+    "section": "discover"
+  },
+  {
+    "id": "Raga Bhairav",
+    "artist": "Charanjit Singh",
+    "genres": [
+      "Electronic",
+      "Synth",
+      "Indian Classical"
+    ],
+    "url": "https://www.discogs.com/release/2108668",
+    "country": "India",
+    "city": "",
+    "blurb": "Opening track of Charanjit Singh's 1982 album Synthesizing: Ten Ragas to a Disco Beat, recorded at HMV Studios in Bombay using Roland Jupiter-8, TB-303 and TR-808. The record is considered an accidental precursor to acid house, predating the Chicago scene by several years. Reissued in 2010 on Bombay Connection.",
+    "img": "https://img.youtube.com/vi/sB4RYBpwV0A/maxresdefault.jpg",
+    "youtube": "https://www.youtube.com/watch?v=sB4RYBpwV0A",
+    "section": "discover"
+  },
+  {
+    "id": "Byouinzaka no Kubikukuri no Ie",
+    "artist": "Shinichi Tanabe",
+    "genres": [
+      "Soundtrack",
+      "Jazz",
+      "Electronic"
+    ],
+    "url": "",
+    "country": "Japan",
+    "city": "",
+    "blurb": "Film soundtrack by Shinichi Tanabe for the 1979 Kon Ichikawa mystery film Byouinzaka no Kubikukuri no Ie (The House of Hanging on Hospital Hill), based on Seishi Yokomizo's novel and distributed by Toho. Released on Chat Noir / Toho Records.",
+    "img": "https://img.youtube.com/vi/CFtaEZoGPZE/maxresdefault.jpg",
+    "youtube": "https://www.youtube.com/watch?v=CFtaEZoGPZE",
+    "section": "discover"
+  },
+  {
+    "id": "Trancelestial Psychobabas",
+    "artist": "Elysium",
+    "genres": [
+      "Goa Trance",
+      "Electronic",
+      "Psytrance"
+    ],
+    "url": "",
+    "country": "Denmark",
+    "city": "",
+    "blurb": "1995 goa trance track by Danish producer Kristian Thinning Andersen as Elysium, released on Avatar Records. A classic of the old-school goa trance scene, later compiled on the album Dance For The Celestial Beings.",
+    "img": "https://img.youtube.com/vi/iUYZevhPE2A/maxresdefault.jpg",
+    "youtube": "https://www.youtube.com/watch?v=iUYZevhPE2A",
+    "section": "discover"
+  },
+  {
+    "id": "Aromatica",
+    "artist": "Cocu",
+    "genres": [
+      "Ambient",
+      "Pop",
+      "Electronic"
+    ],
+    "url": "",
+    "country": "Japan",
+    "city": "",
+    "blurb": "1998 album by Kaori Kano under the name Cocu (コキュウ), featuring Yen Chang, released on Polyster Records. Recorded at Yen Studio in Tokyo, blending ambient textures, natural sounds and pop.",
+    "img": "https://img.youtube.com/vi/rsSxHOWIkfw/maxresdefault.jpg",
+    "youtube": "https://www.youtube.com/watch?v=rsSxHOWIkfw",
+    "section": "discover"
+  },
+  {
+    "id": "Baby Night",
+    "artist": "Sweet Smoke",
+    "genres": [
+      "Alternative",
+      "Psychedelic Rock",
+      "Krautrock"
+    ],
+    "url": "",
+    "country": "Germany",
+    "city": "",
+    "blurb": "Baby Night is one of two side-length tracks on Just a Poke, the 1970 debut album by Sweet Smoke, a group of New York musicians who relocated to Germany. Engineered by Conny Plank and released on EMI Harvest, it runs over 16 minutes blending psychedelic rock and free jazz.",
+    "img": "https://img.youtube.com/vi/x-QOYr6yatA/maxresdefault.jpg",
+    "youtube": "https://www.youtube.com/watch?v=x-QOYr6yatA",
+    "section": "discover"
   }
 ]
