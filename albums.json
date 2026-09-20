@@ -3913,5 +3913,37 @@
     "img": "https://f4.bcbits.com/img/a0683236669_10.jpg",
     "youtube": "https://www.youtube.com/watch?v=XOb3TQ3llH8",
     "section": "discover"
+  },
+  {
+    "id": "100% Sahara Guitar",
+    "artist": "Etran de L'Aïr",
+    "genres": [
+      "World",
+      "Desert Rock",
+      "Tuareg"
+    ],
+    "url": "https://etrandelair.bandcamp.com/album/100-sahara-guitar",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Debut studio album from Etran de L'Aïr, a three-brother ensemble and drummer from Agadez, Niger, known as stars of the Aïr region. Recorded in West Coast studios, it brings their Agadez guitar-driven sound into a studio setting for the first time after years on the local wedding circuit and international touring. Released on Sahel Sounds in September 2024.",
+    "img": "https://f4.bcbits.com/img/a0778837609_10.jpg",
+    "youtube": "",
+    "section": "discover"
+  },
+  {
+    "id": "Eghass Malan",
+    "artist": "Les Filles de Illighadad",
+    "genres": [
+      "World",
+      "Tuareg",
+      "Tende"
+    ],
+    "url": "https://lesfillesdeillighadad.bandcamp.com/album/eghass-malan",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Second album from Les Filles de Illighadad, fronted by Fatou Seidi Ghali, one of the only female Tuareg guitarists in Niger. Blends traditional tende drum and calabash percussion with guitar-driven arrangements and polyphonic vocals, recorded in Illighadad village in central Niger. Released on Sahel Sounds in 2017.",
+    "img": "https://f4.bcbits.com/img/a2226948978_2.jpg",
+    "youtube": "",
+    "section": "discover"
   }
 ]
