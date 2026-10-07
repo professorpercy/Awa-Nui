@@ -4057,5 +4057,116 @@
     "img": "https://img.youtube.com/vi/x-QOYr6yatA/maxresdefault.jpg",
     "youtube": "https://www.youtube.com/watch?v=x-QOYr6yatA",
     "section": "discover"
+  },
+  {
+    "id": "Ship Scope EP",
+    "artist": "Shinichi Atobe",
+    "genres": [
+      "Dub Techno",
+      "Ambient",
+      "Electronic"
+    ],
+    "url": "https://dds-label.bandcamp.com/album/ship-scope-ep",
+    "country": "Japan",
+    "city": "",
+    "blurb": "Shinichi Atobe's mysterious 2001 debut, originally released as an untitled demo on Chain Reaction before being reissued as Ship Scope. Hazy, submerged dub techno that quietly influenced a generation of ambient and deep house producers.",
+    "img": "https://f4.bcbits.com/img/a3165470587_1x1_700.avif",
+    "youtube": "https://www.youtube.com/watch?v=vfDrMW3cfCc",
+    "section": "discover"
+  },
+  {
+    "id": "Ki Oku",
+    "artist": "DJ Krush & Toshinori Kondo",
+    "genres": [
+      "Trip Hop",
+      "Jazz",
+      "Hip Hop"
+    ],
+    "url": "",
+    "country": "Japan",
+    "city": "",
+    "blurb": "1996 collaboration between trip hop pioneer DJ Krush and avant-garde trumpeter Toshinori Kondo, fusing hip hop beats with free jazz improvisation years ahead of the jazz-hop movement it anticipated.",
+    "img": "https://img.youtube.com/vi/gm8H168uzpY/maxresdefault.jpg",
+    "youtube": "https://www.youtube.com/watch?v=gm8H168uzpY",
+    "section": "discover"
+  },
+  {
+    "id": "A Recipe for Disaster",
+    "artist": "DJ Food",
+    "genres": [
+      "Trip Hop",
+      "Breakbeat",
+      "Electronic"
+    ],
+    "url": "",
+    "country": "UK",
+    "city": "",
+    "blurb": "1995 debut album from Ninja Tune's DJ Food collective, a dense, sample-heavy collage of trip hop breaks and turntablism built by Coldcut's Strictly Kev and PC.",
+    "img": "https://img.youtube.com/vi/QJAxC5qoHWg/maxresdefault.jpg",
+    "youtube": "https://www.youtube.com/watch?v=QJAxC5qoHWg",
+    "section": "discover"
+  },
+  {
+    "id": "Basement Music",
+    "artist": "Moodorama",
+    "genres": [
+      "Future Jazz",
+      "Downtempo",
+      "Electronic"
+    ],
+    "url": "https://www.discogs.com/release/97630-Moodorama-Basement-Music",
+    "country": "Germany",
+    "city": "",
+    "blurb": "Warm, broken-beat flavored future jazz from German project Moodorama, blending live instrumentation with deep downtempo electronics from the early-2000s scene.",
+    "img": "https://img.youtube.com/vi/NzNI2ZAUnI8/maxresdefault.jpg",
+    "youtube": "https://www.youtube.com/watch?v=NzNI2ZAUnI8",
+    "section": "discover"
+  },
+  {
+    "id": "Crystal Moon",
+    "artist": "Dream Dolphin",
+    "genres": [
+      "New Age",
+      "Ambient",
+      "Trance"
+    ],
+    "url": "https://www.discogs.com/release/15196937-Dream-Dolphin-Crystal-Moon",
+    "country": "Japan",
+    "city": "",
+    "blurb": "Lush, healing new age ambience from Japanese artist Dream Dolphin, layering crystalline synth textures over gentle trance pulses.",
+    "img": "https://img.youtube.com/vi/_di0utuv0zc/maxresdefault.jpg",
+    "youtube": "https://www.youtube.com/watch?v=_di0utuv0zc",
+    "section": "discover"
+  },
+  {
+    "id": "Cloak & Dagger",
+    "artist": "Lee Perry and The Upsetters",
+    "genres": [
+      "Dub",
+      "Reggae"
+    ],
+    "url": "",
+    "country": "Jamaica",
+    "city": "",
+    "blurb": "Early-70s dub from Lee 'Scratch' Perry and The Upsetters, built at the Black Ark studio with heavy echo, reverb and reversed tape effects that helped define the dub genre.",
+    "img": "https://img.youtube.com/vi/bv1CmbZwq_4/hqdefault.jpg",
+    "youtube": "https://www.youtube.com/watch?v=bv1CmbZwq_4",
+    "section": "discover"
+  },
+  {
+    "id": "Time Tourist",
+    "artist": "B12",
+    "genres": [
+      "IDM",
+      "Techno",
+      "Electronic"
+    ],
+    "url": "",
+    "country": "UK",
+    "city": "",
+    "blurb": "1996 album from Warp Records duo B12, a key document of mid-90s British IDM and electro, all crisp machine rhythms and glassy synth melodies.",
+    "img": "https://img.youtube.com/vi/YNl15jnLAxU/maxresdefault.jpg",
+    "youtube": "https://www.youtube.com/watch?v=YNl15jnLAxU",
+    "section": "discover"
   }
 ]
