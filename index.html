@@ -57,26 +57,27 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 #ge-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 @keyframes blIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media(max-width:600px){
-  #hdr{height:48px;padding:0 14px;}
+  #hdr{height:44px;padding:0 12px;}
   .logo{font-size:12px;letter-spacing:.22em;}
-  .logo-sub{font-size:7px;letter-spacing:.14em;}
+  .logo-sub{display:none;}
+  .hbtn{font-size:9px;padding:5px 9px}
   #bauth{margin-left:6px;font-size:8px;padding:5px 10px}
   .hdr-r{gap:4px;}
   #badd{display:none!important}
   #rst{display:none!important}
   #bdiscogs{display:none!important}
-  #nav{position:fixed!important;top:48px!important;left:0!important;right:0!important;
-    bottom:auto!important;width:100%!important;height:47px!important;
+  #nav{position:fixed!important;top:44px!important;left:0!important;right:0!important;
+    bottom:auto!important;width:100%!important;height:40px!important;
     overflow:hidden!important;flex-direction:row!important;padding:0!important;
     border-right:none!important;border-bottom:1px solid rgba(0,255,100,.12)!important;}
   .nav-section{flex:1!important;display:flex!important;flex-direction:row!important;margin-bottom:0!important;}
   .nav-section:first-child{border-right:1px solid rgba(0,255,100,.2);}
   .nav-label{display:none!important}
-  .nav-btn{flex:1!important;font-size:10px;letter-spacing:.1em;padding:13px 4px!important;
+  .nav-btn{flex:1!important;font-size:9.5px;letter-spacing:.08em;padding:10px 4px!important;
     text-align:center;margin-bottom:0!important;border:none!important;border-radius:0;
     border-right:1px solid rgba(0,255,100,.1)!important;display:block!important;width:auto!important;}
   .nav-btn:last-child{border-right:none!important}
-  #gc{top:95px;left:0!important;}
+  #gc{top:84px;left:0!important;}
   #panel{top:auto!important;bottom:0;left:0;right:0;width:100%!important;max-width:100%!important;height:55vh;transform:translateY(100%)!important;border-left:none;border-top:1px solid rgba(0,255,100,.18);border-radius:12px 12px 0 0;transition:transform .32s cubic-bezier(.16,1,.3,1),height .22s ease}
   #panel.on{transform:translateY(0)!important}
   #panel-handle{display:flex}
@@ -1398,20 +1399,34 @@ function createSimulation(W,H,view){
     // Portrait mobile: 2-column grid for clear cluster separation
     // Desktop/landscape: classic ring layout
     if(isMobPortrait){
-      var numCols=2,numRows=Math.ceil(groupOrder.length/numCols);
-      var colXs=[W*0.26,W*0.74];
-      var rowStep=H/(numRows+1);
-      groupOrder.forEach(function(g,i){
-        var gcx=colXs[i%numCols],gcy=rowStep*(Math.floor(i/numCols)+1);
+      // Two columns, but stacked by each cluster's ACTUAL size (not an even grid) — a fixed
+      // row height caused big clusters (e.g. 90+ album groups) to overlap their neighbours.
+      // The canvas pans vertically, so columns can run taller than one screen; that's fine.
+      var numCols=2;
+      var colXs=[W*0.27,W*0.73];
+      var colGroups=[[],[]];
+      groupOrder.forEach(function(g,i){colGroups[i%numCols].push(g);});
+      var topMargin=44,gap=26;
+      groupOrder.forEach(function(g){
         var group=byGroup[g];
-        var bySG={};
-        group.forEach(function(n){var sg=(n.genres[0]||'').toLowerCase();if(!bySG[sg])bySG[sg]=[];bySG[sg].push(n);});
-        var sgKeys=Object.keys(bySG);
-        var subR=sgKeys.length>1?Math.min(10,40/sgKeys.length):0;
-        var subCenters={};
-        sgKeys.forEach(function(sg){var grpList=GROUPS[g]||[];var sgIdx=grpList.indexOf(sg);if(sgIdx<0)sgIdx=hs(g+sg)%Math.max(grpList.length,8);var sgAngle=(sgIdx/Math.max(grpList.length,1))*Math.PI*2-Math.PI/2;var scx=gcx+Math.cos(sgAngle)*subR;var scy=gcy+Math.sin(sgAngle)*subR;subCenters[sg]={scx:scx,scy:scy};bySG[sg].forEach(function(n){n._tx=scx;n._ty=scy;n.x=scx+(Math.random()-0.5)*6;n.y=scy+(Math.random()-0.5)*6;});});
-        var labelR=Math.ceil(Math.sqrt(group.length/Math.PI))*8+20;
-        genreCenters[g]={gcx:gcx,gcy:gcy,haloR:labelR,subCenters:subCenters};
+        genreCenters[g]={_haloR:Math.ceil(Math.sqrt(group.length/Math.PI))*9+22};
+      });
+      colGroups.forEach(function(list,ci){
+        var y=topMargin;
+        list.forEach(function(g){
+          var r=genreCenters[g]._haloR;
+          y+=r;
+          var gcx=colXs[ci],gcy=y;
+          y+=r+gap;
+          var group=byGroup[g];
+          var bySG={};
+          group.forEach(function(n){var sg=(n.genres[0]||'').toLowerCase();if(!bySG[sg])bySG[sg]=[];bySG[sg].push(n);});
+          var sgKeys=Object.keys(bySG);
+          var subR=sgKeys.length>1?Math.min(10,40/sgKeys.length):0;
+          var subCenters={};
+          sgKeys.forEach(function(sg){var grpList=GROUPS[g]||[];var sgIdx=grpList.indexOf(sg);if(sgIdx<0)sgIdx=hs(g+sg)%Math.max(grpList.length,8);var sgAngle=(sgIdx/Math.max(grpList.length,1))*Math.PI*2-Math.PI/2;var scx=gcx+Math.cos(sgAngle)*subR;var scy=gcy+Math.sin(sgAngle)*subR;subCenters[sg]={scx:scx,scy:scy};bySG[sg].forEach(function(n){n._tx=scx;n._ty=scy;n.x=scx+(Math.random()-0.5)*6;n.y=scy+(Math.random()-0.5)*6;});});
+          genreCenters[g]={gcx:gcx,gcy:gcy,haloR:r,subCenters:subCenters};
+        });
       });
     }else{
       var gRingR=Math.min(W,H)*0.52;
@@ -1445,7 +1460,7 @@ function createSimulation(W,H,view){
       .alpha(1).alphaDecay(0.08).alphaTarget(0.001)
       .on('tick',requestDraw);
     // Bump cache key when layout algorithm changes to avoid stale positions
-    var posKey='awanui_pos_v3_'+W+'x'+H+'_'+nodes.length;
+    var posKey='awanui_pos_v4_'+W+'x'+H+'_'+nodes.length;
     var posCache=null;
     try{posCache=JSON.parse(localStorage.getItem(posKey));}catch(e){}
     if(posCache&&posCache.length===nodes.length){
@@ -1568,12 +1583,18 @@ function getNodeAt(mx,my){
   }
   var sx=(mx*dpr-transform.x*dpr)/transform.k;
   var sy=(my*dpr-transform.y*dpr)/transform.k;
+  // Hit radius grows (inversely with zoom) the further out you are, same trick as country
+  // view — without it, tap tolerance shrinks exactly when dots are smallest and most packed.
+  var isMob=window.innerWidth<=600;
+  var hitR=(isMob?22:16)*dpr/Math.min(transform.k,1);
+  var best=null,bestD=hitR*hitR;
   for(var i=nodes.length-1;i>=0;i--){
     var n=nodes[i];
     var dx=n.x*dpr-sx,dy=n.y*dpr-sy;
-    if(dx*dx+dy*dy<(16*dpr)*(16*dpr))return n;
+    var d2=dx*dx+dy*dy;
+    if(d2<bestD){best=n;bestD=d2;}
   }
-  return null;
+  return best;
 }
 
 /* ── RENDER ── */
@@ -2041,7 +2062,7 @@ function setView(type){
 }
 
 /* ── FILTER ── */
-function applyFilter(label,kind){
+function applyFilter(label,kind,par){
   if(currentFilter===label){clearFilter();return;}
   currentFilter=label;currentFilterKind=kind;
   document.getElementById('rst').style.display='block';
@@ -2053,6 +2074,21 @@ function applyFilter(label,kind){
     else if(kind==='country'){match=(n.country===label);}
     n._vis=true;n._dim=!match;
   });
+  // On mobile, clusters are small and easy to lose — fly the camera to the filtered genre
+  // instead of making the user hunt for it by hand.
+  if(window.innerWidth<=600&&currentView==='genres'&&zoomBehavior&&(kind==='parent'||kind==='sub')){
+    var c=genreCenters[kind==='parent'?label:par];
+    var cx,cy,fitR;
+    if(kind==='parent'&&c){cx=c.gcx;cy=c.gcy;fitR=c.haloR;}
+    else if(kind==='sub'&&c&&c.subCenters[label]){cx=c.subCenters[label].scx;cy=c.subCenters[label].scy;fitR=Math.max(40,c.haloR*0.5);}
+    if(cx!==undefined){
+      var gc=document.getElementById('gc'),W=gc.offsetWidth,H=gc.offsetHeight;
+      var k=Math.max(0.55,Math.min(4,Math.min(W,H)/(fitR*2.6)));
+      var tx=W/2-cx*k,ty=H/2-cy*k;
+      d3.select(canvas).transition().duration(500)
+        .call(zoomBehavior.transform,d3.zoomIdentity.translate(tx,ty).scale(k));
+    }
+  }
   requestDraw();
 }
 function clearFilter(){
@@ -2138,7 +2174,7 @@ function buildTicker(type){
       if(type==='genres'){var gc2=GC[item.par];if(gc2)d.style.background=gc2.range[item.kind==='parent'?3:2];}
       else{d.style.background=countryColor(item.lbl);}
       d.style.color='#000';
-      d.onclick=function(){applyFilter(item.lbl,item.kind);};
+      d.onclick=function(){applyFilter(item.lbl,item.kind,item.par);};
       el.appendChild(d);
     });
   }
