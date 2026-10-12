@@ -292,6 +292,31 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 .af-btn.cancel{color:rgba(0,255,100,.3);border-color:rgba(0,255,100,.1)}
 .af-btn.cancel:hover{color:rgba(0,255,100,.5);border-color:rgba(0,255,100,.25)}
 #fg3d{position:absolute;top:0;left:0;width:100%;height:100%;display:none;z-index:2;}
+/* ── SEARCH ── */
+#search-overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:1200;display:none;
+  justify-content:center;align-items:flex-start;padding-top:12vh}
+#search-overlay.on{display:flex}
+#search-box{width:460px;max-width:90vw;max-height:70vh;display:flex;flex-direction:column;
+  border:1px solid rgba(0,255,100,.3);background:rgba(2,7,2,.98);box-shadow:0 0 40px rgba(0,255,100,.08)}
+#search-input{width:100%;background:rgba(0,255,100,.04);border:none;
+  border-bottom:1px solid rgba(0,255,100,.18);color:#00ff64;font-family:'Courier New',monospace;
+  font-size:14px;padding:16px 18px;letter-spacing:.04em;outline:none}
+#search-input::placeholder{color:rgba(0,255,100,.22)}
+#search-results{overflow-y:auto;max-height:calc(70vh - 54px)}
+#search-empty{padding:18px;font-size:10px;letter-spacing:.08em;color:rgba(0,255,100,.25)}
+.sr-item{display:flex;align-items:center;gap:10px;padding:11px 18px;cursor:pointer;
+  border-bottom:1px solid rgba(0,255,100,.06);transition:background .15s}
+.sr-item:last-child{border-bottom:none}
+.sr-item:hover,.sr-item.active{background:rgba(0,255,100,.08)}
+.sr-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sr-text{display:flex;flex-direction:column;gap:2px;min-width:0}
+.sr-title{font-size:11px;letter-spacing:.03em;color:#00ff64;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sr-artist{font-size:9px;letter-spacing:.03em;color:rgba(0,255,100,.4);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:600px){
+  #search-overlay{padding-top:0;align-items:stretch}
+  #search-box{width:100%;max-width:100%;max-height:100%;border:none}
+  #search-results{max-height:calc(100vh - 54px)}
+}
 /* ── AUTH ── */
 #auth-modal{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9000;display:none;align-items:center;justify-content:center}
 #auth-modal.on{display:flex}
@@ -369,6 +394,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
   <div id="hdr">
     <div class="logo-wrap"><span class="logo">AWA NUI</span><span class="logo-sub">music organised by space</span></div>
     <div class="hdr-r">
+      <button class="hbtn" id="bsearch">SEARCH</button>
       <button class="hbtn" id="b3d" style="display:none;visibility:hidden">3D</button>
       <button class="hbtn" id="rst">SHOW ALL</button>
       <button class="hbtn" id="bdiscogs" style="display:none">DISCOGS</button>
@@ -398,6 +424,12 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
     <div class="tip-row"><span class="tip-k">POSITION</span><span class="tip-s">=</span><span class="tip-v">GEOGRAPHIC ORIGIN</span></div>
     <div class="tip-row"><span class="tip-k">LINES</span><span class="tip-s">=</span><span class="tip-v">SHARED DNA</span></div>
     <div class="tip-row"><span class="tip-k">CLICK</span><span class="tip-s">=</span><span class="tip-v">EXPLORE RECORD</span></div>
+  </div>
+  <div id="search-overlay">
+    <div id="search-box">
+      <input id="search-input" placeholder="search title or artist…" autocomplete="off">
+      <div id="search-results"></div>
+    </div>
   </div>
   <div id="gc"><canvas id="cv"></canvas><div id="fg3d"></div>
     <div id="garden-empty">
@@ -652,7 +684,7 @@ var currentUser=null;
 var ADMIN_EMAIL='allegrawoods2005@gmail.com';
 var userGardenIds=new Set();
 var DATA=[],GLOBAL_DATA=[],globalDataReady=false;
-var nodes=[],links=[],sim=null,ctx=null,canvas=null;
+var nodes=[],links=[],intraLinks=[],interLinks=[],sim=null,ctx=null,canvas=null;
 var transform=null,hovered=null,currentView='genres',currentSection='discover';
 var currentFilter=null,currentFilterKind=null,dpr=1,animId=null,panelOpen=false;
 var setupDone=false,zoomBehavior=null,selectedNode=null,genreCenters={},worldCentroids={};
@@ -990,7 +1022,7 @@ function setupOnce(){
       var k=e.transform.k;
       var isMob=window.innerWidth<=600;
       var spread=Math.min(3.5,Math.sqrt(k)*0.95);
-      sim.force('collision',d3.forceCollide((isMob?7:10)*spread).strength(1.0));
+      sim.force('collision',d3.forceCollide((isMob?7:10)*spread).strength(0.7));
       if(k>1.8)sim.alpha(0.07).restart();
     }
     requestDraw();
@@ -1105,10 +1137,20 @@ function setupOnce(){
   };
   document.getElementById('pcs').onclick=function(){submitComment();};
   wireAuthHandlers();
+  document.getElementById('bsearch').onclick=function(){openSearch();};
+  document.getElementById('search-overlay').onclick=function(e){
+    if(e.target.id==='search-overlay')closeSearch();
+  };
+  document.getElementById('search-input').addEventListener('input',function(e){
+    renderSearchResults(e.target.value);
+  });
   document.addEventListener('keydown',function(e){
-    if(e.key==='Escape'){closeAddForm();closeDiscogsForm();closePanel();}
+    if(e.key==='Escape'){closeAddForm();closeDiscogsForm();closePanel();closeSearch();}
     if(e.key==='Enter'&&document.activeElement===document.getElementById('pci')){submitComment();}
     if(e.key==='Enter'&&document.activeElement===document.getElementById('dc-user')){startDiscogsScan();}
+    if(e.key==='/'&&document.activeElement.tagName!=='INPUT'&&document.activeElement.tagName!=='TEXTAREA'){
+      e.preventDefault();openSearch();
+    }
   });
   window.onresize=handleResize;
   // Ticker swipe (desktop drag + mobile touch)
@@ -1212,15 +1254,51 @@ function switchSection(s){
 
 function rebuildLinks(){
   links=[];
+  var tagCount={};
+  for(var ni=0;ni<nodes.length;ni++){
+    var sg=nodes[ni].subGenres;
+    for(var si=0;si<sg.length;si++)tagCount[sg[si]]=(tagCount[sg[si]]||0)+1;
+  }
+  // Weight each link by its rarest shared tag — common tags (e.g. "electronic") barely
+  // register, while a rare shared tag between distant clusters reads as a real bridge.
   for(var i=0;i<nodes.length;i++){
     for(var j=i+1;j<nodes.length;j++){
-      var a=nodes[i].subGenres,b=nodes[j].subGenres,shared=false;
-      for(var ai=0;ai<a.length&&!shared;ai++)
-        for(var bi=0;bi<b.length&&!shared;bi++)
-          if(a[ai]===b[bi])shared=true;
-      if(shared)links.push({source:i,target:j});
+      var a=nodes[i].subGenres,b=nodes[j].subGenres,bestTag=null,bestCount=Infinity;
+      for(var ai=0;ai<a.length;ai++){
+        if(b.indexOf(a[ai])>-1&&tagCount[a[ai]]<bestCount){bestCount=tagCount[a[ai]];bestTag=a[ai];}
+      }
+      if(bestTag)links.push({source:i,target:j,tag:bestTag,rarity:bestCount});
     }
   }
+  // Degree per node (shared-tag connection count) — drives hub-style node sizing
+  var deg=new Array(nodes.length).fill(0);
+  links.forEach(function(l){deg[l.source]++;deg[l.target]++;});
+  nodes.forEach(function(n,i){
+    n._degree=deg[i];
+    n._r=Math.min(11,4+Math.sqrt(deg[i])*0.55);
+  });
+  // Split into a dense within-cluster tangle (same main genre group — this is what gives
+  // each cluster its organic "hairball" mass) vs. sparse, meaningful cross-cluster bridges
+  // (curated to each node's few rarest/most-specific shared tags, so the net stays legible).
+  intraLinks=[];
+  var interAll=[],byNode={};
+  links.forEach(function(l){
+    var ga=getGroup(nodes[l.source].genres[0]),gb=getGroup(nodes[l.target].genres[0]);
+    if(ga===gb)intraLinks.push(l);
+    else{
+      interAll.push(l);
+      (byNode[l.source]=byNode[l.source]||[]).push(l);
+      (byNode[l.target]=byNode[l.target]||[]).push(l);
+    }
+  });
+  var seen={};interLinks=[];
+  Object.keys(byNode).forEach(function(k){
+    var top=byNode[k].slice().sort(function(a,b){return a.rarity-b.rarity;}).slice(0,2);
+    top.forEach(function(l){
+      var key=l.source+'-'+l.target;
+      if(!seen[key]){seen[key]=true;interLinks.push(l);}
+    });
+  });
 }
 
 /* ── HEX LAYOUT (static, no simulation) ── */
@@ -1329,14 +1407,14 @@ function createSimulation(W,H,view){
         var bySG={};
         group.forEach(function(n){var sg=(n.genres[0]||'').toLowerCase();if(!bySG[sg])bySG[sg]=[];bySG[sg].push(n);});
         var sgKeys=Object.keys(bySG);
-        var subR=sgKeys.length>1?Math.min(28,10*Math.sqrt(group.length/Math.max(sgKeys.length,1))):0;
+        var subR=sgKeys.length>1?Math.min(10,40/sgKeys.length):0;
         var subCenters={};
         sgKeys.forEach(function(sg){var grpList=GROUPS[g]||[];var sgIdx=grpList.indexOf(sg);if(sgIdx<0)sgIdx=hs(g+sg)%Math.max(grpList.length,8);var sgAngle=(sgIdx/Math.max(grpList.length,1))*Math.PI*2-Math.PI/2;var scx=gcx+Math.cos(sgAngle)*subR;var scy=gcy+Math.sin(sgAngle)*subR;subCenters[sg]={scx:scx,scy:scy};bySG[sg].forEach(function(n){n._tx=scx;n._ty=scy;n.x=scx+(Math.random()-0.5)*6;n.y=scy+(Math.random()-0.5)*6;});});
         var labelR=Math.ceil(Math.sqrt(group.length/Math.PI))*8+20;
         genreCenters[g]={gcx:gcx,gcy:gcy,haloR:labelR,subCenters:subCenters};
       });
     }else{
-      var gRingR=Math.min(W,H)*0.36;
+      var gRingR=Math.min(W,H)*0.52;
       groupOrder.forEach(function(g,i){
         var angle=(i/groupOrder.length)*Math.PI*2-Math.PI/2;
         var gcx=W/2+Math.cos(angle)*gRingR;
@@ -1345,7 +1423,7 @@ function createSimulation(W,H,view){
         var bySG={};
         group.forEach(function(n){var sg=(n.genres[0]||'').toLowerCase();if(!bySG[sg])bySG[sg]=[];bySG[sg].push(n);});
         var sgKeys=Object.keys(bySG);
-        var subR=sgKeys.length>1?Math.min(60,14*Math.sqrt(group.length/Math.max(sgKeys.length,1))):0;
+        var subR=sgKeys.length>1?Math.min(18,80/sgKeys.length):0;
         var subCenters={};
         sgKeys.forEach(function(sg){var grpList=GROUPS[g]||[];var sgIdx=grpList.indexOf(sg);if(sgIdx<0)sgIdx=hs(g+sg)%Math.max(grpList.length,8);var sgAngle=(sgIdx/Math.max(grpList.length,1))*Math.PI*2-Math.PI/2;var scx=gcx+Math.cos(sgAngle)*subR;var scy=gcy+Math.sin(sgAngle)*subR;subCenters[sg]={scx:scx,scy:scy};bySG[sg].forEach(function(n){n._tx=scx;n._ty=scy;n.x=scx+(Math.random()-0.5)*8;n.y=scy+(Math.random()-0.5)*8;});});
         var labelR=Math.ceil(Math.sqrt(group.length/Math.PI))*10+28;
@@ -1353,21 +1431,27 @@ function createSimulation(W,H,view){
       });
     }
     sim=d3.forceSimulation(nodes)
-      .force('link',d3.forceLink(links).strength(0.004).distance(24))
-      .force('x',d3.forceX(function(d){var c=genreCenters[getGroup(d.genres[0])];return d._tx||(c?c.gcx:W/2);}).strength(isMobPortrait?0.22:0.18))
-      .force('y',d3.forceY(function(d){var c=genreCenters[getGroup(d.genres[0])];return d._ty||(c?c.gcy:H/2);}).strength(isMobPortrait?0.22:0.18))
-      .force('charge',d3.forceManyBody().strength(-60))
-      .force('collision',d3.forceCollide(isMobPortrait?7:10).strength(1.0))
-      .alpha(1).alphaDecay(0.1).alphaTarget(0.001)
+      // Dense same-genre tangle — default d3 strength (auto-normalized by node degree) is
+      // what pulls each cluster into an organic mass, not a pre-drawn circle.
+      .force('linkIntra',d3.forceLink(intraLinks).distance(16))
+      // Sparse cross-genre bridges — gentle, so related clusters drift closer without merging.
+      .force('linkInter',d3.forceLink(interLinks).distance(170).strength(function(l){return Math.min(0.02,0.5/l.rarity);}))
+      // Soft leash back to this group's assigned sector — keeps clusters from drifting into
+      // each other over time, but weak enough that link topology (not this) defines the shape.
+      .force('x',d3.forceX(function(d){var c=genreCenters[getGroup(d.genres[0])];return d._tx||(c?c.gcx:W/2);}).strength(isMobPortrait?0.05:0.035))
+      .force('y',d3.forceY(function(d){var c=genreCenters[getGroup(d.genres[0])];return d._ty||(c?c.gcy:H/2);}).strength(isMobPortrait?0.05:0.035))
+      .force('charge',d3.forceManyBody().strength(-70))
+      .force('collision',d3.forceCollide(function(d){return (d._r||6)+1.5;}).strength(0.8))
+      .alpha(1).alphaDecay(0.08).alphaTarget(0.001)
       .on('tick',requestDraw);
     // Bump cache key when layout algorithm changes to avoid stale positions
-    var posKey='awanui_pos_v2_'+W+'x'+H+'_'+nodes.length;
+    var posKey='awanui_pos_v3_'+W+'x'+H+'_'+nodes.length;
     var posCache=null;
     try{posCache=JSON.parse(localStorage.getItem(posKey));}catch(e){}
     if(posCache&&posCache.length===nodes.length){
       nodes.forEach(function(n,i){n.x=posCache[i][0];n.y=posCache[i][1];});
     }else{
-      sim.tick(100);
+      sim.tick(180);
       try{localStorage.setItem(posKey,JSON.stringify(nodes.map(function(n){return[n.x,n.y];})));}catch(e){}
     }
   }else{
@@ -1660,46 +1744,69 @@ function drawGenre(W,H){
   ctx.translate(transform.x*dpr,transform.y*dpr);
   ctx.scale(transform.k,transform.k);
 
-  // Inter-cluster spine — faint lines connecting every pair of group centers
-  {
-    var gcKeys=Object.keys(genreCenters);
-    ctx.lineWidth=0.4*dpr;
-    ctx.strokeStyle='rgba(0,255,100,0.016)';
-    for(var gi=0;gi<gcKeys.length;gi++){
-      for(var gj=gi+1;gj<gcKeys.length;gj++){
-        var ca=genreCenters[gcKeys[gi]],cb=genreCenters[gcKeys[gj]];
-        ctx.beginPath();ctx.moveTo(ca.gcx*dpr,ca.gcy*dpr);ctx.lineTo(cb.gcx*dpr,cb.gcy*dpr);ctx.stroke();
-      }
-    }
-  }
-
-  // Links — batched by opacity bucket to minimise GPU state changes
+  // Dense same-genre tangle — every shared-tag pair within a cluster, drawn uniformly faint
+  // so overlapping lines build up into a fuzzy hairball mass at the cluster core (the texture
+  // that reads as "this is one connected community" instead of loose scattered dots).
+  ctx.save();
+  ctx.globalCompositeOperation='lighter';
   ctx.lineWidth=0.5*dpr;
-  var lBuckets={};
-  for(var li=0;li<links.length;li++){
-    var l=links[li];
+  ctx.strokeStyle='rgba(0,255,150,0.028)';
+  ctx.beginPath();
+  for(var li=0;li<intraLinks.length;li++){
+    var l=intraLinks[li];
     var s=typeof l.source==='object'?l.source:nodes[l.source];
     var t=typeof l.target==='object'?l.target:nodes[l.target];
     if(!s||!t)continue;
-    var isConn=connectedSet&&connectedSet.has(s)&&connectedSet.has(t);
-    var isSel=connectedSet&&(s===selectedNode||t===selectedNode);
-    var op;
-    if(connectedSet){
-      if(isSel&&isConn)op=0.32;
-      else if(isConn)op=0.10;
-      else op=0.004;
-    }else{
-      op=0.04;
-    }
-    if(!lBuckets[op])lBuckets[op]=[];
-    lBuckets[op].push(s.x*dpr,s.y*dpr,t.x*dpr,t.y*dpr);
+    ctx.moveTo(s.x*dpr,s.y*dpr);ctx.lineTo(t.x*dpr,t.y*dpr);
   }
-  for(var op in lBuckets){
-    var pts=lBuckets[op];
-    ctx.strokeStyle='rgba(0,255,100,'+op+')';
+  ctx.stroke();
+
+  // Sparse cross-genre bridges — curated to each node's rarest shared tags, drawn a little
+  // brighter since there are few of them and they're the ones worth noticing.
+  ctx.lineWidth=0.7*dpr;
+  var rlBuckets={};
+  for(var li=0;li<interLinks.length;li++){
+    var l=interLinks[li];
+    var s=typeof l.source==='object'?l.source:nodes[l.source];
+    var t=typeof l.target==='object'?l.target:nodes[l.target];
+    if(!s||!t)continue;
+    var op=Math.max(0.05,Math.min(0.24,3/l.rarity));
+    op=Math.round(op*100)/100;
+    if(!rlBuckets[op])rlBuckets[op]=[];
+    rlBuckets[op].push(s.x*dpr,s.y*dpr,t.x*dpr,t.y*dpr);
+  }
+  for(var op in rlBuckets){
+    var pts=rlBuckets[op];
+    ctx.strokeStyle='rgba(0,255,150,'+op+')';
     ctx.beginPath();
     for(var pi=0;pi<pts.length;pi+=4){ctx.moveTo(pts[pi],pts[pi+1]);ctx.lineTo(pts[pi+2],pts[pi+3]);}
     ctx.stroke();
+  }
+  ctx.restore();
+
+  // Hover/select highlight — brighter, drawn from the full link set for that one node
+  if(connectedSet){
+    ctx.lineWidth=0.9*dpr;
+    var lBuckets={};
+    for(var li=0;li<links.length;li++){
+      var l=links[li];
+      var s=typeof l.source==='object'?l.source:nodes[l.source];
+      var t=typeof l.target==='object'?l.target:nodes[l.target];
+      if(!s||!t)continue;
+      var isConn=connectedSet.has(s)&&connectedSet.has(t);
+      var isSel=(s===selectedNode||t===selectedNode);
+      if(!isConn)continue;
+      var op=(isSel&&isConn)?0.38:0.14;
+      if(!lBuckets[op])lBuckets[op]=[];
+      lBuckets[op].push(s.x*dpr,s.y*dpr,t.x*dpr,t.y*dpr);
+    }
+    for(var op in lBuckets){
+      var pts=lBuckets[op];
+      ctx.strokeStyle='rgba(0,255,100,'+op+')';
+      ctx.beginPath();
+      for(var pi=0;pi<pts.length;pi+=4){ctx.moveTo(pts[pi],pts[pi+1]);ctx.lineTo(pts[pi+2],pts[pi+3]);}
+      ctx.stroke();
+    }
   }
 
   // Sub-genre labels — centroid of actual node positions, 3+ albums only
@@ -1747,7 +1854,8 @@ function drawGenre(W,H){
     var isHov=(hovered===n);
     var col=n._col||'#888';
     var alpha=connectedSet?(inConn?(isSelected?1:0.85):0.10):(n._dim?0.15:1);
-    var r=(isHov&&!isSelected?8:6)*dpr;
+    var baseR=n._r||6;
+    var r=(isHov&&!isSelected?baseR+2:baseR)*dpr;
     var x=n.x*dpr,y=n.y*dpr;
 
     // Outer soft glow
@@ -1955,11 +2063,70 @@ function clearFilter(){
   requestDraw();
 }
 
+/* ── SEARCH ── */
+function openSearch(){
+  var ov=document.getElementById('search-overlay');
+  ov.classList.add('on');
+  var inp=document.getElementById('search-input');
+  inp.value='';
+  renderSearchResults('');
+  setTimeout(function(){inp.focus();},10);
+}
+function closeSearch(){
+  document.getElementById('search-overlay').classList.remove('on');
+}
+function renderSearchResults(q){
+  var box=document.getElementById('search-results');
+  q=q.trim().toLowerCase();
+  var matches=!q?[]:nodes.filter(function(n){
+    return n.id.toLowerCase().indexOf(q)>-1||n.artist.toLowerCase().indexOf(q)>-1;
+  }).slice(0,30);
+  box.innerHTML='';
+  if(!q){
+    box.innerHTML='<div id="search-empty">Type to search '+nodes.length+' albums by title or artist…</div>';
+    return;
+  }
+  if(!matches.length){
+    box.innerHTML='<div id="search-empty">No matches.</div>';
+    return;
+  }
+  matches.forEach(function(n){
+    var row=document.createElement('div');
+    row.className='sr-item';
+    var dot=document.createElement('div');
+    dot.className='sr-dot';dot.style.background=n._col||'#888';
+    var text=document.createElement('div');
+    text.className='sr-text';
+    var t=document.createElement('div');t.className='sr-title';t.textContent=n.id;
+    var a=document.createElement('div');a.className='sr-artist';a.textContent=n.artist;
+    text.appendChild(t);text.appendChild(a);
+    row.appendChild(dot);row.appendChild(text);
+    row.onclick=function(){closeSearch();openPanel(n);};
+    box.appendChild(row);
+  });
+}
+
 /* ── TICKER ── */
 function buildTicker(type){
   var items=[];
   if(type==='genres'){
-    for(var p in GROUPS){items.push({lbl:p,kind:'parent',par:p});GROUPS[p].forEach(function(s){items.push({lbl:s,kind:'sub',par:p});});}
+    // Built from the genre tags actually present in the data (not the static GROUPS lists),
+    // so every tag in use gets a filter chip — including ones not pre-listed per group.
+    var byGroup={};
+    nodes.forEach(function(n){
+      var g=getGroup(n.genres[0]);
+      var sg=(n.genres[0]||'').toLowerCase();
+      if(!sg)return;
+      if(!byGroup[g])byGroup[g]={};
+      byGroup[g][sg]=(byGroup[g][sg]||0)+1;
+    });
+    Object.keys(GROUPS).forEach(function(p){ // preserves canonical group order/colors
+      if(!byGroup[p])return;
+      items.push({lbl:p,kind:'parent',par:p});
+      Object.keys(byGroup[p]).sort(function(a,b){return byGroup[p][b]-byGroup[p][a];}).forEach(function(sg){
+        items.push({lbl:sg,kind:'sub',par:p});
+      });
+    });
   }else{
     var seen={};nodes.forEach(function(n){seen[n.country||'Unknown']=true;});
     Object.keys(seen).sort().forEach(function(c){items.push({lbl:c,kind:'country',par:c});});
