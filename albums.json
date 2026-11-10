@@ -4248,21 +4248,6 @@
     "section": "discover"
   },
   {
-    "id": "Sahel Sounds Label Sampler 3",
-    "artist": "Various Artists",
-    "genres": [
-      "World",
-      "Electronic"
-    ],
-    "url": "https://sahelsoundscompilations.bandcamp.com/album/sahel-sounds-label-sampler-3",
-    "country": "Various",
-    "city": "",
-    "blurb": "Name-your-price sampler of tracks from across the Sahel Sounds catalog, from Les Filles de Illighadad to Hauka ritual music. Released in 2021.",
-    "img": "https://f4.bcbits.com/img/a2408059248_10.jpg",
-    "youtube": "",
-    "section": "discover"
-  },
-  {
     "id": "Musique Hauka",
     "artist": "Lingo Seini et son groupe",
     "genres": [
@@ -4294,20 +4279,6 @@
     "section": "discover"
   },
   {
-    "id": "Sahel Sounds Label Sampler 2",
-    "artist": "Various Artists",
-    "genres": [
-      "World"
-    ],
-    "url": "https://sahelsoundscompilations.bandcamp.com/album/sahel-sounds-label-sampler-2",
-    "country": "Various",
-    "city": "",
-    "blurb": "Name-your-price sampler of songs from the Sahel Sounds catalog. Released in 2020.",
-    "img": "https://f4.bcbits.com/img/a1062851412_10.jpg",
-    "youtube": "",
-    "section": "discover"
-  },
-  {
     "id": "Tiris",
     "artist": "El Wali",
     "genres": [
@@ -4336,20 +4307,6 @@
     "blurb": "Reissue of a 1995 cassette by Abdallah Ag Oumbadougou, one of the founders of Tuareg guitar music and a figure of the 1990s Tuareg rebellion. Recorded in Benin, it is one of the first studio recordings of the genre, with a full 90s groove. Released on Sahel Sounds in 2019.",
     "img": "https://f4.bcbits.com/img/a2946799099_10.jpg",
     "youtube": "https://www.youtube.com/watch?v=AAFmf0ga_Ng&list=PLNBidjQ1MgTSuNji8jRz2ejaX3GVjVtdl",
-    "section": "discover"
-  },
-  {
-    "id": "Sahel Sounds Label Sampler",
-    "artist": "Various Artists",
-    "genres": [
-      "World"
-    ],
-    "url": "https://sahelsoundscompilations.bandcamp.com/album/sahel-sounds-label-sampler",
-    "country": "Various",
-    "city": "",
-    "blurb": "Free sampler of songs from the Sahel Sounds catalog. Released in 2019.",
-    "img": "https://f4.bcbits.com/img/a1865955098_10.jpg",
-    "youtube": "",
     "section": "discover"
   },
   {
@@ -5187,22 +5144,6 @@
     "section": "discover"
   },
   {
-    "id": "Live in Seattle",
-    "artist": "Etran De L'Aïr",
-    "genres": [
-      "World",
-      "Desert Rock",
-      "Tuareg"
-    ],
-    "url": "https://etrandelair.bandcamp.com/album/live-in-seattle",
-    "country": "Niger",
-    "city": "",
-    "blurb": "Two-song live recording of Etran de L'Aïr in Seattle, over 7,000 miles from Agadez, on the last night of their first-ever US tour. Released on Sahel Sounds in 2023.",
-    "img": "https://f4.bcbits.com/img/a1251508271_10.jpg",
-    "youtube": "",
-    "section": "discover"
-  },
-  {
     "id": "Debbo",
     "artist": "Andal Sukabe",
     "genres": [
@@ -5278,6 +5219,1683 @@
     "blurb": "Second album from Wau Wau Collectif, the long-distance collaboration between Senegalese musicians led by Arouna Kane and Sweden's Karl-Jonas Winqvist. Children's songs collide with fuzzy guitar solos, hip-hop beats and shimmering synths. Released on Sahel Sounds in 2022.",
     "img": "https://f4.bcbits.com/img/a0742521235_10.jpg",
     "youtube": "https://www.youtube.com/watch?v=57bH_Z_8xsw",
+    "section": "discover"
+  },
+  {
+    "id": "Espíritu Vivo",
+    "artist": "Susana Baca",
+    "genres": [
+      "World",
+      "Folk"
+    ],
+    "url": "https://susanabaca.bandcamp.com/album/esp-ritu-vivo",
+    "country": "Peru",
+    "city": "",
+    "blurb": "Album from Afro-Peruvian singer Susana Baca, recorded live in a New York studio with guests including Marc Ribot and Bill Frisell. Released on Luaka Bop in 2002, reissued 2023.",
+    "img": "https://f4.bcbits.com/img/a3100624443_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=6tetcKiFhr4&list=PL068dw6TjlWwzmCo02JnC9fPamhpAUIvk",
+    "section": "discover"
+  },
+  {
+    "id": "The Outsiders Are Back",
+    "artist": "Kings Go Forth",
+    "genres": [
+      "Soul",
+      "Funk"
+    ],
+    "url": "https://kingsgoforth.bandcamp.com/album/the-outsiders-are-back",
+    "country": "USA",
+    "city": "",
+    "blurb": "Debut album from Milwaukee soul and funk band Kings Go Forth, led by Andy Noble of Lotus Land Records, part of the late-2000s soul revival. Released on Luaka Bop in 2010.",
+    "img": "https://f4.bcbits.com/img/a3055241869_10.jpg",
+    "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_ktqbCiMsIM632Bug9Zzu69kNMZi5lr26w",
+    "section": "discover"
+  },
+  {
+    "id": "Wrong-Eyed Jesus (25th Anniversary Edition)",
+    "artist": "Jim White",
+    "genres": [
+      "Folk",
+      "Alternative"
+    ],
+    "url": "https://jimwhite.bandcamp.com/album/wrong-eyed-jesus-25th-anniversary-edition",
+    "country": "USA",
+    "city": "",
+    "blurb": "Reissue of Jim White's 1997 debut, The Mysterious Tale of How I Shouted Wrong-Eyed Jesus!, from the storytelling, taxi-driving former Pentecostal from Pensacola, Florida. Southern gothic alt-country.",
+    "img": "https://f4.bcbits.com/img/a1356452232_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=Q8QenycNul4&list=PL6IBtHzanYCycgDBV0iDyL12opInkAuXx",
+    "section": "discover"
+  },
+  {
+    "id": "Brazil 5: The Return of Tom Zé: The Hips of Tradition",
+    "artist": "Tom Zé",
+    "genres": [
+      "Experimental",
+      "Brazilian"
+    ],
+    "url": "https://tomze.bandcamp.com/album/brazil-5-the-return-of-tom-z-the-hips-of-tradition",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "1992 album from Tom Zé, the avant-garde tropicália veteran from Bahia, originally titled Ancas. His second Luaka Bop release after David Byrne rediscovered him, reissued for its 30th anniversary.",
+    "img": "https://f4.bcbits.com/img/a4255789944_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=jTH0UYyOAgQ&list=PLZN-Qk4Q9ORAqHGLGmK4NvCKJOrrpCORX",
+    "section": "discover"
+  },
+  {
+    "id": "Brazil Classics 4: The Best of Tom Zé - Massive Hits",
+    "artist": "Tom Zé",
+    "genres": [
+      "Experimental",
+      "Brazilian"
+    ],
+    "url": "https://tomze.bandcamp.com/album/brazil-classics-4-the-best-of-tom-z-massive-hits",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "1990 compilation of Tom Zé's 70s recordings, assembled by David Byrne after he found one of Zé's records in a Rio shop. It relaunched Zé's career outside Brazil. Released on Luaka Bop.",
+    "img": "https://f4.bcbits.com/img/a1553860006_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=XYIk5Hr-pRA&list=PLZN-Qk4Q9ORCtpd7QeX7IcEI-rj4_XROQ",
+    "section": "discover"
+  },
+  {
+    "id": "Dance Raja Dance: The South Indian Film Music of: Asia Classics 1",
+    "artist": "Vijaya Anand",
+    "genres": [
+      "World",
+      "Bollywood",
+      "Disco"
+    ],
+    "url": "https://vijayaanand.bandcamp.com/album/dance-raja-dance-the-south-indian-film-music-of-asia-classics-1",
+    "country": "India",
+    "city": "",
+    "blurb": "Compilation of 80s Telugu and Kannada film songs produced by South Indian music director Vijaya Anand, one of the first to use electronic instruments in Indian film scores. Released on Luaka Bop in 1992.",
+    "img": "https://f4.bcbits.com/img/a1665552054_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=m5pD7JPVmSw&list=PLZN-Qk4Q9ORAlDtOzvBiDGXHRBVAPL330",
+    "section": "discover"
+  },
+  {
+    "id": "Peppermint Tea House: The Best Of Shoukichi Kina - Asia Classics 2",
+    "artist": "Shoukichi Kina",
+    "genres": [
+      "World",
+      "Folk"
+    ],
+    "url": "https://shoukichikina.bandcamp.com/album/peppermint-tea-house-the-best-of-shoukichi-kina-asia-classics-2",
+    "country": "Japan",
+    "city": "",
+    "blurb": "Best-of from Okinawan musician Shoukichi Kina and his band Champloose, mixing Okinawan folk with rock, featuring Ry Cooder. Released on Luaka Bop in 1994.",
+    "img": "https://f4.bcbits.com/img/a2562778772_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=CFNSoLC6EEQ&list=PLZN-Qk4Q9ORCBob5U6Bii82tm3eCc6jtz",
+    "section": "discover"
+  },
+  {
+    "id": "Vol. 4 (Alhaji Waziri Oshomah)",
+    "artist": "Alhaji Waziri Oshomah",
+    "genres": [
+      "World",
+      "Highlife"
+    ],
+    "url": "https://alhajiwazirioshomah.bandcamp.com/album/vol-4",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "Fourth of Alhaji Waziri Oshomah's Volume Series, recorded 1978-1984 at the peak of his career: Muslim highlife from Afemailand in Edo State, Nigeria, mixing Etsako folk with highlife and Islamic sermonising.",
+    "img": "https://f4.bcbits.com/img/a1752553930_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=-H--B-kRLvU&list=PLZN-Qk4Q9ORBuChi_Ua76e2IyKA4TWKwb",
+    "section": "discover"
+  },
+  {
+    "id": "Vol. 5 (Alhaji Waziri Oshomah)",
+    "artist": "Alhaji Waziri Oshomah",
+    "genres": [
+      "World",
+      "Highlife"
+    ],
+    "url": "https://alhajiwazirioshomah.bandcamp.com/album/vol-5",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "Fifth of Alhaji Waziri Oshomah's Volume Series, recorded 1978-1984 at the peak of his career: Muslim highlife from Afemailand in Edo State, Nigeria, mixing Etsako folk with highlife and Islamic sermonising.",
+    "img": "https://f4.bcbits.com/img/a0089270969_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=-H--B-kRLvU&list=PLZN-Qk4Q9ORBuChi_Ua76e2IyKA4TWKwb",
+    "section": "discover"
+  },
+  {
+    "id": "Vol. 3 (Alhaji Waziri Oshomah)",
+    "artist": "Alhaji Waziri Oshomah",
+    "genres": [
+      "World",
+      "Highlife"
+    ],
+    "url": "https://alhajiwazirioshomah.bandcamp.com/album/vol-3",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "Third of Alhaji Waziri Oshomah's Volume Series, recorded 1978-1984 at the peak of his career: Muslim highlife from Afemailand in Edo State, Nigeria, mixing Etsako folk with highlife and Islamic sermonising.",
+    "img": "https://f4.bcbits.com/img/a2327996656_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=-H--B-kRLvU&list=PLZN-Qk4Q9ORBuChi_Ua76e2IyKA4TWKwb",
+    "section": "discover"
+  },
+  {
+    "id": "Vol. 2 (Alhaji Waziri Oshomah)",
+    "artist": "Alhaji Waziri Oshomah",
+    "genres": [
+      "World",
+      "Highlife"
+    ],
+    "url": "https://alhajiwazirioshomah.bandcamp.com/album/vol-2",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "Second of Alhaji Waziri Oshomah's Volume Series, recorded 1978-1984 at the peak of his career: Muslim highlife from Afemailand in Edo State, Nigeria, mixing Etsako folk with highlife and Islamic sermonising. Includes 17-minute praise songs.",
+    "img": "https://f4.bcbits.com/img/a1423184971_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=F4f7PKUPQQ4",
+    "section": "discover"
+  },
+  {
+    "id": "Vol. 1 (Alhaji Waziri Oshomah)",
+    "artist": "Alhaji Waziri Oshomah",
+    "genres": [
+      "World",
+      "Highlife"
+    ],
+    "url": "https://alhajiwazirioshomah.bandcamp.com/album/vol-1",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "First of Alhaji Waziri Oshomah's Volume Series, recorded 1978-1984 at the peak of his career: Muslim highlife from Afemailand in Edo State, Nigeria, mixing Etsako folk with highlife and Islamic sermonising.",
+    "img": "https://f4.bcbits.com/img/a0636105830_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=-H--B-kRLvU&list=PLZN-Qk4Q9ORBuChi_Ua76e2IyKA4TWKwb",
+    "section": "discover"
+  },
+  {
+    "id": "Gettin Me Ready",
+    "artist": "Pastor Champion",
+    "genres": [
+      "Soul",
+      "Gospel",
+      "Blues"
+    ],
+    "url": "https://pastorchampion.bandcamp.com/album/gettin-me-ready",
+    "country": "USA",
+    "city": "",
+    "blurb": "EP from Pastor Champion, the Oakland outsider gospel preacher and electric guitarist, including 'Song For My Brother'. Released on Luaka Bop in 2022.",
+    "img": "https://f4.bcbits.com/img/a1893774347_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=nsvhxWWxCuA",
+    "section": "discover"
+  },
+  {
+    "id": "When Do We Get Paid",
+    "artist": "Staples Jr. Singers",
+    "genres": [
+      "Soul",
+      "Gospel",
+      "Funk"
+    ],
+    "url": "https://staplesjrsingers.bandcamp.com/album/when-do-we-get-paid",
+    "country": "USA",
+    "city": "",
+    "blurb": "1975 album from the Staples Jr. Singers, a family group of teenagers from Aberdeen, Mississippi, who played raw, funky soul gospel. Originally self-released, reissued on Luaka Bop in 2022.",
+    "img": "https://f4.bcbits.com/img/a3643971376_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=WepnZkF7eIU",
+    "section": "discover"
+  },
+  {
+    "id": "I Just Want To Be A Good Man",
+    "artist": "Pastor Champion",
+    "genres": [
+      "Soul",
+      "Gospel",
+      "Blues"
+    ],
+    "url": "https://pastorchampion.bandcamp.com/album/i-just-want-to-be-a-good-man",
+    "country": "USA",
+    "city": "",
+    "blurb": "Live recordings of Pastor Champion (1946-2021), an outsider gospel singer raised in the Jim Crow South who travelled with his electric guitar to congregations from San Jose to Shreveport. Released on Luaka Bop in 2022.",
+    "img": "https://f4.bcbits.com/img/a2248533075_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=JDPImryDeOI&list=PLZN-Qk4Q9ORDEB6bR91SwPreid_j2c7Cg",
+    "section": "discover"
+  },
+  {
+    "id": "Brazil Classics 1: Beleza Tropical",
+    "artist": "Various Artists",
+    "genres": [
+      "World",
+      "Brazilian"
+    ],
+    "url": "https://luakabop.bandcamp.com/album/brazil-classics-1-beleza-tropical",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "The first Luaka Bop release, compiled by David Byrne in 1989: MPB and tropicália from Caetano Veloso, Gilberto Gil, Jorge Ben, Milton Nascimento and more. It reached the Billboard 200.",
+    "img": "https://f4.bcbits.com/img/a1430695237_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=NEKtHoTvS24&list=PLZN-Qk4Q9ORD9NR-pva5LZV9rnHb9keOi",
+    "section": "discover"
+  },
+  {
+    "id": "Natten (The Night)",
+    "artist": "Bremer/McCoy",
+    "genres": [
+      "Jazz",
+      "Ambient",
+      "Dub"
+    ],
+    "url": "https://bremer-mccoy.bandcamp.com/album/natten-the-night",
+    "country": "Denmark",
+    "city": "",
+    "blurb": "Album from Danish duo Bremer/McCoy, bassist Jonathan Bremer and keyboardist Morten McCoy, inspired by the end of the day. Slow, dubby instrumental jazz. Released on Luaka Bop in 2021.",
+    "img": "https://f4.bcbits.com/img/a1584002064_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=HznrEMZiNbQ",
+    "section": "discover"
+  },
+  {
+    "id": "Promises",
+    "artist": "Floating Points, Pharoah Sanders & The London Symphony Orchestra",
+    "genres": [
+      "Jazz",
+      "Ambient",
+      "Electronic"
+    ],
+    "url": "https://floatingpoints.bandcamp.com/album/promises",
+    "country": "UK",
+    "city": "",
+    "blurb": "A single continuous nine-movement piece composed by Floating Points for saxophonist Pharoah Sanders and the London Symphony Orchestra, Sanders' last major recording. Released on Luaka Bop in 2021.",
+    "img": "https://f4.bcbits.com/img/a2975740667_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=FvlyttLEQlk&list=PLZN-Qk4Q9ORCRaxYQSvSlcIB8618eWjyu",
+    "section": "discover"
+  },
+  {
+    "id": "World Psychedelic Classics 5: Who is William Onyeabor?",
+    "artist": "William Onyeabor",
+    "genres": [
+      "Electronic",
+      "Afro Funk",
+      "Funk"
+    ],
+    "url": "https://williamonyeabor.bandcamp.com/album/world-psychedelic-classics-5-who-is-william-onyeabor",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "Compilation introducing William Onyeabor, the reclusive Nigerian synth-funk pioneer who self-released his records from Enugu in the late 70s and early 80s. Released on Luaka Bop in 2013.",
+    "img": "https://f4.bcbits.com/img/a0820551125_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=k51cnVcbUAo&list=PLZN-Qk4Q9ORDZRDqr1XM9Ley3k5MzOBcy",
+    "section": "discover"
+  },
+  {
+    "id": "World Psychedelic Classics 4: Nobody Can Live Forever – The Existential Soul of Tim Maia",
+    "artist": "Tim Maia",
+    "genres": [
+      "Soul",
+      "Funk",
+      "Brazilian"
+    ],
+    "url": "https://timmaia.bandcamp.com/album/world-psychedelic-classics-4-nobody-can-live-forever-the-existential-soul-of-tim-maia",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "Compilation of Tim Maia's mid-70s Racional period, when the Brazilian soul giant joined a UFO cult and self-released two albums of deep funk. Released on Luaka Bop in 2012.",
+    "img": "https://f4.bcbits.com/img/a1024128540_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=Nq_AOktdhts&list=PLZN-Qk4Q9ORAMZB-Ctv0wU48vrwdCQxC7",
+    "section": "discover"
+  },
+  {
+    "id": "Utopia",
+    "artist": "Bremer/McCoy",
+    "genres": [
+      "Jazz",
+      "Ambient"
+    ],
+    "url": "https://bremer-mccoy.bandcamp.com/album/utopia",
+    "country": "Denmark",
+    "city": "",
+    "blurb": "Album from Danish duo Bremer/McCoy, bass and keys with Wurlitzer, piano and dubbed-out textures, including the single 'Højder'. Released on Luaka Bop in 2020.",
+    "img": "https://f4.bcbits.com/img/a1068627200_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=SB1WQjxzI4s&list=PLZN-Qk4Q9ORAlsvP9SEjhQyP8gQgP5MYB",
+    "section": "discover"
+  },
+  {
+    "id": "World Spirituality Classics 2: The Time For Peace Is Now",
+    "artist": "Various Artists",
+    "genres": [
+      "Soul",
+      "Gospel"
+    ],
+    "url": "https://luakabop.bandcamp.com/album/world-spirituality-classics-2-the-time-for-peace-is-now",
+    "country": "USA",
+    "city": "",
+    "blurb": "Compilation of 1970s American soul gospel from small-label and private-press groups, singing about peace and social change rather than straight scripture. Released on Luaka Bop in 2019.",
+    "img": "https://f4.bcbits.com/img/a1735750530_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=7jBHEqS0150&list=PLZN-Qk4Q9ORAN8evCt25UTlmiWK-gJPgz",
+    "section": "discover"
+  },
+  {
+    "id": "Universal Philosophy: Preacherman Plays T.J. Hustlers Greatest Hits",
+    "artist": "Preacherman",
+    "genres": [
+      "Funk",
+      "Soul",
+      "Electronic"
+    ],
+    "url": "https://tjhustler-preacherman.bandcamp.com/album/universal-philosophy-preacherman-plays-t-j-hustlers-greatest-hits",
+    "country": "USA",
+    "city": "",
+    "blurb": "Outsider funk and soul from Oakland's T.J. Hustler (Mr. Jones) under his Preacherman alias, homemade drum machine grooves and sermons. Released on Luaka Bop in 2018.",
+    "img": "https://f4.bcbits.com/img/a1870169410_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=35waZLUTbU0",
+    "section": "discover"
+  },
+  {
+    "id": "Relax",
+    "artist": "Kassin",
+    "genres": [
+      "Brazilian",
+      "Bossa Nova",
+      "Pop"
+    ],
+    "url": "https://kassin2.bandcamp.com/album/relax",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "Solo album from Rio producer and bassist Alexandre Kassin, with songs about his divorce including the dark bossa nova 'A Paisagem Morta'. Released on Luaka Bop in 2018.",
+    "img": "https://f4.bcbits.com/img/a3792598393_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=1XAnMtmKDbA",
+    "section": "discover"
+  },
+  {
+    "id": "The Good is a Big God",
+    "artist": "Domenico Lancellotti",
+    "genres": [
+      "Brazilian",
+      "Pop"
+    ],
+    "url": "https://domenico2.bandcamp.com/album/the-good-is-a-big-god",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "Album from Rio multi-instrumentalist Domenico Lancellotti, of the +2 trio with Kassin and Moreno Veloso. Gentle, off-kilter Brazilian pop. Released on Luaka Bop in 2018.",
+    "img": "https://f4.bcbits.com/img/a2369536400_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=suSyU8_8vW8",
+    "section": "discover"
+  },
+  {
+    "id": "Ocean Of Love",
+    "artist": "Panduranga Henderson",
+    "genres": [
+      "New Age",
+      "Soul"
+    ],
+    "url": "https://pandurangahenderson.bandcamp.com/album/ocean-of-love",
+    "country": "USA",
+    "city": "",
+    "blurb": "Private-press devotional soul from John 'Panduranga' Henderson, a former keyboardist in Ray Charles' band who became a Hare Krishna devotee. Reissued on Luaka Bop in 2018.",
+    "img": "https://f4.bcbits.com/img/a2749351081_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=TRrqbazSHlE",
+    "section": "discover"
+  },
+  {
+    "id": "The Atomic Bomb Band Plays the Music of William Onyeabor",
+    "artist": "The Atomic Bomb Band",
+    "genres": [
+      "Electronic",
+      "Afro Funk"
+    ],
+    "url": "https://luakabop.bandcamp.com/album/the-atomic-bomb-band-plays-the-music-of-william-onyeabor",
+    "country": "USA",
+    "city": "",
+    "blurb": "Live studio recording of the Atomic Bomb Band, assembled to perform William Onyeabor's music since he never played it live, with members including Sinkane, Money Mark and Pat Mahoney. Released on Luaka Bop in 2017.",
+    "img": "https://f4.bcbits.com/img/a0851846321_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=QFr5Zw4JPnA",
+    "section": "discover"
+  },
+  {
+    "id": "Kuiper ep",
+    "artist": "Floating Points",
+    "genres": [
+      "Electronic",
+      "Jazz"
+    ],
+    "url": "https://floatingpoints.bandcamp.com/album/kuiper-ep",
+    "country": "UK",
+    "city": "",
+    "blurb": "Two long tracks from Floating Points' live band, the title track a 17-minute jam that built out of his album Elaenia. Released in 2016.",
+    "img": "https://f4.bcbits.com/img/a4050733420_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=t7wzxHE_rkg",
+    "section": "discover"
+  },
+  {
+    "id": "REFLECTIONS - MOJAVE DESERT",
+    "artist": "Floating Points",
+    "genres": [
+      "Electronic",
+      "Ambient",
+      "Post-Rock"
+    ],
+    "url": "https://floatingpoints.bandcamp.com/album/reflections-mojave-desert",
+    "country": "UK",
+    "city": "",
+    "blurb": "Floating Points and his band recorded live in the Mojave Desert near Joshua Tree, released with a film of the sessions. Released in 2017.",
+    "img": "https://f4.bcbits.com/img/a1581164337_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=XQM6-DnAn_4",
+    "section": "discover"
+  },
+  {
+    "id": "World Spirituality Classics 1: The Ecstatic Music of Alice Coltrane Turiyasangitananda",
+    "artist": "Alice Coltrane",
+    "genres": [
+      "Jazz",
+      "Gospel",
+      "New Age"
+    ],
+    "url": "https://alicecoltrane.bandcamp.com/album/world-sprituality-classics-1-the-ecstatic-music-of-alice-coltrane-turiyasangitananda",
+    "country": "USA",
+    "city": "",
+    "blurb": "Compilation of devotional music Alice Coltrane recorded at her ashram in the 80s and 90s as Turiyasangitananda: synths, organ and ecstatic Sanskrit chanting. Released on Luaka Bop in 2017.",
+    "img": "https://f4.bcbits.com/img/a1059984321_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=0Yh59k4SnHQ&list=PLZN-Qk4Q9ORCMis_jSU11YfGfr1GMyoyW",
+    "section": "discover"
+  },
+  {
+    "id": "Build Music",
+    "artist": "Janka Nabay",
+    "genres": [
+      "World",
+      "Electronic"
+    ],
+    "url": "https://jankanabay.bandcamp.com/album/build-music",
+    "country": "Sierra Leone",
+    "city": "",
+    "blurb": "Janka Nabay, the Sierra Leonean modernizer of bubu music, a traditional processional music played on bamboo pipes, recorded in Brooklyn. Released on Luaka Bop in 2017.",
+    "img": "https://f4.bcbits.com/img/a4161513673_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=-nxPn4961FQ",
+    "section": "discover"
+  },
+  {
+    "id": "Elaenia",
+    "artist": "Floating Points",
+    "genres": [
+      "Electronic",
+      "Jazz",
+      "Ambient"
+    ],
+    "url": "https://floatingpoints.bandcamp.com/album/elaenia",
+    "country": "UK",
+    "city": "",
+    "blurb": "Debut album from Floating Points (Sam Shepherd), bridging his dance music with classical roots through modular synths, a Fender Rhodes and live band. Released on Pluto in 2015.",
+    "img": "https://f4.bcbits.com/img/a2214058814_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=xiVNoKARAQc&list=PLmxFO1awrVZBW4ZtmQvzVlzdpvXzWp0JF",
+    "section": "discover"
+  },
+  {
+    "id": "Atomic Bomb by Hot Chip remixed by John Talabot",
+    "artist": "William Onyeabor",
+    "genres": [
+      "Electronic",
+      "Dance"
+    ],
+    "url": "https://williamonyeabor.bandcamp.com/album/atomic-bomb-by-hot-chip-remixed-by-john-talabot",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "Remix EP from William Onyeabor's catalog, featuring John Talabot reworking Hot Chip's cover of 'Atomic Bomb'. Released on Luaka Bop in 2016.",
+    "img": "https://f4.bcbits.com/img/a3043079004_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=GHAbj9CohoU",
+    "section": "discover"
+  },
+  {
+    "id": "Atomic Bomb (William Onyeabor)",
+    "artist": "William Onyeabor",
+    "genres": [
+      "Electronic",
+      "Afro Funk"
+    ],
+    "url": "https://williamonyeabor.bandcamp.com/album/atomic-bomb",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "1978 album from William Onyeabor, the reclusive Nigerian synth-funk pioneer who self-released his records from Enugu in the late 70s and early 80s. Reissued on Luaka Bop.",
+    "img": "https://f4.bcbits.com/img/a1161661195_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=t7UgkNDAUYQ",
+    "section": "discover"
+  },
+  {
+    "id": "Anything You Sow",
+    "artist": "William Onyeabor",
+    "genres": [
+      "Electronic",
+      "Afro Funk"
+    ],
+    "url": "https://williamonyeabor.bandcamp.com/album/anything-you-sow",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "1985 album from William Onyeabor, the reclusive Nigerian synth-funk pioneer who self-released his records from Enugu in the late 70s and early 80s. Reissued on Luaka Bop.",
+    "img": "https://f4.bcbits.com/img/a0747077538_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=YmmkLHceqAE",
+    "section": "discover"
+  },
+  {
+    "id": "Body & Soul",
+    "artist": "William Onyeabor",
+    "genres": [
+      "Electronic",
+      "Afro Funk"
+    ],
+    "url": "https://williamonyeabor.bandcamp.com/album/body-soul",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "1980 album from William Onyeabor, the reclusive Nigerian synth-funk pioneer who self-released his records from Enugu in the late 70s and early 80s. Reissued on Luaka Bop.",
+    "img": "https://f4.bcbits.com/img/a0095794923_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=9YDnhxwNX5A",
+    "section": "discover"
+  },
+  {
+    "id": "Crashes In Love (2nd Version)",
+    "artist": "William Onyeabor",
+    "genres": [
+      "Electronic",
+      "Afro Funk"
+    ],
+    "url": "https://williamonyeabor.bandcamp.com/album/crashes-in-love-2nd-version",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "Re-recorded, more electronic version of Crashes In Love by William Onyeabor, the reclusive Nigerian synth-funk pioneer who self-released his records from Enugu in the late 70s and early 80s.",
+    "img": "https://f4.bcbits.com/img/a3110927540_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=jXhSaSiULlk",
+    "section": "discover"
+  },
+  {
+    "id": "Crashes In Love (Original Version)",
+    "artist": "William Onyeabor",
+    "genres": [
+      "World",
+      "Afro Funk"
+    ],
+    "url": "https://williamonyeabor.bandcamp.com/album/crashes-in-love-original-version",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "The original, mostly acoustic version of Crashes In Love (1977) by William Onyeabor, the reclusive Nigerian synth-funk pioneer who self-released his records from Enugu in the late 70s and early 80s.",
+    "img": "https://f4.bcbits.com/img/a2435526888_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=6K7gDmcT6b8",
+    "section": "discover"
+  },
+  {
+    "id": "Good Name",
+    "artist": "William Onyeabor",
+    "genres": [
+      "Electronic",
+      "Afro Funk"
+    ],
+    "url": "https://williamonyeabor.bandcamp.com/album/good-name",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "1980 album from William Onyeabor, the reclusive Nigerian synth-funk pioneer who self-released his records from Enugu in the late 70s and early 80s. Side A is 'Let's Fall In Love', side B 'Good Name'.",
+    "img": "https://f4.bcbits.com/img/a0968027389_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=27nCc2eiERM",
+    "section": "discover"
+  },
+  {
+    "id": "Great Lover",
+    "artist": "William Onyeabor",
+    "genres": [
+      "Electronic",
+      "Afro Funk"
+    ],
+    "url": "https://williamonyeabor.bandcamp.com/album/great-lover",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "1983 album from William Onyeabor, the reclusive Nigerian synth-funk pioneer who self-released his records from Enugu in the late 70s and early 80s. Reissued on Luaka Bop.",
+    "img": "https://f4.bcbits.com/img/a0123140148_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=8a2aMTz0x64",
+    "section": "discover"
+  },
+  {
+    "id": "Hypertension",
+    "artist": "William Onyeabor",
+    "genres": [
+      "Electronic",
+      "Afro Funk"
+    ],
+    "url": "https://williamonyeabor.bandcamp.com/album/hypertension",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "1985 album from William Onyeabor, the reclusive Nigerian synth-funk pioneer who self-released his records from Enugu in the late 70s and early 80s. Reissued on Luaka Bop.",
+    "img": "https://f4.bcbits.com/img/a3922833020_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=LJoRclDl4L8",
+    "section": "discover"
+  },
+  {
+    "id": "Tomorrow",
+    "artist": "William Onyeabor",
+    "genres": [
+      "Electronic",
+      "Afro Funk"
+    ],
+    "url": "https://williamonyeabor.bandcamp.com/album/tomorrow",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "1979 album from William Onyeabor, the reclusive Nigerian synth-funk pioneer who self-released his records from Enugu in the late 70s and early 80s. Reissued on Luaka Bop.",
+    "img": "https://f4.bcbits.com/img/a1722948927_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=EYY9le4wLq8",
+    "section": "discover"
+  },
+  {
+    "id": "My Name Is Doug Hream Blunt",
+    "artist": "Doug Hream Blunt",
+    "genres": [
+      "Soul",
+      "Funk"
+    ],
+    "url": "https://doughreamblunt.bandcamp.com/album/my-name-is-doug-hream-blunt",
+    "country": "USA",
+    "city": "",
+    "blurb": "Compilation of Doug Hream Blunt, who took up guitar at 35 in an adult class in a San Francisco garage in the late 80s and self-released dreamy lo-fi soul. Released on Luaka Bop in 2016.",
+    "img": "https://f4.bcbits.com/img/a3146353804_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=NeQBClSyj5o&list=PLZN-Qk4Q9ORC-sJ_oN6SU0rRZkXvuQ8cr",
+    "section": "discover"
+  },
+  {
+    "id": "Coisa Boa",
+    "artist": "Moreno Veloso",
+    "genres": [
+      "Brazilian",
+      "Pop"
+    ],
+    "url": "https://morenoveloso.bandcamp.com/album/coisa-boa",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "Second solo album from Moreno Veloso, son of Caetano Veloso and member of the +2 trio. Released on Luaka Bop in 2014.",
+    "img": "https://f4.bcbits.com/img/a2849691224_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=s88yVRRzo80",
+    "section": "discover"
+  },
+  {
+    "id": "What?!",
+    "artist": "William Onyeabor",
+    "genres": [
+      "Electronic",
+      "Dance"
+    ],
+    "url": "https://williamonyeabor.bandcamp.com/album/what",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "Remix album of William Onyeabor songs by Hot Chip, Caribou, Daphni, Javelin and others. Released on Luaka Bop in 2014.",
+    "img": "https://f4.bcbits.com/img/a2397096791_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=59aXNmdUIPw",
+    "section": "discover"
+  },
+  {
+    "id": "Hi Beams",
+    "artist": "Javelin",
+    "genres": [
+      "Electronic",
+      "Dance"
+    ],
+    "url": "https://javelin-duo.bandcamp.com/album/hi-beams",
+    "country": "USA",
+    "city": "",
+    "blurb": "Album from Providence duo Javelin, cousins Tom Van Buskirk and George Langford, making sample-heavy, melodic party pop. Released on Luaka Bop in 2013.",
+    "img": "https://f4.bcbits.com/img/a2440915338_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=15DLNV1Fs4k&list=PLZN-Qk4Q9ORDJrKv_Di236aMslUVZYEYy",
+    "section": "discover"
+  },
+  {
+    "id": "Positive Force",
+    "artist": "Delicate Steve",
+    "genres": [
+      "Indie",
+      "Experimental"
+    ],
+    "url": "https://delicatesteve.bandcamp.com/album/positive-force-2",
+    "country": "USA",
+    "city": "",
+    "blurb": "Second album from New Jersey guitarist Delicate Steve (Steve Marion), joyful slide-guitar instrumentals written and played entirely by himself. Released on Luaka Bop in 2012.",
+    "img": "https://f4.bcbits.com/img/a1560832685_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=JgTqWHlpXPQ",
+    "section": "discover"
+  },
+  {
+    "id": "Natives (Bright Moments)",
+    "artist": "Bright Moments",
+    "genres": [
+      "Indie",
+      "Alternative"
+    ],
+    "url": "https://brightmoments.bandcamp.com/album/natives",
+    "country": "USA",
+    "city": "",
+    "blurb": "Debut album from Bright Moments, the project of multi-instrumentalist Kelly Pratt, recorded track by track in his New York apartment over the winter of 2010. Released on Luaka Bop in 2011.",
+    "img": "https://f4.bcbits.com/img/a2683839359_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=4QRWMNcy60U",
+    "section": "discover"
+  },
+  {
+    "id": "Wondervisions",
+    "artist": "Delicate Steve",
+    "genres": [
+      "Indie",
+      "Experimental"
+    ],
+    "url": "https://delicatesteve.bandcamp.com/album/wondervisions",
+    "country": "USA",
+    "city": "",
+    "blurb": "Debut album from New Jersey guitarist Delicate Steve, bright instrumental guitar pop. Released on Luaka Bop in 2011.",
+    "img": "https://f4.bcbits.com/img/a2185806103_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=QHTNpCjYP-U",
+    "section": "discover"
+  },
+  {
+    "id": "Estudando a Bossa (Nordeste Plaza)",
+    "artist": "Tom Zé",
+    "genres": [
+      "Bossa Nova",
+      "Experimental",
+      "Brazilian"
+    ],
+    "url": "https://tomze.bandcamp.com/album/estudando-a-bossa-nordeste-plaza",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "Tom Zé's deconstruction and celebration of bossa nova, the 1958 movement that turned Brazil into an exporter of art. Released on Luaka Bop in 2010.",
+    "img": "https://f4.bcbits.com/img/a3726324387_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=eblpc0474_A&list=PLwMi6HOWaTbXJLZdKAkTKuJ8N4BMqIdCp",
+    "section": "discover"
+  },
+  {
+    "id": "No Más",
+    "artist": "Javelin",
+    "genres": [
+      "Electronic",
+      "Dance"
+    ],
+    "url": "https://javelin-duo.bandcamp.com/album/no-m-s",
+    "country": "USA",
+    "city": "",
+    "blurb": "Debut album from Providence duo Javelin, genre-hopping sample pop born from warehouse parties. Released on Luaka Bop in 2010.",
+    "img": "https://f4.bcbits.com/img/a0390655255_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=-irwOqxd0pI&list=PLFG3q2BhmlAM4asKjYC3CUscgi_1V8k6p",
+    "section": "discover"
+  },
+  {
+    "id": "Seis Poemas",
+    "artist": "Susana Baca",
+    "genres": [
+      "World",
+      "Folk"
+    ],
+    "url": "https://susanabaca.bandcamp.com/album/seis-poemas",
+    "country": "Peru",
+    "city": "",
+    "blurb": "Six-song EP from Susana Baca, partly a tribute to Peruvian composer Chabuca Granda, who wrote 'Don't forget me, sing me' to Baca from her deathbed. Released on Luaka Bop in 2009.",
+    "img": "https://f4.bcbits.com/img/a2648667775_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=9K6DrtGxAN4",
+    "section": "discover"
+  },
+  {
+    "id": "A Society In Which No Tear Is Shed Is Inconceivably Mediocre",
+    "artist": "Yonlu",
+    "genres": [
+      "Indie",
+      "Folk",
+      "Bossa Nova"
+    ],
+    "url": "https://yonlu.bandcamp.com/album/a-society-in-which-no-tear-is-shed-is-inconceivably-mediocre",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "Bedroom recordings by Vinicius Gageiro Marques (Yonlu), a teenage songwriter from Porto Alegre who died in 2006 aged 16. Lo-fi bossa nova and indie folk. Released on Luaka Bop in 2009.",
+    "img": "https://f4.bcbits.com/img/a2083907657_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=iAmmBKGf-2U",
+    "section": "discover"
+  },
+  {
+    "id": "Futurismo",
+    "artist": "Kassin",
+    "genres": [
+      "Brazilian",
+      "Pop"
+    ],
+    "url": "https://kassin2.bandcamp.com/album/futurismo",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "Third album of the +2 trilogy, credited to Kassin +2 with Moreno Veloso and Domenico Lancellotti, drawing on Rio's MPB, tropicália and bossa nova. Released on Luaka Bop in 2007.",
+    "img": "https://f4.bcbits.com/img/a0562217262_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=fcm7j7_2Ej8",
+    "section": "discover"
+  },
+  {
+    "id": "Brazil Classics 7: What’s Happening In Pernambuco: New Sounds of the Brazilian Northeast",
+    "artist": "Various Artists",
+    "genres": [
+      "World",
+      "Brazilian",
+      "Electronic"
+    ],
+    "url": "https://luakabop.bandcamp.com/album/brazil-classics-7-what-s-happening-in-pernambuco-new-sounds-of-the-brazilian-northeast",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "Compilation of the manguebeat-era scene from Recife, Pernambuco, mixing northeastern rhythms with electronics and rock. Released on Luaka Bop in 2008.",
+    "img": "https://f4.bcbits.com/img/a0448839846_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=k9BH6bvciKM",
+    "section": "discover"
+  },
+  {
+    "id": "A Funny Little Cross To Bear",
+    "artist": "Jim White",
+    "genres": [
+      "Folk",
+      "Alternative"
+    ],
+    "url": "https://jimwhite.bandcamp.com/album/a-funny-little-cross-to-bear",
+    "country": "USA",
+    "city": "",
+    "blurb": "Mini-album of live roadside rarities from Jim White recorded at record stores, radio sessions and concert halls, including 'Jim 3:16'. Released on Luaka Bop in 2008.",
+    "img": "https://f4.bcbits.com/img/a2296678026_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=ih1KfEFSC6Q",
+    "section": "discover"
+  },
+  {
+    "id": "Live at the Barbican Theatre",
+    "artist": "Os Mutantes",
+    "genres": [
+      "Psychedelic Rock",
+      "Brazilian"
+    ],
+    "url": "https://osmutantes.bandcamp.com/album/live-at-the-barbican-theatre",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "Os Mutantes' 2006 reunion concert at London's Barbican, their first show together in over 30 years. Released on Luaka Bop in 2007.",
+    "img": "https://f4.bcbits.com/img/a0844560449_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=uMfBKWeyk5Q&list=PLy_UNlCOBegXZFRD4byWqgNc-a2BZ_P_W",
+    "section": "discover"
+  },
+  {
+    "id": "Afrodiaspora",
+    "artist": "Susana Baca",
+    "genres": [
+      "World",
+      "Folk"
+    ],
+    "url": "https://susanabaca.bandcamp.com/album/afrodiaspora",
+    "country": "Peru",
+    "city": "",
+    "blurb": "Susana Baca traces Afro-Peruvian music's connections across the African diaspora, from Chorrillos to the Caribbean and beyond. Released on Luaka Bop in 2011.",
+    "img": "https://f4.bcbits.com/img/a0224963715_10.jpg",
+    "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_no7jvkaHbD4pxh9Mmz-G_B69MNNu6-qEw",
+    "section": "discover"
+  },
+  {
+    "id": "Transnormal Skiperoo",
+    "artist": "Jim White",
+    "genres": [
+      "Folk",
+      "Alternative"
+    ],
+    "url": "https://jimwhite.bandcamp.com/album/transnormal-skiperoo",
+    "country": "USA",
+    "city": "",
+    "blurb": "Jim White's fourth album, named for the feeling of joy after years of feeling lost, produced with Joe Pernice and Ollabelle. Released on Luaka Bop in 2007.",
+    "img": "https://f4.bcbits.com/img/a4290507979_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=S2piahmVEUY&list=PLkcm15mLHzrzlcK8enCypEYR1192x-N0N",
+    "section": "discover"
+  },
+  {
+    "id": "Estudando o Pagode",
+    "artist": "Tom Zé",
+    "genres": [
+      "Experimental",
+      "Brazilian"
+    ],
+    "url": "https://tomze.bandcamp.com/album/estudando-o-pagode",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "Tom Zé's operetta on the oppression of women, built around the pagode samba style. Released on Luaka Bop in 2005.",
+    "img": "https://f4.bcbits.com/img/a3964308766_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=Nf0BMVwTLlU",
+    "section": "discover"
+  },
+  {
+    "id": "Sincerely Hot",
+    "artist": "Domenico Lancellotti",
+    "genres": [
+      "Brazilian",
+      "Pop"
+    ],
+    "url": "https://domenico2.bandcamp.com/album/sincerely-hot",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "Second album of the +2 trilogy, credited to Domenico +2 with Kassin and Moreno Veloso. Playful Rio pop with electronics. Released on Luaka Bop in 2003.",
+    "img": "https://f4.bcbits.com/img/a0178362317_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=FprlZs7eABc",
+    "section": "discover"
+  },
+  {
+    "id": "Ancestry in Progress",
+    "artist": "Zap Mama",
+    "genres": [
+      "Soul",
+      "Hip Hop",
+      "World"
+    ],
+    "url": "https://zapmama.bandcamp.com/album/ancestry-in-progress",
+    "country": "Belgium",
+    "city": "",
+    "blurb": "Zap Mama's 2004 album, with Marie Daulne collaborating with Erykah Badu, Common, Talib Kweli and Questlove. Released on Luaka Bop.",
+    "img": "https://f4.bcbits.com/img/a3490955375_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=S0zjgRj55IM&list=PL70L1lnC5p8yZNlNO-ywqmFQsjySIzVKX",
+    "section": "discover"
+  },
+  {
+    "id": "World Psychedelic Classics, Vol. 3: Love’s A Real Thing: The Funky Fuzzy Sounds of West Africa",
+    "artist": "Various Artists",
+    "genres": [
+      "Afro Funk",
+      "Funk",
+      "World"
+    ],
+    "url": "https://luakabop.bandcamp.com/album/world-psychedelic-classics-vol-3-love-s-a-real-thing-the-funky-fuzzy-sounds-of-west-africa",
+    "country": "Various",
+    "city": "",
+    "blurb": "Compilation of early-70s West African psychedelic funk from Nigeria, Ghana, Benin and beyond, fuzz guitars and heavy grooves. Released on Luaka Bop in 2005.",
+    "img": "https://f4.bcbits.com/img/a3677938702_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=ZwGxdAiZj78",
+    "section": "discover"
+  },
+  {
+    "id": "Cuisine Non-Stop: Introduction to The French Nouvelle Generation",
+    "artist": "Various Artists",
+    "genres": [
+      "Pop",
+      "Folk",
+      "World"
+    ],
+    "url": "https://luakabop.bandcamp.com/album/cuisine-non-stop-introduction-to-the-french-nouvelle-generation",
+    "country": "France",
+    "city": "",
+    "blurb": "Compilation of France's nouvelle chanson scene, including Lo'Jo, Les Têtes Raides and Mathieu Boogaerts, mixing chanson with world music. Released on Luaka Bop in 2002.",
+    "img": "https://f4.bcbits.com/img/a0018085886_10.jpg",
+    "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_lxr9UMnfx6hXU-c2vOlIrNhyjwCFHAqlk",
+    "section": "discover"
+  },
+  {
+    "id": "En Yay Sah",
+    "artist": "Janka Nabay and The Bubu Gang",
+    "genres": [
+      "World",
+      "Electronic"
+    ],
+    "url": "https://jankanabay.bandcamp.com/album/en-yay-sah",
+    "country": "Sierra Leone",
+    "city": "",
+    "blurb": "Debut album from Janka Nabay and the Bubu Gang, Brooklyn musicians backing the Sierra Leonean singer's electrified bubu music. Released on Luaka Bop in 2012.",
+    "img": "https://f4.bcbits.com/img/a0626191494_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=SwYqdlMLgqM&list=PL60D2652CD8C76D5D",
+    "section": "discover"
+  },
+  {
+    "id": "Music Typewriter",
+    "artist": "Moreno Veloso",
+    "genres": [
+      "Brazilian",
+      "Pop"
+    ],
+    "url": "https://morenoveloso.bandcamp.com/album/music-typewriter",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "First album of the +2 trilogy, credited to Moreno Veloso +2 with Kassin and Domenico Lancellotti. Moreno is the son of Caetano Veloso. Released on Luaka Bop in 2001.",
+    "img": "https://f4.bcbits.com/img/a1593015277_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=Zeb23k00XBk",
+    "section": "discover"
+  },
+  {
+    "id": "Push It To The Max EP",
+    "artist": "Zap Mama",
+    "genres": [
+      "Soul",
+      "Hip Hop",
+      "World"
+    ],
+    "url": "https://zapmama.bandcamp.com/album/push-it-to-the-max-ep",
+    "country": "Belgium",
+    "city": "",
+    "blurb": "EP from Zap Mama, Marie Daulne's Belgian-Congolese vocal group. Released on Luaka Bop in 2001.",
+    "img": "https://f4.bcbits.com/img/a0798122084_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=-D2Tl5kOQz0",
+    "section": "discover"
+  },
+  {
+    "id": "No Such Place",
+    "artist": "Jim White",
+    "genres": [
+      "Folk",
+      "Alternative"
+    ],
+    "url": "https://jimwhite.bandcamp.com/album/no-such-place",
+    "country": "USA",
+    "city": "",
+    "blurb": "Jim White's second album, Southern gothic storytelling with producers including Morcheeba and Q-Burns Abstract Message. Released on Luaka Bop in 2001.",
+    "img": "https://f4.bcbits.com/img/a3060325543_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=20Qm9c9yhuA&list=PLzgH5jyGqgshbq-7K7uzUmu14gzs1w8LQ",
+    "section": "discover"
+  },
+  {
+    "id": "Cybertropic Chilango Power",
+    "artist": "Los De Abajo",
+    "genres": [
+      "Reggae",
+      "World"
+    ],
+    "url": "https://losdeabajo.bandcamp.com/album/cybertropic-chilango-power",
+    "country": "Mexico",
+    "city": "",
+    "blurb": "Second album from Mexico City's Los De Abajo, mixing ska, cumbia, son jarocho and punk. Released on Luaka Bop in 2002.",
+    "img": "https://f4.bcbits.com/img/a2408448046_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=7hkyezdmMWU",
+    "section": "discover"
+  },
+  {
+    "id": "Si*Sé",
+    "artist": "Si*Sé",
+    "genres": [
+      "Trip Hop",
+      "Electronic"
+    ],
+    "url": "https://si-se.bandcamp.com/album/si-s",
+    "country": "USA",
+    "city": "",
+    "blurb": "Debut album from New York duo Si*Sé, mixing hip-hop beats, Latin rhythms and downtempo electronica with Carol C's vocals. Released on Luaka Bop in 2001.",
+    "img": "https://f4.bcbits.com/img/a0196122295_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=CZTKPigFcjo",
+    "section": "discover"
+  },
+  {
+    "id": "Eco de Sombras",
+    "artist": "Susana Baca",
+    "genres": [
+      "World",
+      "Folk"
+    ],
+    "url": "https://susanabaca.bandcamp.com/album/eco-de-sombras",
+    "country": "Peru",
+    "city": "",
+    "blurb": "Susana Baca's 2000 album, produced by Craig Street, blending Afro-Peruvian rhythms with contributions from Marc Ribot and John Medeski. Released on Luaka Bop.",
+    "img": "https://f4.bcbits.com/img/a0976028294_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=_L5-HaeiNkQ",
+    "section": "discover"
+  },
+  {
+    "id": "A Ma Zone",
+    "artist": "Zap Mama",
+    "genres": [
+      "Soul",
+      "World"
+    ],
+    "url": "https://zapmama.bandcamp.com/album/a-ma-zone",
+    "country": "Belgium",
+    "city": "",
+    "blurb": "Zap Mama's 1999 album, Marie Daulne's group moving further into soul and hip hop. Released on Luaka Bop.",
+    "img": "https://f4.bcbits.com/img/a1348236759_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=Uo9EXwjYMHU&list=PL2f8izaadptKq6Rx-c1T5UUwc2dnY61NM",
+    "section": "discover"
+  },
+  {
+    "id": "Sabsylma",
+    "artist": "Zap Mama",
+    "genres": [
+      "World",
+      "Folk"
+    ],
+    "url": "https://zapmama.bandcamp.com/album/sabsylma",
+    "country": "Belgium",
+    "city": "",
+    "blurb": "Zap Mama's 1994 second album, the Belgian-Congolese female vocal group's polyphonic a cappella drawing on African and European traditions. Released on Luaka Bop.",
+    "img": "https://f4.bcbits.com/img/a2227091076_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=RKcexlMeL88&list=PLZN-Qk4Q9ORB5qMPP0NpFuZIfTCW5I-0_",
+    "section": "discover"
+  },
+  {
+    "id": "Postmodern Platos",
+    "artist": "Tom Zé",
+    "genres": [
+      "Experimental",
+      "Electronic"
+    ],
+    "url": "https://tomze.bandcamp.com/album/postmodern-platos",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "Remixes of Tom Zé's Fabrication Defect by artists including Tortoise's John McEntire, Sean Lennon and Amon Tobin, plus the outtake 'Canudos'. Released on Luaka Bop in 1999.",
+    "img": "https://f4.bcbits.com/img/a1459600841_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=SK5YirMKlxs",
+    "section": "discover"
+  },
+  {
+    "id": "Arepa 3000",
+    "artist": "Los Amigos Invisibles",
+    "genres": [
+      "Funk",
+      "Disco",
+      "Latin"
+    ],
+    "url": "https://losamigosinvisibles.bandcamp.com/album/arepa-3000",
+    "country": "Venezuela",
+    "city": "",
+    "blurb": "Second Luaka Bop album from Caracas disco-funk band Los Amigos Invisibles, mixing acid jazz, bossa nova and house. Released in 2000.",
+    "img": "https://f4.bcbits.com/img/a3488675911_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=ghNmiXV1YN4",
+    "section": "discover"
+  },
+  {
+    "id": "In Spite of Wishing and Wanting",
+    "artist": "David Byrne",
+    "genres": [
+      "Experimental",
+      "Art Rock"
+    ],
+    "url": "https://davidbyrne.bandcamp.com/album/in-spite-of-wishing-and-wanting",
+    "country": "USA",
+    "city": "",
+    "blurb": "David Byrne's score for the Ultima Vez dance company production by Wim Vandekeybus, based on stories by Julio Cortázar. Released on Luaka Bop in 1999.",
+    "img": "https://f4.bcbits.com/img/a3802671310_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=48LHWjFHkQM&list=PLoEuf45MxyXAs7oKBgGXDaYGVHBZZDihl",
+    "section": "discover"
+  },
+  {
+    "id": "Beleza Tropical 2: Novo! Mais! Melhor! - Brazil Classics 6",
+    "artist": "Various Artists",
+    "genres": [
+      "World",
+      "Brazilian"
+    ],
+    "url": "https://luakabop.bandcamp.com/album/beleza-tropical-2-novo-mais-melhor-brazil-classics-6",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "Sequel to Beleza Tropical, compiled by David Byrne, covering 90s Brazilian pop from Carlinhos Brown, Chico Science, Marisa Monte and others. Released on Luaka Bop in 1998.",
+    "img": "https://f4.bcbits.com/img/a3481100781_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=0rCTiUQDhfU&list=PLZN-Qk4Q9ORDIajKaoY0jbAO5pHbIkwzG",
+    "section": "discover"
+  },
+  {
+    "id": "Com Defeito de Fabricação: Fabrication Defect",
+    "artist": "Tom Zé",
+    "genres": [
+      "Experimental",
+      "Brazilian"
+    ],
+    "url": "https://tomze.bandcamp.com/album/com-defeito-de-fabrica-o-fabrication-defect",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "Tom Zé's 1998 album, a concept record about 'defective' Third World workers using sampling and found sounds. Released on Luaka Bop.",
+    "img": "https://f4.bcbits.com/img/a3860853284_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=vcUTawAaXn8&list=PL45_E-kwKJNgNw5GGORYcS-EQePIDSVOL",
+    "section": "discover"
+  },
+  {
+    "id": "Soak",
+    "artist": "Mimi Goese",
+    "genres": [
+      "Alternative",
+      "Ambient"
+    ],
+    "url": "https://mimigoese.bandcamp.com/album/soak",
+    "country": "USA",
+    "city": "",
+    "blurb": "Solo album from Mimi Goese, singer of 80s minimalist group Hugo Largo, who also sang on Moby's Everything is Wrong. Released on Luaka Bop in 1998.",
+    "img": "https://f4.bcbits.com/img/a3294819881_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=NSUrqDzel-I",
+    "section": "discover"
+  },
+  {
+    "id": "The New Sound of the Venezuelan Gozadera",
+    "artist": "Los Amigos Invisibles",
+    "genres": [
+      "Funk",
+      "Disco",
+      "Latin"
+    ],
+    "url": "https://losamigosinvisibles.bandcamp.com/album/the-new-sound-of-the-venezuelan-gozadera",
+    "country": "Venezuela",
+    "city": "",
+    "blurb": "US debut from Caracas band Los Amigos Invisibles, a party record of funk, house, acid jazz and bossa nova. Released on Luaka Bop in 1998.",
+    "img": "https://f4.bcbits.com/img/a1489734682_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=X2yfh9xynzM",
+    "section": "discover"
+  },
+  {
+    "id": "Susana Baca",
+    "artist": "Susana Baca",
+    "genres": [
+      "World",
+      "Folk"
+    ],
+    "url": "https://susanabaca.bandcamp.com/album/susana-baca",
+    "country": "Peru",
+    "city": "",
+    "blurb": "Self-titled 1997 album from Afro-Peruvian singer Susana Baca, her international debut. Released on Luaka Bop.",
+    "img": "https://f4.bcbits.com/img/a4003778634_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=x3iNZAv6o38",
+    "section": "discover"
+  },
+  {
+    "id": "7",
+    "artist": "Zap Mama",
+    "genres": [
+      "Soul",
+      "Hip Hop",
+      "World"
+    ],
+    "url": "https://zapmama.bandcamp.com/album/7",
+    "country": "Belgium",
+    "city": "",
+    "blurb": "Zap Mama's 1997 album, Marie Daulne's move from a cappella to a collective mixing hip hop, jungle, reggae and pygmy chants. Released on Luaka Bop.",
+    "img": "https://f4.bcbits.com/img/a2884088827_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=Z4JlhP6ivIw&list=PL2f8izaadptJSVH8cYQxhQFML10yTVUb9",
+    "section": "discover"
+  },
+  {
+    "id": "Pretaluz",
+    "artist": "Waldemar Bastos",
+    "genres": [
+      "World",
+      "Folk"
+    ],
+    "url": "https://waldemarbastos.bandcamp.com/album/pretaluz",
+    "country": "Angola",
+    "city": "",
+    "blurb": "International debut from Angolan singer Waldemar Bastos, recorded in New York with Angolan and Portuguese musicians and produced by Arto Lindsay. Released on Luaka Bop in 1997.",
+    "img": "https://f4.bcbits.com/img/a1756345970_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=Je-a5ssM1Dg",
+    "section": "discover"
+  },
+  {
+    "id": "Sacred Cow",
+    "artist": "Geggy Tah",
+    "genres": [
+      "Alternative",
+      "Funk"
+    ],
+    "url": "https://geggytah.bandcamp.com/album/sacred-cow",
+    "country": "USA",
+    "city": "",
+    "blurb": "Second album from Pomona, California trio Geggy Tah (Tommy Jordan, Greg Kurstin, Daren Hahn), including the hit 'Whoever You Are'. Released on Luaka Bop in 1996.",
+    "img": "https://f4.bcbits.com/img/a2360914043_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=1jSOQBcz9hc",
+    "section": "discover"
+  },
+  {
+    "id": "The Return of El Santo",
+    "artist": "King Changó",
+    "genres": [
+      "Reggae",
+      "Latin"
+    ],
+    "url": "https://kingchango.bandcamp.com/album/the-return-of-el-santo",
+    "country": "Venezuela",
+    "city": "",
+    "blurb": "Second album from New York Latin ska band King Changó, led by Venezuelan singer Andrew Blanco, a tribute to Mexican wrestler El Santo. Released on Luaka Bop in 2000.",
+    "img": "https://f4.bcbits.com/img/a1572716472_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=DzoO2rbI8wo&list=PLZN-Qk4Q9ORD_YsbsHn2OPIdA7bKPGuAY",
+    "section": "discover"
+  },
+  {
+    "id": "Afro-Peruvian Classics: The Soul of Black Peru",
+    "artist": "Various Artists",
+    "genres": [
+      "World",
+      "Folk"
+    ],
+    "url": "https://luakabop.bandcamp.com/album/afro-peruvian-classics-the-soul-of-black-peru",
+    "country": "Peru",
+    "city": "",
+    "blurb": "Compilation of music from Peru's Black coastal communities, including Susana Baca's 'Maria Landó', which introduced her to the world. Released on Luaka Bop in 1995.",
+    "img": "https://f4.bcbits.com/img/a2469163345_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=DMhfaUYpCoQ",
+    "section": "discover"
+  },
+  {
+    "id": "Blue In The Face - Music From The Miramax Motion Picture",
+    "artist": "Various Artists",
+    "genres": [
+      "Soundtrack",
+      "World"
+    ],
+    "url": "https://luakabop.bandcamp.com/album/blue-in-the-face-music-from-the-miramax-motion-picture",
+    "country": "USA",
+    "city": "",
+    "blurb": "Soundtrack to Wayne Wang and Paul Auster's 1995 film Blue in the Face, with music from David Byrne, Lou Reed and others. Released on Luaka Bop.",
+    "img": "https://f4.bcbits.com/img/a3016811132_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=x2Hf66MRwpU&list=PLPtPYPLqLizanir6tahzKPXf1ky8M8TeG",
+    "section": "discover"
+  },
+  {
+    "id": "King Changó",
+    "artist": "King Changó",
+    "genres": [
+      "Reggae",
+      "Latin"
+    ],
+    "url": "https://kingchango.bandcamp.com/album/king-chang",
+    "country": "Venezuela",
+    "city": "",
+    "blurb": "Debut from New York Latin ska band King Changó, mixing dancehall, dub, ska and Latin rhythms. Released on Luaka Bop in 1996.",
+    "img": "https://f4.bcbits.com/img/a1002059241_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=0uXNdHGqk7M",
+    "section": "discover"
+  },
+  {
+    "id": "New Clear Child",
+    "artist": "A.R. Kane",
+    "genres": [
+      "Dream Pop",
+      "Experimental"
+    ],
+    "url": "https://a-r-kane.bandcamp.com/album/new-clear-child",
+    "country": "UK",
+    "city": "",
+    "blurb": "Final album from A.R. Kane, the London duo who coined 'dream pop' and pioneered a mix of noise, dub and soul. Released on Luaka Bop in 1994.",
+    "img": "https://f4.bcbits.com/img/a0033455864_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=euUyUQpa8To",
+    "section": "discover"
+  },
+  {
+    "id": "Adventures in Afropea 1: Zap Mama",
+    "artist": "Zap Mama",
+    "genres": [
+      "World",
+      "Folk"
+    ],
+    "url": "https://zapmama.bandcamp.com/album/adventures-in-afropea",
+    "country": "Belgium",
+    "city": "",
+    "blurb": "Zap Mama's debut, the Belgian-Congolese female a cappella group led by Marie Daulne singing polyphony drawn from African and European traditions. Released on Luaka Bop in 1993.",
+    "img": "https://f4.bcbits.com/img/a0640617104_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=G2fqmJbUMsk&list=PL70L1lnC5p8yS4dqqedwm6arDhSYdqNiW",
+    "section": "discover"
+  },
+  {
+    "id": "Cuba Classics 3: Diablo Al Infierno",
+    "artist": "Various Artists",
+    "genres": [
+      "World",
+      "Latin"
+    ],
+    "url": "https://luakabop.bandcamp.com/album/cuba-classics-3-diablo-al-infierno",
+    "country": "Cuba",
+    "city": "",
+    "blurb": "Compilation of early-90s Cuban dance music, a new generation's take on son and salsa. Released on Luaka Bop in 1992.",
+    "img": "https://f4.bcbits.com/img/a4278238913_10.jpg",
+    "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_m-RmmFXdI1ecHpLTMm2T_Lj4lJ-RMNShg",
+    "section": "discover"
+  },
+  {
+    "id": "Americana",
+    "artist": "A.R. Kane",
+    "genres": [
+      "Dream Pop",
+      "Experimental"
+    ],
+    "url": "https://a-r-kane.bandcamp.com/album/americana",
+    "country": "UK",
+    "city": "",
+    "blurb": "US compilation of A.R. Kane, Alex Ayuli and Rudy Tambala's pioneering dream pop and noise. Released on Luaka Bop in 1992.",
+    "img": "https://f4.bcbits.com/img/a1817136229_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=Yz0g7sRaJUY",
+    "section": "discover"
+  },
+  {
+    "id": "To Scratch That Itch",
+    "artist": "Various Artists",
+    "genres": [
+      "World"
+    ],
+    "url": "https://luakabop.bandcamp.com/album/to-scratch-that-itch",
+    "country": "Various",
+    "city": "",
+    "blurb": "Luaka Bop's first label sampler, collecting the most popular tracks from its first two years. Released in 1991.",
+    "img": "https://f4.bcbits.com/img/a0481323660_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=AQfRTuKl5mw&list=PL9KZ1X7EqSOV2GTIX9uigd7qf5sC-3xZY",
+    "section": "discover"
+  },
+  {
+    "id": "Cuba Classics 1: The Best of Silvio Rodríguez",
+    "artist": "Silvio Rodríguez",
+    "genres": [
+      "Folk",
+      "Latin"
+    ],
+    "url": "https://silviorodriguez.bandcamp.com/album/cuba-classics-1-the-best-of-silvio-rodr-guez",
+    "country": "Cuba",
+    "city": "",
+    "blurb": "Best-of from Silvio Rodríguez, the Cuban singer-songwriter at the heart of the nueva trova movement. Released on Luaka Bop in 1991.",
+    "img": "https://f4.bcbits.com/img/a1678830048_10.jpg",
+    "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_kMrDpL7lIHIw1xiPZsBXxBQ_08RLUGt9g",
+    "section": "discover"
+  },
+  {
+    "id": "Brazil Classics 3: Forró etc.: Music of the Brazilian Northeast",
+    "artist": "Various Artists",
+    "genres": [
+      "World",
+      "Brazilian"
+    ],
+    "url": "https://luakabop.bandcamp.com/album/brazil-classics-3-forr-etc-music-of-the-brazilian-northeast",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "Compilation of forró and other accordion-led dance music from northeastern Brazil, which David Byrne compared to zydeco. Released on Luaka Bop in 1991.",
+    "img": "https://f4.bcbits.com/img/a3292149321_10.jpg",
+    "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_m9U-Tr16DYWCPx6CW0z5bo2hDz01MTp8k",
+    "section": "discover"
+  },
+  {
+    "id": "Brazil Classics 2: O Samba",
+    "artist": "Various Artists",
+    "genres": [
+      "World",
+      "Brazilian"
+    ],
+    "url": "https://luakabop.bandcamp.com/album/brazil-classics-2-o-samba",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "David Byrne's compilation of samba from Martinho da Vila, Clara Nunes, Beth Carvalho and others. Released on Luaka Bop in 1989.",
+    "img": "https://f4.bcbits.com/img/a2965633135_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=3BG1ykYQghU&list=OLAK5uy_l-Bm56SGkOIXY9DjPvmpMYOOafeyCeJLA",
+    "section": "discover"
+  },
+  {
+    "id": "The Venezuelan Zinga Son Vol. 1",
+    "artist": "Los Amigos Invisibles",
+    "genres": [
+      "Funk",
+      "Disco",
+      "Latin"
+    ],
+    "url": "https://losamigosinvisibles.bandcamp.com/album/the-venezuelan-zinga-son-vol-1",
+    "country": "Venezuela",
+    "city": "",
+    "blurb": "Third album from Caracas disco-funk band Los Amigos Invisibles, recorded after remixing Beastie Boys and Basement Jaxx. Originally released on Luaka Bop in 2003.",
+    "img": "https://f4.bcbits.com/img/a2574314834_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=cwBiBzCZBEY&list=PLZN-Qk4Q9ORBmakmp0TjPYcjY8K8PaCUN",
+    "section": "discover"
+  },
+  {
+    "id": "SUGUNGGA",
+    "artist": "LEENALCHI",
+    "genres": [
+      "Pop",
+      "Psychedelic",
+      "Indie"
+    ],
+    "url": "https://leenalchi.bandcamp.com/album/sugungga-2",
+    "country": "South Korea",
+    "city": "",
+    "blurb": "Debut album from Seoul band LEENALCHI, retelling the traditional pansori story Sugungga as psychedelic pop over bass-heavy grooves.",
+    "img": "https://f4.bcbits.com/img/a4253012945_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=VYciw3PmKm4",
+    "section": "discover"
+  },
+  {
+    "id": "HUG",
+    "artist": "HUG",
+    "genres": [
+      "Ambient",
+      "New Age"
+    ],
+    "url": "https://hughughug.bandcamp.com/album/hug",
+    "country": "USA",
+    "city": "",
+    "blurb": "Collaborative project from guitarists Gyan Riley, Devendra Banhart and Noah Georgeson. Gentle instrumental ambient music. Released on Luaka Bop in 2026.",
+    "img": "https://f4.bcbits.com/img/a1529682104_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=fFxfh7lTS4I",
+    "section": "discover"
+  },
+  {
+    "id": "I Was Living In a World of Sin (Mixes - Part I)",
+    "artist": "Annie & the Caldwells",
+    "genres": [
+      "Disco",
+      "House",
+      "Gospel"
+    ],
+    "url": "https://annieandthecaldwells.bandcamp.com/album/i-was-living-in-a-world-of-sin-mixes-part-i",
+    "country": "USA",
+    "city": "",
+    "blurb": "Remixes of Annie & the Caldwells' gospel disco by Nicky Siano, Justin Strauss, Kornél Kovács and the musclecars. Released on Luaka Bop.",
+    "img": "https://f4.bcbits.com/img/a0397018593_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=DATemNjEwW8&list=PLZN-Qk4Q9ORDOps9uu4XxUV3fFcwGyOYM",
+    "section": "discover"
+  },
+  {
+    "id": "Vol. 1-5 (1978-1984) Box Set",
+    "artist": "Alhaji Waziri Oshomah",
+    "genres": [
+      "World",
+      "Highlife"
+    ],
+    "url": "https://alhajiwazirioshomah.bandcamp.com/album/vol-1-5-1978-1984-box-set",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "Five-LP box set of Alhaji Waziri Oshomah's complete Volume Series (1978-1984), the Nigerian Muslim highlife star known as the Oyoyo King. Released on Luaka Bop in 2025.",
+    "img": "https://f4.bcbits.com/img/a2663531992_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=-H--B-kRLvU&list=PLZN-Qk4Q9ORBuChi_Ua76e2IyKA4TWKwb",
+    "section": "discover"
+  },
+  {
+    "id": "Two Wrongs Don’t Make a Right (Mixes – Part II)",
+    "artist": "Annie & the Caldwells",
+    "genres": [
+      "Disco",
+      "House",
+      "Gospel"
+    ],
+    "url": "https://annieandthecaldwells.bandcamp.com/album/two-wrongs-don-t-make-a-right-mixes-part-ii",
+    "country": "USA",
+    "city": "",
+    "blurb": "Second remix EP of Annie & the Caldwells, with Ryan Hope, Rahaan and Alexis Taylor. Released on Luaka Bop in 2025.",
+    "img": "https://f4.bcbits.com/img/a3063010025_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=DATemNjEwW8&list=PLZN-Qk4Q9ORDOps9uu4XxUV3fFcwGyOYM",
+    "section": "discover"
+  },
+  {
+    "id": "Can’t Lose My (Soul)",
+    "artist": "Annie & the Caldwells",
+    "genres": [
+      "Soul",
+      "Gospel",
+      "Disco"
+    ],
+    "url": "https://annieandthecaldwells.bandcamp.com/album/can-t-lose-my-soul",
+    "country": "USA",
+    "city": "",
+    "blurb": "Album from Annie & the Caldwells, a family gospel disco-soul band from West Point, Mississippi, led by Annie Caldwell and her husband Willie. Released on Luaka Bop in 2025.",
+    "img": "https://f4.bcbits.com/img/a0637307621_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=i5e8u5Bl3vw&list=PLSmSXad10jfRaTKCSX8v4IoYsX4Gz4b_s",
+    "section": "discover"
+  },
+  {
+    "id": "Kosmos",
+    "artist": "Bremer/McCoy",
+    "genres": [
+      "Jazz",
+      "Ambient"
+    ],
+    "url": "https://bremer-mccoy.bandcamp.com/album/kosmos",
+    "country": "Denmark",
+    "city": "",
+    "blurb": "Album from Danish duo Bremer/McCoy, airy instrumental jazz built around bass and keys. Released on Luaka Bop in 2024.",
+    "img": "https://f4.bcbits.com/img/a3928607586_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=zcGWnUhePAE&list=PLZN-Qk4Q9ORDs5MEkQJ9HzQVjxdDfV9-N",
+    "section": "discover"
+  },
+  {
+    "id": "Searching",
+    "artist": "Staples Jr. Singers",
+    "genres": [
+      "Soul",
+      "Gospel"
+    ],
+    "url": "https://staplesjrsingers.bandcamp.com/album/searching",
+    "country": "USA",
+    "city": "",
+    "blurb": "Second album from Mississippi soul-gospel family band the Staples Jr. Singers, made nearly 50 years after their debut after its rediscovery. Released on Luaka Bop in 2024.",
+    "img": "https://f4.bcbits.com/img/a0486269205_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=0pTgB6aUrMs",
+    "section": "discover"
+  },
+  {
+    "id": "World Psychedelic Classics 1: Everything is Possible: The Best of Os Mutantes",
+    "artist": "Os Mutantes",
+    "genres": [
+      "Psychedelic Rock",
+      "Brazilian"
+    ],
+    "url": "https://osmutantes.bandcamp.com/album/world-psychedelic-classics-1-everything-is-possible-the-best-of-os-mutantes",
+    "country": "Brazil",
+    "city": "",
+    "blurb": "Compilation of Os Mutantes, the most outrageous band of late-60s Brazilian tropicália. It introduced them to a generation of listeners outside Brazil. Released on Luaka Bop in 1999.",
+    "img": "https://f4.bcbits.com/img/a1699171970_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=lQyH4QSLNdg&list=PLWxPVns6i8diJwTwFoQJC8SEM2qyoOd43",
+    "section": "discover"
+  },
+  {
+    "id": "Drill a Hole in That Substrate and Tell Me What You See (Deluxe 20th Anniversary Edition)",
+    "artist": "Jim White",
+    "genres": [
+      "Folk",
+      "Alternative"
+    ],
+    "url": "https://jimwhite.bandcamp.com/album/drill-a-hole-in-that-substrate-and-tell-me-what-you-see-deluxe-20th-anniversary-edition",
+    "country": "USA",
+    "city": "",
+    "blurb": "Reissue of Jim White's 2004 album, a cult classic of Southern storytelling featuring Aimee Mann, Joe Henry and Norah Jones, with three extra tracks.",
+    "img": "https://f4.bcbits.com/img/a1543664136_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=A2-kjIUq0qg&list=PLZN-Qk4Q9ORA4yxSSWIOTit52KAmF_hgo",
+    "section": "discover"
+  },
+  {
+    "id": "Pharoah",
+    "artist": "Pharoah Sanders",
+    "genres": [
+      "Jazz"
+    ],
+    "url": "https://pharoahsanders.bandcamp.com/album/pharoah",
+    "country": "USA",
+    "city": "",
+    "blurb": "Pharoah Sanders' 1977 album for India Navigation, centred on the 20-minute 'Harvest Time'. Reissued on Luaka Bop as a deluxe box set in 2023.",
+    "img": "https://f4.bcbits.com/img/a3254889911_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=-NeW4AH3nwM",
+    "section": "discover"
+  },
+  {
+    "id": "Manbarani",
+    "artist": "Natik Awayez",
+    "genres": [
+      "World",
+      "Arabic",
+      "Folk"
+    ],
+    "url": "https://sublime-frequencies.bandcamp.com/album/natik-awayez-manbarani",
+    "country": "Iraq",
+    "city": "",
+    "blurb": "Contemporary Arabic folk from Iraqi oud player and singer Natik Awayez, with percussion arrangements by Khaled Yassine and oud, violin and buzuq. Released on Sublime Frequencies in 2025.",
+    "img": "https://f4.bcbits.com/img/a1196123433_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=Ea7N6Vlru1c",
+    "section": "discover"
+  },
+  {
+    "id": "Tsapiky! Modern Music From Southwest Madagascar",
+    "artist": "Various Artists",
+    "genres": [
+      "World",
+      "Highlife"
+    ],
+    "url": "https://sublime-frequencies.bandcamp.com/album/tsapiky-modern-music-from-southwest-madagascar",
+    "country": "Madagascar",
+    "city": "",
+    "blurb": "Tsapiky from southwest Madagascar: wild vocals, distorted electric guitars and fast beats, played at funerals, weddings and other ceremonies around Toliara. Released on Sublime Frequencies.",
+    "img": "https://f4.bcbits.com/img/a1339813808_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=N9n3e6Mr7rE",
     "section": "discover"
   }
 ]
