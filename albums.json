@@ -6897,5 +6897,251 @@
     "img": "https://f4.bcbits.com/img/a1339813808_10.jpg",
     "youtube": "https://www.youtube.com/watch?v=N9n3e6Mr7rE",
     "section": "discover"
+  },
+  {
+    "id": "Con.Trust",
+    "artist": "Earthfeather",
+    "genres": [
+      "Funk",
+      "World",
+      "Rock"
+    ],
+    "url": "https://earthfeather.bandcamp.com/album/con-trust",
+    "country": "New Zealand",
+    "city": "",
+    "blurb": "Debut EP from Māori artist Earthfeather, produced by Troy Kingi and Warren Maxwell. A tribute to healing and trusting in who we are becoming. Released in 2019.",
+    "img": "https://f4.bcbits.com/img/a1801852826_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=EhIx-DZGPMQ",
+    "section": "discover"
+  },
+  {
+    "id": "KĀWAI",
+    "artist": "AJA",
+    "genres": [
+      "Soul",
+      "R&B",
+      "World"
+    ],
+    "url": "https://ajaisfree.bandcamp.com/album/k-wai-album",
+    "country": "New Zealand",
+    "city": "",
+    "blurb": "Debut album from Porirua singer AJA, Māori soul and R&B moving between English and te reo Māori. Released in 2024.",
+    "img": "https://f4.bcbits.com/img/a2461257392_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=lZ4FXl0sJUM",
+    "section": "discover"
+  },
+  {
+    "id": "The Fruits of Idleness, Disgrace, and Death",
+    "artist": "Craven",
+    "genres": [
+      "Folk",
+      "Experimental"
+    ],
+    "url": "https://craven.bandcamp.com/album/the-fruits-of-idleness-disgrace-and-death",
+    "country": "UK",
+    "city": "",
+    "blurb": "Bristol folk group Craven take on traditional ballads like Willie of Winsbury, The White Cockade and Rufford Park Poachers, with drone and post-trad arrangements. Released in 2026.",
+    "img": "https://f4.bcbits.com/img/a4052312120_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=dACmflJSCzU",
+    "section": "discover"
+  },
+  {
+    "id": "Bricklane Tapes II",
+    "artist": "Sam Grassie",
+    "genres": [
+      "Folk",
+      "Acoustic",
+      "Traditional"
+    ],
+    "url": "https://samgrassie.bandcamp.com/album/bricklane-tapes-ii",
+    "country": "UK",
+    "city": "",
+    "blurb": "Fingerstyle guitarist Sam Grassie's second set of recordings made on Brick Lane onto a Revox B77 reel-to-reel. Originals alongside songs by Jackson C. Frank, Bert Jansch and Anne Briggs. Released in 2026.",
+    "img": "https://f4.bcbits.com/img/a3816906919_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=CnAQR7ipDkM",
+    "section": "discover"
+  },
+  {
+    "id": "The Shovel Dance",
+    "artist": "Shovel Dance Collective",
+    "genres": [
+      "Folk",
+      "Experimental",
+      "Traditional"
+    ],
+    "url": "https://shoveldancecollective.bandcamp.com/album/the-shovel-dance",
+    "country": "UK",
+    "city": "",
+    "blurb": "Second album from London's nine-piece Shovel Dance Collective, bringing studio detail to their drone-laden takes on English, Irish and Scottish traditional songs. Released in 2024.",
+    "img": "https://f4.bcbits.com/img/a1002586460_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=HA6vpcVw_bc",
+    "section": "discover"
+  },
+  {
+    "id": "myr grian",
+    "artist": "Isla Callister",
+    "genres": [
+      "Folk",
+      "Traditional"
+    ],
+    "url": "https://islacallister.bandcamp.com/album/myr-grian",
+    "country": "UK",
+    "city": "",
+    "blurb": "Fiddler Isla Callister's album of traditional and new Manx tunes and songs, made for Blein ny Gaelgey, a year-long celebration of the Manx language. The title means 'like a sun'. Released in 2026.",
+    "img": "https://f4.bcbits.com/img/a3916835130_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=Fl_VWfKWtV8",
+    "section": "discover"
+  },
+  {
+    "id": "What of Our Nature",
+    "artist": "Haley Heynderickx, Max García Conover",
+    "genres": [
+      "Folk",
+      "Acoustic"
+    ],
+    "url": "https://haleyheynderickx.bandcamp.com/album/what-of-our-nature",
+    "country": "USA",
+    "city": "",
+    "blurb": "Second collaborative album from Portland's Haley Heynderickx and Max García Conover, folk songs inspired by the life and music of Woody Guthrie. Released in 2025.",
+    "img": "https://f4.bcbits.com/img/a1995593377_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=pSPrj2ZUZUU&list=PLFMhfGkT6G0OzczP7Xwx_ZFhIjBTX3wSr",
+    "section": "discover"
+  },
+  {
+    "id": "Train on the Island",
+    "artist": "Aldous Harding",
+    "genres": [
+      "Folk",
+      "Alternative"
+    ],
+    "url": "https://aldousharding.bandcamp.com/album/train-on-the-island",
+    "country": "New Zealand",
+    "city": "",
+    "blurb": "Aldous Harding's fifth album, co-produced with John Parish at Rockfield Studios in Wales, where they also made Party, Designer and Warm Chris. Released on 4AD in 2026.",
+    "img": "https://f4.bcbits.com/img/a2623687861_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=A6HfcYE1J94",
+    "section": "discover"
+  },
+  {
+    "id": "Rocky Top Ballads",
+    "artist": "Fine",
+    "genres": [
+      "Folk",
+      "Experimental"
+    ],
+    "url": "https://finefinefinefine.bandcamp.com/album/rocky-top-ballads",
+    "country": "Denmark",
+    "city": "",
+    "blurb": "Debut album from Copenhagen singer and producer Fine, country and folk moods counterweighted by samples and synths. Recorded, produced and mixed by Fine. Released in 2024.",
+    "img": "https://f4.bcbits.com/img/a1518880410_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=Md03tnOMBgw",
+    "section": "discover"
+  },
+  {
+    "id": "Reunion",
+    "artist": "Mama's Broke",
+    "genres": [
+      "Folk",
+      "Traditional"
+    ],
+    "url": "https://mamasbroke.bandcamp.com/album/reunion",
+    "country": "Canada",
+    "city": "",
+    "blurb": "Twelve-song album from Nova Scotia duo Mama's Broke, Amy Lou Keeler and Lisa Maria, folk-without-borders songs about fractured communities and the erosion of shared ground. Released in 2026.",
+    "img": "https://f4.bcbits.com/img/a3672857942_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=JWWS-Ay17s0",
+    "section": "discover"
+  },
+  {
+    "id": "Howl",
+    "artist": "Daisy Rickman",
+    "genres": [
+      "Folk",
+      "Ambient",
+      "Experimental"
+    ],
+    "url": "https://daisyrickman.bandcamp.com/album/howl",
+    "country": "UK",
+    "city": "",
+    "blurb": "Psychedelic folk from Cornish musician Daisy Rickman, recorded at home in Cornwall and Dorset. 'Howl' is Cornish for 'sun', and the album is a homage to the sun, stars and turning year. Released on the spring equinox, 2024.",
+    "img": "https://f4.bcbits.com/img/a4008841359_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=IcK2CC73EcQ",
+    "section": "discover"
+  },
+  {
+    "id": "The Anthology of UnAmerican Folk Music",
+    "artist": "Marisa Anderson",
+    "genres": [
+      "Folk",
+      "Experimental"
+    ],
+    "url": "https://marisaanderson.bandcamp.com/album/the-anthology-of-unamerican-folk-music",
+    "country": "USA",
+    "city": "",
+    "blurb": "Instrumental guitar from Portland's Marisa Anderson, drawing on folk traditions from beyond America, from Iranian and Armenian melodies to Middle Eastern taqsim. Released on Thrill Jockey in 2026.",
+    "img": "https://f4.bcbits.com/img/a2466680073_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=fNzp6d_M7fQ",
+    "section": "discover"
+  },
+  {
+    "id": "The Totemist",
+    "artist": "Ak'chamel, The Giver Of Illness",
+    "genres": [
+      "Experimental",
+      "Folk"
+    ],
+    "url": "https://akuphone.bandcamp.com/album/the-totemist",
+    "country": "USA",
+    "city": "",
+    "blurb": "First vinyl release from the mysterious Texas group Ak'chamel, deep psychedelic folk partly recorded in a Chihuahuan Desert ghost town. Released on Akuphone in 2020.",
+    "img": "https://f4.bcbits.com/img/a1331639050_10.jpg",
+    "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_mdxeEaLk8NV8nwlN57DTcii9dKsNJcTig",
+    "section": "discover"
+  },
+  {
+    "id": "Cloch 's Claí",
+    "artist": "Trá Pháidín",
+    "genres": [
+      "Folk",
+      "Experimental",
+      "Traditional"
+    ],
+    "url": "https://trawfawdeen.bandcamp.com/album/cloch-s-cla",
+    "country": "Ireland",
+    "city": "",
+    "blurb": "Irish-language group Trá Pháidín, spread between Conamara, Cork, Offaly, Sligo and Waterford, mixing traditional music with drone, jazz and krautrock. Released in 2026.",
+    "img": "https://f4.bcbits.com/img/a3885529484_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=Sxn-v7nytiE",
+    "section": "discover"
+  },
+  {
+    "id": "Beam Cottage",
+    "artist": "Johnny Flynn, Lillie Flynn",
+    "genres": [
+      "Folk",
+      "Singer-Songwriter"
+    ],
+    "url": "https://johnny-flynn.bandcamp.com/album/beam-cottage",
+    "country": "UK",
+    "city": "",
+    "blurb": "Siblings Johnny and Lillie Flynn's record about Beam Cottage, their childhood home, a 400-year-old thatched house in the south of England. Songs and traditional pieces. Released in 2026.",
+    "img": "https://f4.bcbits.com/img/a3548589872_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=1FpDHl-0e8o",
+    "section": "discover"
+  },
+  {
+    "id": "New Season",
+    "artist": "Sylvie",
+    "genres": [
+      "Folk",
+      "Indie"
+    ],
+    "url": "https://sylvie-music.bandcamp.com/album/new-season",
+    "country": "USA",
+    "city": "",
+    "blurb": "Sylvie's first record for Ghostly International, led by Los Angeles songwriter Ben Schwab with guests including Sierra Ferrell and Courtney Marie Andrews. Released in 2026.",
+    "img": "https://f4.bcbits.com/img/a3723565042_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=RVukfrmHQuo",
+    "section": "discover"
   }
 ]
