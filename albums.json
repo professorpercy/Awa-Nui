@@ -4168,5 +4168,1116 @@
     "img": "https://img.youtube.com/vi/YNl15jnLAxU/maxresdefault.jpg",
     "youtube": "https://www.youtube.com/watch?v=YNl15jnLAxU",
     "section": "discover"
+  },
+  {
+    "id": "Camino",
+    "artist": "Minna",
+    "genres": [
+      "Folk"
+    ],
+    "url": "https://tidal.com/album/454053608",
+    "country": "UK",
+    "city": "",
+    "blurb": "MINNA, a London-based artist, hails from the Scottish Borders. Immersed in a house of pianists and songwriters, she developed a profound connection to folk music from an early age. She has spent the last year recording in London and LA, gigging at every opportunity, most notably supporting Russel Crowe, Newton Faulkner and Izo Fitzroy at Union Chapel.",
+    "img": "https://i.scdn.co/image/ab67616d00001e0219e3ea3848ab9091fe7a194f",
+    "youtube": "https://www.youtube.com/watch?v=c0JlLk3uuME",
+    "section": "discover"
+  },
+  {
+    "id": "Agadez",
+    "artist": "Etran de L'Aïr",
+    "genres": [
+      "World",
+      "Desert Rock",
+      "Tuareg"
+    ],
+    "url": "https://etrandelair.bandcamp.com/album/agadez",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Second album from Etran de L'Aïr, the long-running wedding band from Agadez, Niger, made up of brothers and cousins. Hypnotic solos and surf-tinged melodies celebrating their desert hometown, and the record that launched them onto the international touring circuit. Released on Sahel Sounds in 2022.",
+    "img": "https://f4.bcbits.com/img/a1658507371_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=fKjOI27RAcA&list=PLOWMOALX3ZY2Ts8cvrIdM2q79RDr_EPU2",
+    "section": "discover"
+  },
+  {
+    "id": "Patriote",
+    "artist": "Mamaki Boys",
+    "genres": [
+      "Hip Hop",
+      "Electronic",
+      "Experimental"
+    ],
+    "url": "https://mamakiboys.bandcamp.com/album/patriote",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Underground hip hop from Niamey's Mamaki Boys, formed in 2002, built from sampled village percussion and chopped-up traditional instruments with a ragga-inspired flow. A product of the DIY studio boom of early-2000s West Africa. Released on Sahel Sounds in 2021.",
+    "img": "https://f4.bcbits.com/img/a0764027871_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=kbACn1LUhP0",
+    "section": "discover"
+  },
+  {
+    "id": "At Pioneer Works",
+    "artist": "Les Filles de Illighadad",
+    "genres": [
+      "World",
+      "Tuareg",
+      "Tende"
+    ],
+    "url": "https://lesfillesdeillighadad.bandcamp.com/album/at-pioneer-works",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Live recording of Les Filles de Illighadad at Pioneer Works in Brooklyn, the all-female-led Tuareg group from a remote village in central Niger. Guitar and tende percussion stretched into long hypnotic jams. Released on Sahel Sounds in 2021.",
+    "img": "https://f4.bcbits.com/img/a3314649047_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=tqJ47wTN45o",
+    "section": "discover"
+  },
+  {
+    "id": "Yaral Sa Doom",
+    "artist": "Wau Wau Collectif",
+    "genres": [
+      "Experimental",
+      "Dub",
+      "World"
+    ],
+    "url": "https://wauwaucollectif.bandcamp.com/album/yaral-sa-doom",
+    "country": "Senegal",
+    "city": "",
+    "blurb": "Debut album from Wau Wau Collectif, recorded in the Senegalese village of Toubab Dialaw. Draws on Sufi praise songs, spiritual jazz and dub, with percussion loops, call and response chants, children's voices and electronic beats. Released on Sahel Sounds in 2021.",
+    "img": "https://f4.bcbits.com/img/a1511235567_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=KDDxP1iAUgQ",
+    "section": "discover"
+  },
+  {
+    "id": "Sahel Sounds Label Sampler 3",
+    "artist": "Various Artists",
+    "genres": [
+      "World",
+      "Electronic"
+    ],
+    "url": "https://sahelsoundscompilations.bandcamp.com/album/sahel-sounds-label-sampler-3",
+    "country": "Various",
+    "city": "",
+    "blurb": "Name-your-price sampler of tracks from across the Sahel Sounds catalog, from Les Filles de Illighadad to Hauka ritual music. Released in 2021.",
+    "img": "https://f4.bcbits.com/img/a2408059248_10.jpg",
+    "youtube": "",
+    "section": "discover"
+  },
+  {
+    "id": "Musique Hauka",
+    "artist": "Lingo Seini et son groupe",
+    "genres": [
+      "World",
+      "Traditional"
+    ],
+    "url": "https://lingoseini.bandcamp.com/album/musique-hauka",
+    "country": "Niger",
+    "city": "",
+    "blurb": "One of the first full-length recordings of Hauka ritual music from Niger, the spirit possession movement documented in Jean Rouch's 1955 film Les maîtres fous. Call and response chants, monochord lute and relentless percussion in one nonstop session. Released on Sahel Sounds in 2020.",
+    "img": "https://f4.bcbits.com/img/a3599669662_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=Bl6F2RreZ5E",
+    "section": "discover"
+  },
+  {
+    "id": "Siftorde",
+    "artist": "Tidiane Thiam",
+    "genres": [
+      "Folk",
+      "Acoustic",
+      "World"
+    ],
+    "url": "https://tidianethiam.bandcamp.com/album/siftorde",
+    "country": "Senegal",
+    "city": "",
+    "blurb": "Dreamy instrumental acoustic guitar from Tidiane Thiam of Podor in northern Senegal. His intricate fingerpicking is inspired by the four-string hoddu lute, a distinctly different style of Sahelian guitar from the familiar desert blues. Released on Sahel Sounds in 2020.",
+    "img": "https://f4.bcbits.com/img/a3398688322_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=_HW-_phebSw",
+    "section": "discover"
+  },
+  {
+    "id": "Sahel Sounds Label Sampler 2",
+    "artist": "Various Artists",
+    "genres": [
+      "World"
+    ],
+    "url": "https://sahelsoundscompilations.bandcamp.com/album/sahel-sounds-label-sampler-2",
+    "country": "Various",
+    "city": "",
+    "blurb": "Name-your-price sampler of songs from the Sahel Sounds catalog. Released in 2020.",
+    "img": "https://f4.bcbits.com/img/a1062851412_10.jpg",
+    "youtube": "",
+    "section": "discover"
+  },
+  {
+    "id": "Tiris",
+    "artist": "El Wali",
+    "genres": [
+      "Folk",
+      "World"
+    ],
+    "url": "https://elwali.bandcamp.com/album/tiris",
+    "country": "Western Sahara",
+    "city": "",
+    "blurb": "Rare 1990s studio recording from El Wali, the Sahrawi political folk group of the Polisario movement. Traditional modes mixed with synthesizer, programmed drums and electric guitar, with anthems and call and response duets. Released on Sahel Sounds in 2019.",
+    "img": "https://f4.bcbits.com/img/a0438779541_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=mYX9AG_pYB8&list=PLNBidjQ1MgTSYsvsDPz6xdbTQy4ASXqLA",
+    "section": "discover"
+  },
+  {
+    "id": "Anou Malane",
+    "artist": "Abdallah Ag Oumbadougou",
+    "genres": [
+      "World",
+      "Tuareg",
+      "Folk"
+    ],
+    "url": "https://abdallahagoumbadougou.bandcamp.com/album/anou-malane",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Reissue of a 1995 cassette by Abdallah Ag Oumbadougou, one of the founders of Tuareg guitar music and a figure of the 1990s Tuareg rebellion. Recorded in Benin, it is one of the first studio recordings of the genre, with a full 90s groove. Released on Sahel Sounds in 2019.",
+    "img": "https://f4.bcbits.com/img/a2946799099_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=AAFmf0ga_Ng&list=PLNBidjQ1MgTSuNji8jRz2ejaX3GVjVtdl",
+    "section": "discover"
+  },
+  {
+    "id": "Sahel Sounds Label Sampler",
+    "artist": "Various Artists",
+    "genres": [
+      "World"
+    ],
+    "url": "https://sahelsoundscompilations.bandcamp.com/album/sahel-sounds-label-sampler",
+    "country": "Various",
+    "city": "",
+    "blurb": "Free sampler of songs from the Sahel Sounds catalog. Released in 2019.",
+    "img": "https://f4.bcbits.com/img/a1865955098_10.jpg",
+    "youtube": "",
+    "section": "discover"
+  },
+  {
+    "id": "Falaw",
+    "artist": "Luka Productions",
+    "genres": [
+      "Hip Hop",
+      "Electronic",
+      "World"
+    ],
+    "url": "https://lukaproductions.bandcamp.com/album/falaw",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Second album from Bamako producer Luka Guindo as Luka Productions, focused on Manding cultural heritage. Griots and ngoni players join him in the studio over sweeping synth pads and sequenced drums. Released on Sahel Sounds in 2019.",
+    "img": "https://f4.bcbits.com/img/a0678560271_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=BSsoE-mrnPY&list=PLNBidjQ1MgTTQ90tclr-lrFuE8uHHwG_f",
+    "section": "discover"
+  },
+  {
+    "id": "Terrouzi",
+    "artist": "Ahmedou Ahmed Lowla",
+    "genres": [
+      "Electronic",
+      "Synth",
+      "World"
+    ],
+    "url": "https://ahmedouahmedlowla.bandcamp.com/album/terrouzi",
+    "country": "Mauritania",
+    "city": "",
+    "blurb": "Instrumental electronic keyboard from Ahmedou Ahmed Lowla, one of Mauritania's leading players of WZN, the synth music that soundtracks weddings in Nouakchott. His father was a renowned tidinit lute player. Released on Sahel Sounds in 2019.",
+    "img": "https://f4.bcbits.com/img/a0725946396_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=v2DXCkXy53U&list=PLNBidjQ1MgTR4tK4qRMRFm0pQMvvKwyLr",
+    "section": "discover"
+  },
+  {
+    "id": "Akaline Kidal",
+    "artist": "Ahmed Ag Kaedy",
+    "genres": [
+      "Folk",
+      "Tuareg",
+      "Acoustic"
+    ],
+    "url": "https://amanardekidal.bandcamp.com/album/akaline-kidal",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Stripped-down solo acoustic guitar from Ahmed Ag Kaedy of Amanar de Kidal, recorded in exile from his northern Malian hometown. Melancholic ballads and pleas for peace for a community divided by civil war. Released on Sahel Sounds in 2019.",
+    "img": "https://f4.bcbits.com/img/a0407702628_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=HcPnLQFSlH8&list=PLNBidjQ1MgTQiJ49FBMhJ0doiaQqMNZvS",
+    "section": "discover"
+  },
+  {
+    "id": "Houmeissa",
+    "artist": "Hama",
+    "genres": [
+      "Electronic",
+      "Ambient",
+      "Techno"
+    ],
+    "url": "https://hamasynth.bandcamp.com/album/houmeissa",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Nigerien composer Hama reimagines nomadic herding ballads, caravan songs and wedding chants as electronic music somewhere between early-90s techno and synthwave, like a soundtrack to a Tuareg video game. Released on Sahel Sounds in 2019.",
+    "img": "https://f4.bcbits.com/img/a3719636764_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=fCxysYAFfCg&list=PLNBidjQ1MgTQ70MySqY20lpU-YXRxvX4M",
+    "section": "discover"
+  },
+  {
+    "id": "Zerzura (Original Soundtrack Recording)",
+    "artist": "Ahmoudou Madassane",
+    "genres": [
+      "Ambient",
+      "Soundtrack",
+      "Tuareg"
+    ],
+    "url": "https://ahmoudoumadassane.bandcamp.com/album/zerzura-original-soundtrack-recording",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Soundtrack to Zerzura, billed as the first Saharan acid Western, composed by its lead actor Ahmoudou Madassane. Free-form guitar improvisations recorded while watching the film, turning Tuareg guitar into ambient soundscapes. Released on Sahel Sounds in 2018.",
+    "img": "https://f4.bcbits.com/img/a0860623137_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=2pcNsmHbOFg&list=PLNBidjQ1MgTRtPOHSYPjpBt_acV5zup-E",
+    "section": "discover"
+  },
+  {
+    "id": "Hali Diallo",
+    "artist": "Tallawit Timbouctou",
+    "genres": [
+      "World",
+      "Takamba",
+      "Tuareg"
+    ],
+    "url": "https://tallawit.bandcamp.com/album/hali-diallo",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Takamba from Timbuktu's Tallawit Timbouctou, built around the four-string tehardent lute through handmade mics and blown-out amplifiers, over calabash percussion in mind-bending time signatures. Released on Sahel Sounds in 2018.",
+    "img": "https://f4.bcbits.com/img/a0386686579_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=Z2RvC9YU7ps",
+    "section": "discover"
+  },
+  {
+    "id": "Oyiwane",
+    "artist": "Troupe École Tudu",
+    "genres": [
+      "Folk",
+      "World",
+      "Tuareg"
+    ],
+    "url": "https://oyiwane.bandcamp.com/album/oyiwane",
+    "country": "Niger",
+    "city": "",
+    "blurb": "1980s recordings of an all-girl elementary school group from the Tudu neighbourhood of Agadez, accompanied by their instructor, Tuareg guitarist Kader 'Barmo' Balla. Recalls Guinean folk and early Ali Farka Touré. Released on Sahel Sounds in 2018.",
+    "img": "https://f4.bcbits.com/img/a1613162906_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=Kwr3hiI4C7M",
+    "section": "discover"
+  },
+  {
+    "id": "No. 1",
+    "artist": "Etran de L'Aïr",
+    "genres": [
+      "World",
+      "Desert Rock",
+      "Tuareg"
+    ],
+    "url": "https://etrandelair.bandcamp.com/album/no-1",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Debut album from Etran de L'Aïr, 'the Stars of the Aïr', one of the longest-playing wedding bands in Agadez, Niger. Raw, surf-tinged electric guitar recorded in their home. Released on Sahel Sounds in 2018.",
+    "img": "https://f4.bcbits.com/img/a1778595907_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=ZPtyyKSprME",
+    "section": "discover"
+  },
+  {
+    "id": "Takamba WhatsApp 2018 EP",
+    "artist": "Tallawit Timbouctou",
+    "genres": [
+      "World",
+      "Takamba"
+    ],
+    "url": "https://tallawit.bandcamp.com/album/takamba-whatsapp-2018-ep",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Takamba from Agali Ag Amoumine's group Tallawit Timbouctou, sent directly from Timbuktu over the internet. Teheredent lute and calabash rhythms, the traditional festival and wedding music of northern Mali. Released on Sahel Sounds in 2018.",
+    "img": "https://f4.bcbits.com/img/a3886286091_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=6gPUAkDlxbU",
+    "section": "discover"
+  },
+  {
+    "id": "Field Recordings from the Sahel",
+    "artist": "Various Artists",
+    "genres": [
+      "Ambient",
+      "Field Recordings"
+    ],
+    "url": "https://sahelsoundscompilations.bandcamp.com/album/field-recordings-from-the-sahel",
+    "country": "Various",
+    "city": "",
+    "blurb": "Ambient field recordings from across the western Sahel: desert oases, late-night radio, village calls to prayer and riverboats on the Niger. A companion to the label's musical releases. Released on Sahel Sounds in 2018.",
+    "img": "https://f4.bcbits.com/img/a1565226139_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=tiS_ThdpuQs",
+    "section": "discover"
+  },
+  {
+    "id": "Tenere",
+    "artist": "Afous d'Afous",
+    "genres": [
+      "World",
+      "Desert Rock",
+      "Tuareg"
+    ],
+    "url": "https://afousdafous.bandcamp.com/album/tenere",
+    "country": "Algeria",
+    "city": "",
+    "blurb": "Album from Group Afous d'Afous of Tamanrasset, Algeria, stars of Tuareg guitar at home but almost unknown outside the Sahara. Electric guitar from the contemporary pop side of the desert blues sound. Released on Sahel Sounds in 2017.",
+    "img": "https://f4.bcbits.com/img/a1759402687_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=YthhwJRMFDA&list=PLNBidjQ1MgTTi-iaARDv8kfvyU-AUWcGP",
+    "section": "discover"
+  },
+  {
+    "id": "Gao Rap - Hip Hop from Northern Mali",
+    "artist": "Various Artists",
+    "genres": [
+      "Hip Hop",
+      "Electronic",
+      "Experimental"
+    ],
+    "url": "https://sahelsoundscompilations.bandcamp.com/album/gao-rap-hip-hop-from-northern-mali",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Compilation of the hyper-local electronic hip hop of Gao in northeastern Mali, mixing autotune, melodic synths and PC beats with takamba drones, Hausa synth pop and ragga. Music that lives on the local MP3 trade. Released on Sahel Sounds in 2017.",
+    "img": "https://f4.bcbits.com/img/a4150846138_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=UtngIy0QWBM&list=PLNBidjQ1MgTTYfn7d4hOnC9VDJ6Orugi3",
+    "section": "discover"
+  },
+  {
+    "id": "Agrim Agadez",
+    "artist": "Various Artists",
+    "genres": [
+      "World",
+      "Tuareg",
+      "Folk"
+    ],
+    "url": "https://sahelsoundscompilations.bandcamp.com/album/agrim-agadez",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Contemporary field recordings of guitar music across Niger, from meditative ballads and fuzzy Hendrix covers to wedding bands and political folk guitarists, collected over years of travel. Released on Sahel Sounds in 2017.",
+    "img": "https://f4.bcbits.com/img/a3283613086_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=P0dpXrkyBFA",
+    "section": "discover"
+  },
+  {
+    "id": "Fasokan",
+    "artist": "Luka Productions",
+    "genres": [
+      "New Age",
+      "Electronic",
+      "Hip Hop"
+    ],
+    "url": "https://lukaproductions.bandcamp.com/album/fasokan",
+    "country": "Mali",
+    "city": "",
+    "blurb": "New age music from West Africa by Bamako rapper and producer Luka Guindo. Cut-up kora and balafon over software percussion, flute and synthesizer, with field recordings and spoken affirmations. Released on Sahel Sounds in 2017.",
+    "img": "https://f4.bcbits.com/img/a2280907039_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=iKP-JU4bmKw",
+    "section": "discover"
+  },
+  {
+    "id": "Top WZN",
+    "artist": "Jeich Ould Badu and Ahmedou Ahmed Lewla",
+    "genres": [
+      "Electronic",
+      "Synth",
+      "World"
+    ],
+    "url": "https://topwzn.bandcamp.com/album/top-wzn",
+    "country": "Mauritania",
+    "city": "",
+    "blurb": "Instrumental synth and lute from two stars of Mauritanian WZN: griot Jeich Ould Badu on a hacked traditional lute with built-in phasers, and synth player Ahmedou Ahmed Lewla. Playful drum machines and organ freakouts. Released on Sahel Sounds in 2017.",
+    "img": "https://f4.bcbits.com/img/a2412692887_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=JXuvxV9ywJE&list=PLb50JQSmvEONVGHapYdSHNGRwO-INm0z3",
+    "section": "discover"
+  },
+  {
+    "id": "Waande Kadde",
+    "artist": "Amadou Binta Konté and Tidiane Thiam",
+    "genres": [
+      "Folk",
+      "Acoustic",
+      "Traditional"
+    ],
+    "url": "https://tidianethiam.bandcamp.com/album/waande-kadde",
+    "country": "Senegal",
+    "city": "",
+    "blurb": "Improvised session of acoustic guitar and hoddu lute from Fouta Toro, drawing on ancient praise songs and epic ballads, recorded in a fishing village in northern Senegal. First release on the Sahel Sounds and Mississippi Records imprint Songs from Home, 2017.",
+    "img": "https://f4.bcbits.com/img/a0892463693_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=ZrAhMWMEbkM",
+    "section": "discover"
+  },
+  {
+    "id": "This is Kologo Power!",
+    "artist": "Various Artists",
+    "genres": [
+      "World",
+      "Traditional"
+    ],
+    "url": "https://sahelsoundscompilations.bandcamp.com/album/this-is-kologo-power",
+    "country": "Ghana",
+    "city": "",
+    "blurb": "Compilation of kologo music from Bolgatanga in northern Ghana, the two-string lute tradition championed by King Ayisoba. Sung in Frafra and pidgin English, from solo kologo to full bands. Released with Makkum Records and Red Wig Records in 2016.",
+    "img": "https://f4.bcbits.com/img/a0794704738_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=lD3Fwd1dbSI&list=PLNBidjQ1MgTRlpYAM1c4U101fYbadc0Si",
+    "section": "discover"
+  },
+  {
+    "id": "Afous d'Afous - Tarhanine Tegla",
+    "artist": "Afous d'Afous",
+    "genres": [
+      "World",
+      "Tuareg"
+    ],
+    "url": "https://afousdafous.bandcamp.com/album/afous-dafous-tarhanine-tegla",
+    "country": "Algeria",
+    "city": "",
+    "blurb": "First official release of one of the biggest songs in contemporary Saharan music, Kader Tarhanine's love song with electric guitar and drum machine that made Afous d'Afous stars of Tuareg guitar in Algeria. Released on Sahel Sounds in 2016.",
+    "img": "https://f4.bcbits.com/img/a2891348536_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=BddklYNwnpU",
+    "section": "discover"
+  },
+  {
+    "id": "Zabaya",
+    "artist": "Azna de L'Ader",
+    "genres": [
+      "World",
+      "Psychedelic Rock",
+      "Rock"
+    ],
+    "url": "https://aznadelader.bandcamp.com/album/zabaya",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Archival recordings from Azna de L'Ader, possibly the first rock band in Niger and certainly the most psychedelic. Led by Hendrix-inspired guitarist Mona, with shrieking fuzz solos over local rhythms, often called West Africa's answer to Zamrock. Released on Sahel Sounds in 2016.",
+    "img": "https://f4.bcbits.com/img/a3878682008_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=j9bQzYteWXo&list=PLNBidjQ1MgTRjbebR8oLXEHXQmYhGwb8t",
+    "section": "discover"
+  },
+  {
+    "id": "Tumastin",
+    "artist": "Amanar De Kidal",
+    "genres": [
+      "World",
+      "Desert Rock",
+      "Tuareg"
+    ],
+    "url": "https://amanardekidal.bandcamp.com/album/tumastin",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Studio album from Kidal's Amanar, delayed for years by conflict in northern Mali. Rolling rhythms, wistful melodies and call and response vocals, songs about change, nostalgia and hope from a band in exile. Released on Sahel Sounds in 2016.",
+    "img": "https://f4.bcbits.com/img/a0941900318_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=YtfPsbMl5so&list=PLNBidjQ1MgTSq0q-PW4vh3S3tDMbX0to1",
+    "section": "discover"
+  },
+  {
+    "id": "Mali Kady",
+    "artist": "Luka Productions",
+    "genres": [
+      "Hip Hop",
+      "Electronic"
+    ],
+    "url": "https://lukaproductions.bandcamp.com/album/mali-kady",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Future beats from Bamako rapper and producer Luka, with rapid-fire raps over balafon samples and synths, mixing Malian tradition with décalé and club rhythms. Features guest MCs from across the Bamako scene. Released on Sahel Sounds in 2016.",
+    "img": "https://f4.bcbits.com/img/a0081221763_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=liMLVOuCvJY",
+    "section": "discover"
+  },
+  {
+    "id": "Nouakchott Wedding Songs",
+    "artist": "Various Artists",
+    "genres": [
+      "World",
+      "Psychedelic"
+    ],
+    "url": "https://sahelsoundscompilations.bandcamp.com/album/nouakchott-wedding-songs",
+    "country": "Mauritania",
+    "city": "",
+    "blurb": "Raucous, electrified wedding music from Mauritania, with microtonal scales, phaser pedals and unpredictable polyrhythms. Desert music as it is actually performed, loud and unfiltered. Released on Sahel Sounds in 2015.",
+    "img": "https://f4.bcbits.com/img/a0376884066_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=ZdCcrhzYVJk",
+    "section": "discover"
+  },
+  {
+    "id": "Yamedan",
+    "artist": "TisDass",
+    "genres": [
+      "World",
+      "Desert Rock",
+      "Tuareg"
+    ],
+    "url": "https://tisdass.bandcamp.com/album/yamedan",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Self-produced album from Niger Tuareg rock outfit TisDass, led by Kildjate Moussa Albadé, former bassist for Bombino. Looping electric guitar and two-chord rhythms, covers and originals in the assouf tradition. Released on Sahel Sounds in 2015.",
+    "img": "https://f4.bcbits.com/img/a0116316878_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=5womtH3l6KM",
+    "section": "discover"
+  },
+  {
+    "id": "Unreleased Tapes 1981-1984",
+    "artist": "Mamman Sani",
+    "genres": [
+      "Electronic",
+      "Synth",
+      "Ambient"
+    ],
+    "url": "https://mammansani.bandcamp.com/album/unreleased-tapes-1981-1984",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Early recordings from Nigerien electronic pioneer Mamman Sani: unreleased tracks from his first album, a short-lived trio and a cover of an American folk ballad. Dreamy organs and droning melodies reinterpreting Saharan folk. Released on Sahel Sounds in 2015.",
+    "img": "https://f4.bcbits.com/img/a2693807613_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=wV_cLcLlQaM&list=PLNBidjQ1MgTRf0onyi39c1jaMefnBm8Z5",
+    "section": "discover"
+  },
+  {
+    "id": "100% Balani Show",
+    "artist": "DJ Sandji",
+    "genres": [
+      "Electronic",
+      "Dance",
+      "World"
+    ],
+    "url": "https://djsandji.bandcamp.com/album/100-balani-show",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Mixtape from DJ Sandji, an innovator of Bamako's Balani Show street party scene. Bassy balafon cut-ups and décalé rhythms with live drums added on the fly from a sampler. Released on Sahel Sounds in 2015.",
+    "img": "https://f4.bcbits.com/img/a0281924083_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=3IG1Y1a_7Ww",
+    "section": "discover"
+  },
+  {
+    "id": "Abba Gargando",
+    "artist": "Abba Gargando",
+    "genres": [
+      "World",
+      "Tuareg",
+      "Lo-Fi"
+    ],
+    "url": "https://abbagargando.bandcamp.com/album/abba-gargando",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Lo-fi Tuareg guitar from Timbuktu musician Abba Gargando, from electrified weddings to quiet fireside sessions in refugee camps. Recorded on cellphones, the medium where he is best known. Released on Sahel Sounds in 2015.",
+    "img": "https://f4.bcbits.com/img/a2372122740_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=yCeY_pgcZRA",
+    "section": "discover"
+  },
+  {
+    "id": "Uchronia – Field Recordings From Alternate Realities",
+    "artist": "Various Artists",
+    "genres": [
+      "Experimental",
+      "Hip Hop",
+      "Electronic"
+    ],
+    "url": "https://sahelsoundscompilations.bandcamp.com/album/uchronia-field-recordings-from-alternate-realities",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Fictional ethnography of an alternate Bamako where the 14th-century Malian king Abubakari II 'discovered' America. Future Manding, Bamako nu-wave and hip hop, made with photographer Maciek Pozoga, Christopher Kirkley and Bamako artists. Released on Sahel Sounds in 2015.",
+    "img": "https://f4.bcbits.com/img/a3457539031_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=3pmMkhYwen4",
+    "section": "discover"
+  },
+  {
+    "id": "Danbe",
+    "artist": "Supreme Talent Show",
+    "genres": [
+      "Electronic",
+      "Bass",
+      "Hip Hop"
+    ],
+    "url": "https://supremetalentshow.bandcamp.com/album/danbe",
+    "country": "Mali",
+    "city": "",
+    "blurb": "First official release from Supreme Talent Show, kings of Bamako's sound system street party scene. Cut-up balafon, djembe and talking drum samples in a Malian mix of kuduro, décalé, dancehall and trap. Released on Sahel Sounds in 2015.",
+    "img": "https://f4.bcbits.com/img/a2443158092_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=4lfqUvLlOP4",
+    "section": "discover"
+  },
+  {
+    "id": "Isswat",
+    "artist": "Fadimoutou Wallet Inamoud",
+    "genres": [
+      "World",
+      "Traditional",
+      "Tuareg"
+    ],
+    "url": "https://fadimoutouwalletinamoud.bandcamp.com/album/isswat",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Debut recording from Fadimoutou Wallet Inamoud, a 2008 local production of isswat, the Tuareg vocal music of nostalgia and revolution from the Azawad region. Sparse rhythms and hand claps under a hypnotic group vocal drone. Released on Sahel Sounds in 2015.",
+    "img": "https://f4.bcbits.com/img/a3143980594_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=OIuTxC6QIvY",
+    "section": "discover"
+  },
+  {
+    "id": "Alghafiat",
+    "artist": "Amanar De Kidal",
+    "genres": [
+      "World",
+      "Desert Rock",
+      "Tuareg"
+    ],
+    "url": "https://amanardekidal.bandcamp.com/album/alghafiat",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Gritty, high-energy Tuareg guitar from Kidal's hometown band Amanar, recorded at a local studio in 2008 during an uprising. The title means 'Peace'. Released on Sahel Sounds in 2015.",
+    "img": "https://f4.bcbits.com/img/a1939641394_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=l9ncP5XQCrE&list=PLlkK9nrPAHhNxxIPyaRZ1HDy7T7hIykhg",
+    "section": "discover"
+  },
+  {
+    "id": "Torodi",
+    "artist": "Hama",
+    "genres": [
+      "Electronic",
+      "Techno",
+      "Tuareg"
+    ],
+    "url": "https://hamasynth.bandcamp.com/album/torodi",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Debut release from Nigerien synthesizer composer Hama, known at home through unlabelled memory-card releases. Draws on North African synth, Tuareg tishumaren, 90s Nigerien hip hop and Detroit techno. Released on Sahel Sounds in 2015.",
+    "img": "https://f4.bcbits.com/img/a3392759242_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=ovODDOabTys",
+    "section": "discover"
+  },
+  {
+    "id": "Taaritt",
+    "artist": "Mamman Sani",
+    "genres": [
+      "Electronic",
+      "Synth",
+      "New Age"
+    ],
+    "url": "https://mammansani.bandcamp.com/album/taaritt",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Cosmic synth from Mamman Sani: polyphonic analog synthesizers and drum machines interpreting ancient Saharan folk ballads, somewhere between ambient library music and minimal wave. Recorded in Niger and France in the late 1980s. Released on Sahel Sounds in 2014.",
+    "img": "https://f4.bcbits.com/img/a1391650287_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=V568rZJ6yTQ&list=PLNBidjQ1MgTSYPEWl1EFZJUtwHRYZaCmS",
+    "section": "discover"
+  },
+  {
+    "id": "Balani Show Super Hits: Electronic Street Parties from Mali",
+    "artist": "Various Artists",
+    "genres": [
+      "Electronic",
+      "Dance",
+      "World"
+    ],
+    "url": "https://sahelsoundscompilations.bandcamp.com/album/balani-show-super-hits-electronic-street-parties-from-mali",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Compilation of tracks from Bamako's Balani Show street parties, which began in the late 90s when DJs with big sound systems replaced live balafon players. A decade of the scene's hits. Released on Sahel Sounds in 2014.",
+    "img": "https://f4.bcbits.com/img/a4120423326_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=5YgzDyG2w84",
+    "section": "discover"
+  },
+  {
+    "id": "Super Onze - Gao",
+    "artist": "Super Onze",
+    "genres": [
+      "World",
+      "Takamba"
+    ],
+    "url": "https://super11.bandcamp.com/album/super-onze-gao",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Electrified takamba sessions from Gao's Super Onze, recorded in the early 90s. Shredding traditional lute over staccato calabash percussion, with tape hiss and pickup distortion. Released on Sahel Sounds in 2013.",
+    "img": "https://f4.bcbits.com/img/a3760248904_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=--OWUGtMIWs",
+    "section": "discover"
+  },
+  {
+    "id": "Kani",
+    "artist": "Pheno S.",
+    "genres": [
+      "Hip Hop",
+      "Electronic",
+      "Experimental"
+    ],
+    "url": "https://phenos.bandcamp.com/album/kani",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Full-length from Gao rapper Pheno S., first heard on Music from Saharan Cellphones. Autotuned raps, pitch-bending soft synths and glitchy homemade beats. Released on Sahel Sounds in 2013.",
+    "img": "https://f4.bcbits.com/img/a3009565916_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=zSgClk7gSOk&list=PLNBidjQ1MgTTPmCg1QCBklCcxTwI8DeCN",
+    "section": "discover"
+  },
+  {
+    "id": "Issawat",
+    "artist": "Idassane Wallet Mohamed",
+    "genres": [
+      "World",
+      "Tende",
+      "Tuareg"
+    ],
+    "url": "https://idassanewalletmohamed.bandcamp.com/album/issawat",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Recorded in Kidal, Mali, in 2008 at a Tuareg-run studio later destroyed by Islamist occupiers. Idassane Wallet Mohamed sings love songs and songs of nomadic life over tende rhythms. Released on Sahel Sounds in 2013.",
+    "img": "https://f4.bcbits.com/img/a1845510819_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=0yjsXPa8QXM",
+    "section": "discover"
+  },
+  {
+    "id": "Harafin So - Bollywood Inspired Film Music from Hausa Nigeria",
+    "artist": "Various Artists",
+    "genres": [
+      "World",
+      "Bollywood",
+      "Pop"
+    ],
+    "url": "https://sahelsoundscompilations.bandcamp.com/album/harafin-so-bollywood-inspired-film-music-from-hausa-nigeria",
+    "country": "Nigeria",
+    "city": "",
+    "blurb": "Soundtrack music from Kannywood, the Bollywood-inspired film industry of Kano in northern Nigeria. Autotuned vocals, frenetic drum machines and pitch-bending synths, collected on a 2012 trip to Kano. Released on Sahel Sounds in 2013.",
+    "img": "https://f4.bcbits.com/img/a4008202601_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=2UTMPgiuX08",
+    "section": "discover"
+  },
+  {
+    "id": "La Musique Electronique du Niger",
+    "artist": "Mamman Sani",
+    "genres": [
+      "Electronic",
+      "Synth",
+      "Ambient"
+    ],
+    "url": "https://mammansani.bandcamp.com/album/la-musique-electronique-du-niger",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Minimal organ instrumentals from Mamman Sani, a pioneer of West African electronic music whose music has filled Nigerien radio and TV intermissions for decades. Released on Sahel Sounds in 2013.",
+    "img": "https://f4.bcbits.com/img/a2634629080_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=BkhbqV-jWZ4&list=PLNBidjQ1MgTT8oIzvH9YmQLw0_hPq43bb",
+    "section": "discover"
+  },
+  {
+    "id": "L'Orchestre National de Mauritanie",
+    "artist": "L'Orchestre National de Mauritanie",
+    "genres": [
+      "World",
+      "Funk"
+    ],
+    "url": "https://lorchestrenationaldemauritanie.bandcamp.com/album/lorchestre-national-de-mauritanie",
+    "country": "Mauritania",
+    "city": "",
+    "blurb": "Recordings from Mauritania's national orchestra, formed in 1968 and trained in Guinea under Bembeya Jazz. Added electric guitars and brass to the strict modal system of Mauritanian classical music. Released on Sahel Sounds in 2013.",
+    "img": "https://f4.bcbits.com/img/a0287747738_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=acIlOlr6Mbg",
+    "section": "discover"
+  },
+  {
+    "id": "Music from Saharan Cellphones: Volume 2",
+    "artist": "Various Artists",
+    "genres": [
+      "World",
+      "Electronic",
+      "Hip Hop"
+    ],
+    "url": "https://sahelsoundscompilations.bandcamp.com/album/music-from-saharan-cellphones-volume-2",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Second volume of pop music collected from cellphones in northern Mali in 2010, from Niger guitar ballads and Bamako club music to Moroccan raï, with a focus on autotuned DIY productions. Released on Sahel Sounds in 2013.",
+    "img": "https://f4.bcbits.com/img/a3981045449_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=nQOUq1L1JnQ&list=PLNBidjQ1MgTSBxQANX1I2kUUL9Zhwfp-f",
+    "section": "discover"
+  },
+  {
+    "id": "Laila Je T'Aime",
+    "artist": "Various Artists",
+    "genres": [
+      "World",
+      "Folk"
+    ],
+    "url": "https://sahelsoundscompilations.bandcamp.com/album/laila-je-taime",
+    "country": "Various",
+    "city": "",
+    "blurb": "Compilation of guitar music from Mauritania, Senegal and Mali, selected from three years of field recordings, from riverside houses on the Niger to desert campfires. Released on Sahel Sounds in 2012.",
+    "img": "https://f4.bcbits.com/img/a0504807303_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=toK_cUvpwFs",
+    "section": "discover"
+  },
+  {
+    "id": "La Paix",
+    "artist": "Alkibar Junior",
+    "genres": [
+      "World",
+      "Desert Rock",
+      "Punk Rock"
+    ],
+    "url": "https://alkibar.bandcamp.com/album/la-paix",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Garage rock from Alkibar Junior (Alkibar Gignor), formed as apprentices to Afel Bocoum's band and now the town band of Niafunké. Got their break opening Ali Farka Touré's memorial festival. Released on Sahel Sounds in 2012.",
+    "img": "https://f4.bcbits.com/img/a3839555207_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=dClR9O9qFQQ",
+    "section": "discover"
+  },
+  {
+    "id": "Takamba",
+    "artist": "Tallawit Timbouctou",
+    "genres": [
+      "World",
+      "Takamba",
+      "Tuareg"
+    ],
+    "url": "https://tallawit.bandcamp.com/album/takamba",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Debut from Tallawit Timbouctou, led by Agali Ag Amoumine, playing takamba, the hypnotic lute and calabash music of northern Mali. Released by Sahel Sounds with Little Axe Records in 2012.",
+    "img": "https://f4.bcbits.com/img/a1461963003_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=ZjyudLKHj7Q",
+    "section": "discover"
+  },
+  {
+    "id": "Yiilo Jaam",
+    "artist": "Lewlewal de Podor",
+    "genres": [
+      "World",
+      "Folk"
+    ],
+    "url": "https://sahelsounds.bandcamp.com/album/yiilo-jaam",
+    "country": "Senegal",
+    "city": "",
+    "blurb": "First full-length from Lewlewal de Podor, a Pulaar guitar band from northern Senegal drawing on the folk styles of Fouta Toro, from mellow acoustic jams to electrified concerts. Released by Sahel Sounds with Little Axe Records in 2011.",
+    "img": "https://f4.bcbits.com/img/a3446718711_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=fc6hVQ3Ur9M&list=PLNBidjQ1MgTQiYykylx01rwr73tAvrd6v",
+    "section": "discover"
+  },
+  {
+    "id": "L'Orchestre National de Mauritanie - La Mone / Kamlat",
+    "artist": "L'Orchestre National de Mauritanie",
+    "genres": [
+      "World",
+      "Funk"
+    ],
+    "url": "https://lorchestrenationaldemauritanie.bandcamp.com/album/lorchestre-national-de-mauritanie-la-mone-kamlat",
+    "country": "Mauritania",
+    "city": "",
+    "blurb": "Two-track single from Mauritania's national orchestra, mixing electric guitar and brass with Mauritanian modal music. Released on Sahel Sounds in 2011.",
+    "img": "https://f4.bcbits.com/img/a3917417249_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=ufIS60fEeas",
+    "section": "discover"
+  },
+  {
+    "id": "Ishilan n-Tenere",
+    "artist": "Various Artists",
+    "genres": [
+      "World",
+      "Folk",
+      "Tuareg"
+    ],
+    "url": "https://sahelsoundscompilations.bandcamp.com/album/ishilan-n-tenere",
+    "country": "Various",
+    "city": "",
+    "blurb": "The first Sahel Sounds compilation: guitar bands from Fouta Toro, Timbuktu and the Adrar des Ifoghas in Senegal and Mali, almost unknown outside their regions but with devoted local followings. Released in 2010.",
+    "img": "https://f4.bcbits.com/img/a3467306596_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=TJ9kc6Xv0RA",
+    "section": "discover"
+  },
+  {
+    "id": "Teranga",
+    "artist": "Wau Wau Collectif",
+    "genres": [
+      "Experimental",
+      "World",
+      "Psychedelic"
+    ],
+    "url": "https://wauwaucollectif.bandcamp.com/album/teranga",
+    "country": "Senegal",
+    "city": "",
+    "blurb": "Final album in Wau Wau Collectif's trilogy, the cross-cultural project begun in Toubab Dialaw in 2018 by Senegalese musician Arouna Kane and Swedish producer Karl-Jonas Winqvist. Named for the Wolof word for hospitality, it finds the collective recording together for the first time. Released on Sahel Sounds in 2026.",
+    "img": "https://f4.bcbits.com/img/a1347577906_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=s_CjBbLaKFQ",
+    "section": "discover"
+  },
+  {
+    "id": "Kel Tamasheq",
+    "artist": "Amanar De Kidal",
+    "genres": [
+      "World",
+      "Desert Rock",
+      "Tuareg"
+    ],
+    "url": "https://amanardekidal.bandcamp.com/album/kel-tamasheq",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Self-produced studio album from Bamako-based Tuareg band Amanar de Kidal, years in the making and recorded in small studios in the Malian capital. Carries on the assouf guitar tradition of Tinariwen with tighter, more upbeat grooves. Released on Sahel Sounds in 2026.",
+    "img": "https://f4.bcbits.com/img/a0691314566_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=QfEvgTiiDuw",
+    "section": "discover"
+  },
+  {
+    "id": "Enregistrement Live No Limit Bamako",
+    "artist": "Mohamed Doumbia",
+    "genres": [
+      "World",
+      "Afro Funk"
+    ],
+    "url": "https://mohameddoumbia.bandcamp.com/album/enregistrement-live-no-limit-bamako",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Live recording of a little-known contemporary Bamako bar band led by Mohamed Doumbia, paying tribute to the Malian orchestras of the late 60s and 70s that produced Salif Keita and Kante Manfila. Soulful vocals, psychedelic solos and Afro-Latin rhythms. Released on Sahel Sounds in 2026.",
+    "img": "https://f4.bcbits.com/img/a3551451207_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=mfiNj7JiBdA",
+    "section": "discover"
+  },
+  {
+    "id": "Remix EP",
+    "artist": "Namian Sidibé",
+    "genres": [
+      "Electronic",
+      "World"
+    ],
+    "url": "https://namiansidibe.bandcamp.com/album/remix-ep",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Two remixes of tracks from Namian Sidibé's 2023 self-titled album, including UK duo BOM Nation's melodic electronic take on the acapella closer 'Môgôya'. Released on Sahel Sounds in 2026.",
+    "img": "https://f4.bcbits.com/img/a2101302016_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=B0rHLK-CqBs",
+    "section": "discover"
+  },
+  {
+    "id": "Mafelawen EP",
+    "artist": "Mohamed Alassane Karzo",
+    "genres": [
+      "Singer-Songwriter",
+      "Tuareg",
+      "World"
+    ],
+    "url": "https://mohamedalassanekarzo.bandcamp.com/album/mafelawen-ep",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Official release of two of the most popular songs by Agadez singer-songwriter Mohamed Alassane Karzo, 'Mafelawen' and 'C'est La Vie', recorded in Niger in 2012. Karzo's full chord progressions stand out in the Tuareg guitar repertoire. Released on Sahel Sounds in 2025.",
+    "img": "https://f4.bcbits.com/img/a3482106823_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=vshfwdsY288",
+    "section": "discover"
+  },
+  {
+    "id": "Africa Yontii",
+    "artist": "Tidiane Thiam",
+    "genres": [
+      "Folk",
+      "Acoustic",
+      "World"
+    ],
+    "url": "https://tidianethiam.bandcamp.com/album/africa-yontii",
+    "country": "Senegal",
+    "city": "",
+    "blurb": "Solo instrumental guitar album from Tidiane Thiam of Podor in northern Senegal, built around the title's message that it is time for Africa to take its destiny into its own hands. Fingerpicked Pulaar guitar from the Fouta Toro region. Released on Sahel Sounds in 2024.",
+    "img": "https://f4.bcbits.com/img/a2666382100_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=97BjE2GjDNc",
+    "section": "discover"
+  },
+  {
+    "id": "Dimanche à Bamako",
+    "artist": "Bounaly",
+    "genres": [
+      "World",
+      "Rock"
+    ],
+    "url": "https://bounaly.bandcamp.com/album/dimanche-bamako",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Full-length debut from Malian guitar hero Bounaly (Ali Traore), first heard on Music from Saharan WhatsApp. Recorded live on location, it mixes regional favourites, traditional standards and originals with looping rhythms and shredding electric guitar. Released on Sahel Sounds in 2023.",
+    "img": "https://f4.bcbits.com/img/a0649294995_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=A_I9JkuKVjg",
+    "section": "discover"
+  },
+  {
+    "id": "Live in Seattle",
+    "artist": "Etran De L'Aïr",
+    "genres": [
+      "World",
+      "Desert Rock",
+      "Tuareg"
+    ],
+    "url": "https://etrandelair.bandcamp.com/album/live-in-seattle",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Two-song live recording of Etran de L'Aïr in Seattle, over 7,000 miles from Agadez, on the last night of their first-ever US tour. Released on Sahel Sounds in 2023.",
+    "img": "https://f4.bcbits.com/img/a1251508271_10.jpg",
+    "youtube": "",
+    "section": "discover"
+  },
+  {
+    "id": "Debbo",
+    "artist": "Andal Sukabe",
+    "genres": [
+      "World",
+      "Folk"
+    ],
+    "url": "https://andalsukabe.bandcamp.com/album/debbo",
+    "country": "Niger",
+    "city": "",
+    "blurb": "First internationally distributed studio recording from Andal Sukabe, a Wodaabe family band of siblings from Niamey, Niger, following their appearance on Music from Saharan WhatsApp. Guitar and polyphonic vocals rooted in nomadic Wodaabe tradition. Released on Sahel Sounds in 2023.",
+    "img": "https://f4.bcbits.com/img/a1197883996_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=uOjMhOeRysU",
+    "section": "discover"
+  },
+  {
+    "id": "Namian Sidibé",
+    "artist": "Namian Sidibé",
+    "genres": [
+      "Folk",
+      "World",
+      "Acoustic"
+    ],
+    "url": "https://namiansidibe.bandcamp.com/album/namian-sidib",
+    "country": "Mali",
+    "city": "",
+    "blurb": "Intimate, stripped-down session from young Malian singer Namian Sidibé, accompanied by her cousin Jules Diabaté on acoustic guitar and recorded at her home. Traditional Wassoulou praise songs and poetry brought into the social media age. Released on Sahel Sounds in 2023.",
+    "img": "https://f4.bcbits.com/img/a2112738835_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=rgMINWv_-8E",
+    "section": "discover"
+  },
+  {
+    "id": "Tounga",
+    "artist": "Babsy Konate",
+    "genres": [
+      "Hip Hop",
+      "Electronic"
+    ],
+    "url": "https://babsykonate.bandcamp.com/album/tounga",
+    "country": "Mali",
+    "city": "",
+    "blurb": "First solo release from Baba 'Babsy' Konate, a key producer in the autotuned Songhoi style known as Gao Rap. Collects a decade of tracks merging sweet vocals, crunchy drum loops and plucked digital harpsichord. Released on Sahel Sounds in 2023.",
+    "img": "https://f4.bcbits.com/img/a1235928578_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=23MwwYbeljg",
+    "section": "discover"
+  },
+  {
+    "id": "Tamiditine EP",
+    "artist": "Moussa Tchingou",
+    "genres": [
+      "World",
+      "Desert Rock",
+      "Tuareg"
+    ],
+    "url": "https://moussatchingou.bandcamp.com/album/tamiditine-ep",
+    "country": "Niger",
+    "city": "",
+    "blurb": "Debut EP from young Agadez guitarist Moussa Tchingou, who learned to play at 12 on a homemade guitar built from a water jug and motorcycle clutch cable, and is now one of the most in-demand wedding guitarists in town. Released on Sahel Sounds in 2023.",
+    "img": "https://f4.bcbits.com/img/a3308704116_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=LguW29o_AlE",
+    "section": "discover"
+  },
+  {
+    "id": "Mariage",
+    "artist": "Wau Wau Collectif",
+    "genres": [
+      "Experimental",
+      "Dub",
+      "World"
+    ],
+    "url": "https://wauwaucollectif.bandcamp.com/album/mariage",
+    "country": "Senegal",
+    "city": "",
+    "blurb": "Second album from Wau Wau Collectif, the long-distance collaboration between Senegalese musicians led by Arouna Kane and Sweden's Karl-Jonas Winqvist. Children's songs collide with fuzzy guitar solos, hip-hop beats and shimmering synths. Released on Sahel Sounds in 2022.",
+    "img": "https://f4.bcbits.com/img/a0742521235_10.jpg",
+    "youtube": "https://www.youtube.com/watch?v=57bH_Z_8xsw",
+    "section": "discover"
   }
 ]
