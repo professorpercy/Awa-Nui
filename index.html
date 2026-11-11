@@ -1066,7 +1066,7 @@ function setupOnce(){
       var n=getNodeAt(e.clientX-rect.left,e.clientY-rect.top);
       if(n){openPanel(n);}else if(panelOpen){closePanel();}
     }
-    if(sim)sim.alphaTarget(currentView==='genres'?0.002:0);
+    if(sim)sim.alphaTarget(0);
     dragNode.fx=null;dragNode.fy=null;
     dragNode=null;dragMoved=false;
     canvas.style.cursor=hovered?'pointer':'grab';
@@ -1283,16 +1283,32 @@ function rebuildLinks(){
   // Split into a dense within-cluster tangle (same main genre group — this is what gives
   // each cluster its organic "hairball" mass) vs. sparse, meaningful cross-cluster bridges
   // (curated to each node's few rarest/most-specific shared tags, so the net stays legible).
-  intraLinks=[];
+  // Within-cluster links are capped to each node's few most specific (rarest-tag) neighbours.
+  // The full set is O(n²) — tens of thousands of pairs once common tags like "world" or
+  // "electronic" are shared by 100+ albums — which froze the simulation and the renderer.
+  var INTRA_PER_NODE=6;
+  var intraByNode={};
   var interAll=[],byNode={};
   links.forEach(function(l){
     var ga=getGroup(nodes[l.source].genres[0]),gb=getGroup(nodes[l.target].genres[0]);
-    if(ga===gb)intraLinks.push(l);
+    if(ga===gb){
+      l._tb=((l.source*7919+l.target*104729)%1009);
+      (intraByNode[l.source]=intraByNode[l.source]||[]).push(l);
+      (intraByNode[l.target]=intraByNode[l.target]||[]).push(l);
+    }
     else{
       interAll.push(l);
       (byNode[l.source]=byNode[l.source]||[]).push(l);
       (byNode[l.target]=byNode[l.target]||[]).push(l);
     }
+  });
+  var seenIntra={};intraLinks=[];
+  Object.keys(intraByNode).forEach(function(k){
+    var top=intraByNode[k].slice().sort(function(a,b){return (a.rarity-b.rarity)||(a._tb-b._tb);}).slice(0,INTRA_PER_NODE);
+    top.forEach(function(l){
+      var key=l.source+'-'+l.target;
+      if(!seenIntra[key]){seenIntra[key]=true;intraLinks.push(l);}
+    });
   });
   var seen={};interLinks=[];
   Object.keys(byNode).forEach(function(k){
@@ -1459,10 +1475,10 @@ function createSimulation(W,H,view){
       .force('y',d3.forceY(function(d){var c=genreCenters[getGroup(d.genres[0])];return d._ty||(c?c.gcy:H/2);}).strength(isMobPortrait?0.05:0.035))
       .force('charge',d3.forceManyBody().strength(-70))
       .force('collision',d3.forceCollide(function(d){return (d._r||6)+1.5;}).strength(0.8))
-      .alpha(1).alphaDecay(0.08).alphaTarget(0.001)
+      .alpha(1).alphaDecay(0.08).alphaTarget(0)
       .on('tick',requestDraw);
     // Bump cache key when layout algorithm changes to avoid stale positions
-    var posKey='awanui_pos_v4_'+W+'x'+H+'_'+nodes.length;
+    var posKey='awanui_pos_v5_'+W+'x'+H+'_'+nodes.length;
     var posCache=null;
     try{posCache=JSON.parse(localStorage.getItem(posKey));}catch(e){}
     if(posCache&&posCache.length===nodes.length){
@@ -1471,6 +1487,8 @@ function createSimulation(W,H,view){
       sim.tick(180);
       try{localStorage.setItem(posKey,JSON.stringify(nodes.map(function(n){return[n.x,n.y];})));}catch(e){}
     }
+    // Layout is already settled — just a gentle final relax, then the sim stops on its own.
+    sim.alpha(0.1);
   }else{
     // TRUE GEOGRAPHIC ZOOM — Mercator fills full screen, projection updated on each zoom event
     var gc3=document.getElementById('gc');
@@ -1773,7 +1791,7 @@ function drawGenre(W,H){
   ctx.save();
   ctx.globalCompositeOperation='lighter';
   ctx.lineWidth=0.5*dpr;
-  ctx.strokeStyle='rgba(0,255,150,0.028)';
+  ctx.strokeStyle='rgba(0,255,150,0.06)';
   ctx.beginPath();
   for(var li=0;li<intraLinks.length;li++){
     var l=intraLinks[li];
@@ -2005,7 +2023,7 @@ function _buildGraph3D(){
   });
   var nodeById={};nodeData.forEach(function(nd){nodeById[nd.id]=nd;});
   var linkData=[];
-  links.forEach(function(l){
+  intraLinks.concat(interLinks).forEach(function(l){
     var s=typeof l.source==='object'?l.source.index:l.source;
     var t=typeof l.target==='object'?l.target.index:l.target;
     var snd=nodeById[s],tnd=nodeById[t];
