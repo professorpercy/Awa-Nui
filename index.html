@@ -292,7 +292,6 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 .af-btn:hover{background:rgba(0,255,100,.08);border-color:rgba(0,255,100,.5)}
 .af-btn.cancel{color:rgba(0,255,100,.3);border-color:rgba(0,255,100,.1)}
 .af-btn.cancel:hover{color:rgba(0,255,100,.5);border-color:rgba(0,255,100,.25)}
-#fg3d{position:absolute;top:0;left:0;width:100%;height:100%;display:none;z-index:2;}
 /* ── SEARCH ── */
 #search-overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:1200;display:none;
   justify-content:center;align-items:flex-start;padding-top:12vh}
@@ -396,7 +395,6 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
     <div class="logo-wrap"><span class="logo">AWA NUI</span><span class="logo-sub">music organised by space</span></div>
     <div class="hdr-r">
       <button class="hbtn" id="bsearch">SEARCH</button>
-      <button class="hbtn" id="b3d" style="display:none;visibility:hidden">3D</button>
       <button class="hbtn" id="rst">SHOW ALL</button>
       <button class="hbtn" id="bdiscogs" style="display:none">DISCOGS</button>
       <button class="hbtn" id="badd">+ ADD</button>
@@ -432,7 +430,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
       <div id="search-results"></div>
     </div>
   </div>
-  <div id="gc"><canvas id="cv"></canvas><div id="fg3d"></div>
+  <div id="gc"><canvas id="cv"></canvas>
     <div id="garden-empty">
       <div id="ge-inner">
         <div id="ge-title">YOUR GARDEN IS EMPTY</div>
@@ -687,13 +685,12 @@ var currentUser=null;
 var ADMIN_EMAIL='allegrawoods2005@gmail.com';
 var userGardenIds=new Set();
 var DATA=[],GLOBAL_DATA=[],globalDataReady=false;
-var nodes=[],links=[],intraLinks=[],interLinks=[],sim=null,ctx=null,canvas=null;
+var nodes=[],links=[],intraLinks=[],intraDrawLinks=[],interLinks=[],sim=null,ctx=null,canvas=null;
 var transform=null,hovered=null,currentView='genres',currentSection='discover';
 var currentFilter=null,currentFilterKind=null,dpr=1,animId=null,panelOpen=false;
 var setupDone=false,zoomBehavior=null,selectedNode=null,genreCenters={},worldCentroids={};
 var geoProjection=null,baseScale=0,baseTranslate=[0,0];
 var connectedSet=null,dragNode=null,dragMoved=false,dragStartX=0,dragStartY=0,genreSettling=false;
-var is3D=false,graph3d=null;
 var needsRedraw=true,cachedDotPixels=null,cachedDotZoom=-1;
 
 /* ── BOOT ── */
@@ -1007,7 +1004,7 @@ function init(){
 function setupOnce(){
   if(setupDone)return;
   setupDone=true;
-  zoomBehavior=d3.zoom().scaleExtent([0.55,60]).filter(function(event){
+  zoomBehavior=d3.zoom().scaleExtent([0.2,60]).filter(function(event){
       if(currentView==='genres'&&event.type==='mousedown'&&hovered)return false;
       return !event.button&&!event.ctrlKey;
     }).on('zoom',function(e){
@@ -1025,7 +1022,8 @@ function setupOnce(){
       var k=e.transform.k;
       var isMob=window.innerWidth<=600;
       var spread=Math.min(3.5,Math.sqrt(k)*0.95);
-      sim.force('collision',d3.forceCollide((isMob?7:10)*spread).strength(0.7));
+      var sp=Math.max(1,spread);
+      sim.force('collision',d3.forceCollide(function(d){return ((d._r||6)+1.5)*sp;}).strength(0.9));
       if(k>1.8)sim.alpha(0.07).restart();
     }
     requestDraw();
@@ -1123,7 +1121,6 @@ function setupOnce(){
     setView('country');
   };
   document.getElementById('rst').onclick=function(){clearFilter();};
-  document.getElementById('b3d').onclick=function(){toggle3D();};
   document.getElementById('mt-create').onclick=function(){switchSection('create');};
   document.getElementById('mt-discover').onclick=function(){switchSection('discover');};
   document.getElementById('ge-explore').onclick=function(){switchSection('discover');};
@@ -1201,7 +1198,6 @@ function loadSection(){
   currentView='country';
   document.getElementById('bcountry').classList.add('on');
   document.getElementById('bgenre').classList.remove('on');
-  document.getElementById('b3d').style.display='none';
   cachedDotPixels=null;
   var filtered;
   if(currentSection==='discover'){
@@ -1302,17 +1298,20 @@ function rebuildLinks(){
       (byNode[l.target]=byNode[l.target]||[]).push(l);
     }
   });
-  var seenIntra={};intraLinks=[];
+  // intraLinks drive the physics; intraDrawLinks is a lighter subset (2 per node) that's
+  // actually drawn, so clusters read as connected without drowning in green.
+  var seenIntra={},seenDraw={};intraLinks=[];intraDrawLinks=[];
   Object.keys(intraByNode).forEach(function(k){
     var top=intraByNode[k].slice().sort(function(a,b){return (a.rarity-b.rarity)||(a._tb-b._tb);}).slice(0,INTRA_PER_NODE);
-    top.forEach(function(l){
+    top.forEach(function(l,ti){
       var key=l.source+'-'+l.target;
       if(!seenIntra[key]){seenIntra[key]=true;intraLinks.push(l);}
+      if(ti<2&&!seenDraw[key]){seenDraw[key]=true;intraDrawLinks.push(l);}
     });
   });
   var seen={};interLinks=[];
   Object.keys(byNode).forEach(function(k){
-    var top=byNode[k].slice().sort(function(a,b){return a.rarity-b.rarity;}).slice(0,2);
+    var top=byNode[k].slice().sort(function(a,b){return a.rarity-b.rarity;}).slice(0,1);
     top.forEach(function(l){
       var key=l.source+'-'+l.target;
       if(!seen[key]){seen[key]=true;interLinks.push(l);}
@@ -1414,77 +1413,84 @@ function createSimulation(W,H,view){
     });
     genreCenters={};
     var isMobPortrait=(W<H);
-    // Portrait mobile: 2-column grid for clear cluster separation
-    // Desktop/landscape: classic ring layout
+    // Each cluster's radius comes from the space its albums physically need (sum of node
+    // collision areas at ~70% packing) so big groups like World/Electronic don't bleed into
+    // their neighbours.
+    var physR={};
+    groupOrder.forEach(function(g){
+      var area=0;byGroup[g].forEach(function(n){var cr=(n._r||6)+1.5;area+=cr*cr;});
+      physR[g]=Math.sqrt(area/0.55)+18;
+    });
+    // Largest groups first, alternating big/small around the ring so neighbours balance out
+    groupOrder.sort(function(a,b){return byGroup[b].length-byGroup[a].length;});
+    var balanced=[];
+    while(groupOrder.length){balanced.push(groupOrder.shift());if(groupOrder.length)balanced.push(groupOrder.pop());}
+    groupOrder=balanced;
+    var GAP=60;
+    var centres={};
     if(isMobPortrait){
-      // Two columns, but stacked by each cluster's ACTUAL size (not an even grid) — a fixed
-      // row height caused big clusters (e.g. 90+ album groups) to overlap their neighbours.
-      // The canvas pans vertically, so columns can run taller than one screen; that's fine.
-      var numCols=2;
-      var colXs=[W*0.27,W*0.73];
-      var colGroups=[[],[]];
-      groupOrder.forEach(function(g,i){colGroups[i%numCols].push(g);});
-      var topMargin=44,gap=26;
-      groupOrder.forEach(function(g){
-        var group=byGroup[g];
-        genreCenters[g]={_haloR:Math.ceil(Math.sqrt(group.length/Math.PI))*9+22};
-      });
+      // Two columns stacked by each cluster's actual size; the canvas pans vertically.
+      var colGroups=[[],[]],colH=[0,0];
+      groupOrder.forEach(function(g){var ci=colH[0]<=colH[1]?0:1;colGroups[ci].push(g);colH[ci]+=physR[g]*2+GAP;});
+      var colMaxR=colGroups.map(function(l){return l.reduce(function(m,g){return Math.max(m,physR[g]);},0);});
+      var colXs=[colMaxR[0],colMaxR[0]*2+GAP+colMaxR[1]];
       colGroups.forEach(function(list,ci){
-        var y=topMargin;
-        list.forEach(function(g){
-          var r=genreCenters[g]._haloR;
-          y+=r;
-          var gcx=colXs[ci],gcy=y;
-          y+=r+gap;
-          var group=byGroup[g];
-          var bySG={};
-          group.forEach(function(n){var sg=(n.genres[0]||'').toLowerCase();if(!bySG[sg])bySG[sg]=[];bySG[sg].push(n);});
-          var sgKeys=Object.keys(bySG);
-          var subR=sgKeys.length>1?Math.min(10,40/sgKeys.length):0;
-          var subCenters={};
-          sgKeys.forEach(function(sg){var grpList=GROUPS[g]||[];var sgIdx=grpList.indexOf(sg);if(sgIdx<0)sgIdx=hs(g+sg)%Math.max(grpList.length,8);var sgAngle=(sgIdx/Math.max(grpList.length,1))*Math.PI*2-Math.PI/2;var scx=gcx+Math.cos(sgAngle)*subR;var scy=gcy+Math.sin(sgAngle)*subR;subCenters[sg]={scx:scx,scy:scy};bySG[sg].forEach(function(n){n._tx=scx;n._ty=scy;n.x=scx+(Math.random()-0.5)*6;n.y=scy+(Math.random()-0.5)*6;});});
-          genreCenters[g]={gcx:gcx,gcy:gcy,haloR:r,subCenters:subCenters};
-        });
+        var y=0;
+        list.forEach(function(g){y+=physR[g];centres[g]={x:colXs[ci],y:y};y+=physR[g]+GAP;});
       });
     }else{
-      var gRingR=Math.min(W,H)*0.52;
-      groupOrder.forEach(function(g,i){
-        var angle=(i/groupOrder.length)*Math.PI*2-Math.PI/2;
-        var gcx=W/2+Math.cos(angle)*gRingR;
-        var gcy=H/2+Math.sin(angle)*gRingR;
-        var group=byGroup[g];
-        var bySG={};
-        group.forEach(function(n){var sg=(n.genres[0]||'').toLowerCase();if(!bySG[sg])bySG[sg]=[];bySG[sg].push(n);});
-        var sgKeys=Object.keys(bySG);
-        var subR=sgKeys.length>1?Math.min(18,80/sgKeys.length):0;
-        var subCenters={};
-        sgKeys.forEach(function(sg){var grpList=GROUPS[g]||[];var sgIdx=grpList.indexOf(sg);if(sgIdx<0)sgIdx=hs(g+sg)%Math.max(grpList.length,8);var sgAngle=(sgIdx/Math.max(grpList.length,1))*Math.PI*2-Math.PI/2;var scx=gcx+Math.cos(sgAngle)*subR;var scy=gcy+Math.sin(sgAngle)*subR;subCenters[sg]={scx:scx,scy:scy};bySG[sg].forEach(function(n){n._tx=scx;n._ty=scy;n.x=scx+(Math.random()-0.5)*8;n.y=scy+(Math.random()-0.5)*8;});});
-        var labelR=Math.ceil(Math.sqrt(group.length/Math.PI))*10+28;
-        genreCenters[g]={gcx:gcx,gcy:gcy,haloR:labelR,subCenters:subCenters};
+      // Ring whose circumference fits every cluster's diameter plus a gap; clusters are
+      // placed by arc length so a big one gets a wider slice than a small one.
+      var circ=0;groupOrder.forEach(function(g){circ+=physR[g]*2+GAP;});
+      var gRingR=Math.max(Math.min(W,H)*0.4,circ/(Math.PI*2));
+      var arc=0;
+      groupOrder.forEach(function(g){
+        var mid=arc+physR[g]+GAP/2;arc+=physR[g]*2+GAP;
+        var angle=(mid/circ)*Math.PI*2-Math.PI/2;
+        centres[g]={x:W/2+Math.cos(angle)*gRingR,y:H/2+Math.sin(angle)*gRingR};
       });
     }
+    groupOrder.forEach(function(g){
+      var gcx=centres[g].x,gcy=centres[g].y,R=physR[g];
+      var group=byGroup[g];
+      var bySG={};
+      group.forEach(function(n){var sg=(n.genres[0]||'').toLowerCase();if(!bySG[sg])bySG[sg]=[];bySG[sg].push(n);});
+      // Biggest sub-genre sits in the middle; the rest ring around it in sub-clusters
+      var sgKeys=Object.keys(bySG).sort(function(a,b){return bySG[b].length-bySG[a].length;});
+      var subCenters={};
+      sgKeys.forEach(function(sg,si){
+        var scx=gcx,scy=gcy;
+        if(si>0){
+          var a=((si-1)/Math.max(sgKeys.length-1,1))*Math.PI*2-Math.PI/2;
+          var sr=R*0.55;
+          scx=gcx+Math.cos(a)*sr;scy=gcy+Math.sin(a)*sr;
+        }
+        subCenters[sg]={scx:scx,scy:scy};
+        bySG[sg].forEach(function(n){n._tx=scx;n._ty=scy;n.x=scx+(Math.random()-0.5)*10;n.y=scy+(Math.random()-0.5)*10;});
+      });
+      genreCenters[g]={gcx:gcx,gcy:gcy,haloR:R+6,subCenters:subCenters};
+    });
     sim=d3.forceSimulation(nodes)
-      // Dense same-genre tangle — default d3 strength (auto-normalized by node degree) is
-      // what pulls each cluster into an organic mass, not a pre-drawn circle.
-      .force('linkIntra',d3.forceLink(intraLinks).distance(16))
-      // Sparse cross-genre bridges — gentle, so related clusters drift closer without merging.
-      .force('linkInter',d3.forceLink(interLinks).distance(170).strength(function(l){return Math.min(0.02,0.5/l.rarity);}))
-      // Soft leash back to this group's assigned sector — keeps clusters from drifting into
-      // each other over time, but weak enough that link topology (not this) defines the shape.
-      .force('x',d3.forceX(function(d){var c=genreCenters[getGroup(d.genres[0])];return d._tx||(c?c.gcx:W/2);}).strength(isMobPortrait?0.05:0.035))
-      .force('y',d3.forceY(function(d){var c=genreCenters[getGroup(d.genres[0])];return d._ty||(c?c.gcy:H/2);}).strength(isMobPortrait?0.05:0.035))
-      .force('charge',d3.forceManyBody().strength(-70))
+      // Within-genre links knit each cluster into an organic mass
+      .force('linkIntra',d3.forceLink(intraLinks).distance(22).strength(0.2))
+      // Cross-genre bridges are drawn, but barely pull — so clusters stay separate and tidy
+      .force('linkInter',d3.forceLink(interLinks).distance(200).strength(0.002))
+      // Firm leash to each album's sub-genre spot inside its cluster
+      .force('x',d3.forceX(function(d){return d._tx;}).strength(0.06))
+      .force('y',d3.forceY(function(d){return d._ty;}).strength(0.06))
+      // Short-range repulsion only — spreads albums within a cluster without shoving clusters apart
+      .force('charge',d3.forceManyBody().strength(-30).distanceMax(110))
       .force('collision',d3.forceCollide(function(d){return (d._r||6)+1.5;}).strength(0.8))
-      .alpha(1).alphaDecay(0.08).alphaTarget(0)
+      .alpha(1).alphaDecay(0.05).alphaTarget(0)
       .on('tick',requestDraw);
     // Bump cache key when layout algorithm changes to avoid stale positions
-    var posKey='awanui_pos_v5_'+W+'x'+H+'_'+nodes.length;
+    var posKey='awanui_pos_v6_'+W+'x'+H+'_'+nodes.length;
     var posCache=null;
     try{posCache=JSON.parse(localStorage.getItem(posKey));}catch(e){}
     if(posCache&&posCache.length===nodes.length){
       nodes.forEach(function(n,i){n.x=posCache[i][0];n.y=posCache[i][1];});
     }else{
-      sim.tick(180);
+      sim.tick(300);
       try{localStorage.setItem(posKey,JSON.stringify(nodes.map(function(n){return[n.x,n.y];})));}catch(e){}
     }
     // Layout is already settled — just a gentle final relax, then the sim stops on its own.
@@ -1791,10 +1797,10 @@ function drawGenre(W,H){
   ctx.save();
   ctx.globalCompositeOperation='lighter';
   ctx.lineWidth=0.5*dpr;
-  ctx.strokeStyle='rgba(0,255,150,0.06)';
+  ctx.strokeStyle='rgba(0,255,150,0.045)';
   ctx.beginPath();
-  for(var li=0;li<intraLinks.length;li++){
-    var l=intraLinks[li];
+  for(var li=0;li<intraDrawLinks.length;li++){
+    var l=intraDrawLinks[li];
     var s=typeof l.source==='object'?l.source:nodes[l.source];
     var t=typeof l.target==='object'?l.target:nodes[l.target];
     if(!s||!t)continue;
@@ -1804,21 +1810,25 @@ function drawGenre(W,H){
 
   // Sparse cross-genre bridges — curated to each node's rarest shared tags, drawn a little
   // brighter since there are few of them and they're the ones worth noticing.
-  ctx.lineWidth=0.7*dpr;
+  // Coloured by the source album's genre group so you can see which genres reach where.
+  ctx.lineWidth=0.8*dpr;
   var rlBuckets={};
   for(var li=0;li<interLinks.length;li++){
     var l=interLinks[li];
     var s=typeof l.source==='object'?l.source:nodes[l.source];
     var t=typeof l.target==='object'?l.target:nodes[l.target];
     if(!s||!t)continue;
-    var op=Math.max(0.05,Math.min(0.24,3/l.rarity));
-    op=Math.round(op*100)/100;
-    if(!rlBuckets[op])rlBuckets[op]=[];
-    rlBuckets[op].push(s.x*dpr,s.y*dpr,t.x*dpr,t.y*dpr);
+    var op=Math.max(0.08,Math.min(0.26,3/l.rarity));
+    op=Math.round(op*20)/20;
+    var gk=getGroup(s.genres[0]);
+    var bk=gk+'|'+op;
+    if(!rlBuckets[bk])rlBuckets[bk]=[];
+    rlBuckets[bk].push(s.x*dpr,s.y*dpr,t.x*dpr,t.y*dpr);
   }
-  for(var op in rlBuckets){
-    var pts=rlBuckets[op];
-    ctx.strokeStyle='rgba(0,255,150,'+op+')';
+  for(var bk in rlBuckets){
+    var pts=rlBuckets[bk];
+    var bp=bk.split('|'),brgb=hexToRgb(GC[bp[0]]?GC[bp[0]].range[2]:'#00ff96');
+    ctx.strokeStyle='rgba('+brgb.r+','+brgb.g+','+brgb.b+','+bp[1]+')';
     ctx.beginPath();
     for(var pi=0;pi<pts.length;pi+=4){ctx.moveTo(pts[pi],pts[pi+1]);ctx.lineTo(pts[pi+2],pts[pi+3]);}
     ctx.stroke();
@@ -1947,123 +1957,11 @@ function drawGenre(W,H){
   ctx.restore();
 }
 
-/* ── 3D MODE ── */
-function makeForceZ(targetFn,str){
-  var fnodes=[];
-  function force(alpha){
-    for(var i=0;i<fnodes.length;i++){
-      var n=fnodes[i];
-      if(n.vz===undefined)n.vz=0;
-      n.vz+=(targetFn(n)-(n.z||0))*str*alpha;
-    }
-  }
-  force.initialize=function(n){fnodes=n;};
-  return force;
-}
-function toggle3D(){if(is3D){exit3D();}else{enter3D();}}
-function enter3D(){
-  if(animId)cancelAnimationFrame(animId);
-  if(sim)sim.stop();
-  is3D=true;
-  var container=document.getElementById('fg3d');
-  container.style.display='block';
-  canvas.style.display='none';
-  if(!window.ForceGraph3D){
-    container.innerHTML='<div style="color:#00ff64;padding:20px;font-family:Courier New;font-size:10px;letter-spacing:.15em">LOADING 3D…</div>';
-    var s=document.createElement('script');
-    s.src='https://unpkg.com/3d-force-graph/dist/3d-force-graph.min.js';
-    s.onload=function(){container.innerHTML='';_buildGraph3D();};
-    document.head.appendChild(s);
-    return;
-  }
-
-  _buildGraph3D();
-}
-function _buildGraph3D(){
-  var container=document.getElementById('fg3d');
-  // Always restore genre colours (may have been overwritten by country view)
-  nodes.forEach(function(n){n._col=genreColor(n);});
-
-  var ringOrder=['electronic','hiphop','folk','reggae','experimental','soul','world','jazz'];
-  var R=440;
-  var grp3Centers={};
-  ringOrder.forEach(function(g,i){
-    var angle=(i/ringOrder.length)*Math.PI*2-Math.PI/2;
-    grp3Centers[g]={x:R*Math.cos(angle),y:R*Math.sin(angle)};
-  });
-  Object.keys(GROUPS).forEach(function(g){
-    if(!grp3Centers[g])grp3Centers[g]={x:0,y:0};
-  });
-
-  var sg3Centers={};
-  ringOrder.forEach(function(g){
-    var subs=GROUPS[g]||[];
-    var sr=Math.min(100,24*Math.sqrt(subs.length));
-    subs.forEach(function(sg,si){
-      var sa=(si/subs.length)*Math.PI*2;
-      sg3Centers[sg]={
-        x:grp3Centers[g].x+(subs.length>1?sr*Math.cos(sa):0),
-        y:grp3Centers[g].y+(subs.length>1?sr*Math.sin(sa):0)
-      };
-    });
-  });
-
-  var nodeData=nodes.map(function(n,i){
-    var g=getGroup(n.genres[0])||'experimental';
-    var sg=(n.genres[0]||'').toLowerCase();
-    var sc=sg3Centers[sg]||grp3Centers[g]||{x:0,y:0};
-    return{
-      id:n.index!==undefined?n.index:i,
-      label:n.id+' — '+n.artist,
-      col:n._col,
-      _orig:n,
-      _tx:sc.x,_ty:sc.y,
-      _tz:(n._z-0.5)*90
-    };
-  });
-  var nodeById={};nodeData.forEach(function(nd){nodeById[nd.id]=nd;});
-  var linkData=[];
-  intraLinks.concat(interLinks).forEach(function(l){
-    var s=typeof l.source==='object'?l.source.index:l.source;
-    var t=typeof l.target==='object'?l.target.index:l.target;
-    var snd=nodeById[s],tnd=nodeById[t];
-    if(snd&&tnd)linkData.push({source:s,target:t,col:snd.col||'#aaaaaa'});
-  });
-
-  var gc3=document.getElementById('gc');
-  graph3d=ForceGraph3D()(container)
-    .width(gc3.offsetWidth).height(gc3.offsetHeight)
-    .graphData({nodes:nodeData,links:linkData})
-    .nodeColor(function(n){return n.col||'#00ff64';})
-    .nodeLabel(function(n){return n.label;})
-    .nodeRelSize(4.5).nodeOpacity(0.92)
-    .linkOpacity(0.04)
-    .linkColor(function(l){return l.col||'#888888';})
-    .backgroundColor('#030905')
-    .warmupTicks(120).cooldownTicks(200)
-    .d3AlphaDecay(0.022)
-    .d3Force('x',d3.forceX(function(n){return n._tx;}).strength(0.38))
-    .d3Force('y',d3.forceY(function(n){return n._ty;}).strength(0.38))
-    .d3Force('z',makeForceZ(function(n){return n._tz;},0.18))
-    .d3Force('charge',d3.forceManyBody().strength(-55).distanceMax(260))
-    .onNodeClick(function(n){if(n._orig)openPanel(n._orig);});
-}
-function exit3D(noRestart){
-  if(graph3d){try{graph3d._destructor();}catch(e){}graph3d=null;}
-  var container=document.getElementById('fg3d');
-  container.style.display='none';
-  container.innerHTML='';
-  canvas.style.display='';
-  is3D=false;
-  if(!noRestart){if(animId)cancelAnimationFrame(animId);draw();}
-}
-
 /* ── VIEW ── */
 function setView(type){
   currentView=type;clearFilter();
   var gc=document.getElementById('gc'),W=gc.offsetWidth,H=gc.offsetHeight;
   if(type==='country'){
-    exit3D(true);
     cachedDotPixels=null;
     transform=d3.zoomIdentity;
     if(zoomBehavior)d3.select(canvas).call(zoomBehavior.transform,d3.zoomIdentity);
@@ -2075,10 +1973,31 @@ function setView(type){
   }else{
     rebuildLinks();
     createSimulation(W,H,'genres');
+    fitGenreView(W,H);
     buildTicker('genres');
     if(animId)cancelAnimationFrame(animId);
     draw();
   }
+}
+
+// Zoom out so every genre cluster (plus its label) is on screen when the genre view opens.
+// Portrait phones fit to width only — clusters are stacked in tall columns you scroll through.
+function fitGenreView(W,H){
+  if(!zoomBehavior||!nodes.length)return;
+  var minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
+  nodes.forEach(function(n){
+    if(n.x<minX)minX=n.x;if(n.x>maxX)maxX=n.x;
+    if(n.y<minY)minY=n.y;if(n.y>maxY)maxY=n.y;
+  });
+  for(var g in genreCenters){var c=genreCenters[g];if(c.gcy-c.haloR<minY)minY=c.gcy-c.haloR;}
+  var pad=40,bw=Math.max(1,maxX-minX),bh=Math.max(1,maxY-minY);
+  var portrait=W<H;
+  var k=portrait?(W-pad*2)/bw:Math.min((W-pad*2)/bw,(H-pad*2)/bh);
+  k=Math.max(0.2,Math.min(1,k));
+  var tx=W/2-k*(minX+bw/2);
+  var ty=portrait?pad-k*minY:H/2-k*(minY+bh/2);
+  transform=d3.zoomIdentity.translate(tx,ty).scale(k);
+  d3.select(canvas).call(zoomBehavior.transform,transform);
 }
 
 /* ── FILTER ── */
